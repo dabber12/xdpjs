@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>FormSync — local DOCX ↔ XDP review</title>
+<style>:root{--ink:#142f35;--muted:#5c7076;--line:#dbe5e5;--paper:#f4f7f6;--white:#fff;--teal:#087b6f;--pale:#e9f4ef;--orange:#9c5918;--red:#a03343;--shadow:0 5px 22px #173d3910}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #40b3ab;outline-offset:3px}button{transition:background .15s,box-shadow .15s}input[type=checkbox]{accent-color:var(--teal);width:15px;height:15px;vertical-align:middle}a{color:var(--teal)}h1,h2,h3,p{margin-top:0}h2{font-size:19px;letter-spacing:-.3px;margin:0}h3{font-size:17px;letter-spacing:-.2px}small{font-size:11px}.muted{color:var(--muted);font-size:12px}code{font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;background:#f0f4f4;padding:2px 4px;border-radius:3px}.sr-only,.skip:not(:focus){position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip:focus{position:fixed;z-index:100;background:white;padding:14px}.topbar{max-width:1450px;margin:auto;display:flex;align-items:center;gap:28px;padding:23px 48px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-size:23px;font-weight:730;letter-spacing:-.8px}.brand small{display:block;font-size:8px;letter-spacing:1.75px;margin-top:-2px;color:var(--muted)}.brand-mark{height:41px;width:41px;display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;border-radius:11px;font-size:25px;position:relative}.brand-mark span{position:absolute;font-size:15px;bottom:1px;right:5px;color:#8fdec7}.local-badge{margin-left:auto;display:flex;gap:7px;align-items:center;font-size:12px;color:var(--muted)}.dot{height:7px;width:7px;background:var(--teal);border-radius:50%;display:inline-block}main{max-width:1450px;margin:auto;padding:0 48px}.intro{padding:39px 0 30px;display:flex;gap:45px;align-items:center;justify-content:space-between}.eyebrow,.small-label{font-size:10px;font-weight:750;letter-spacing:1.5px}.eyebrow{color:var(--teal);margin-bottom:15px}.intro h1{font-size:clamp(29px,3vw,43px);line-height:1.16;letter-spacing:-1.65px;margin-bottom:15px;font-weight:740}.intro h1 span{color:var(--teal)}.intro p{color:var(--muted);line-height:1.65;margin:0}.intro-note{border-left:2px solid #bcd7ce;padding:4px 0 5px 24px;max-width:320px}.intro-note p{font-size:13px;margin:8px 0 15px}.text-button{border:0;background:none;color:var(--teal);padding:0;font-weight:650;font-size:12px}.text-button:hover{text-decoration:underline}.primary,.secondary,.quiet{border:1px solid transparent;border-radius:7px;padding:10px 16px;font-size:12px;font-weight:650;white-space:nowrap}.primary{background:var(--teal);color:#fff;box-shadow:0 2px 3px #0b5b4215}.primary:hover:not(:disabled){background:#04675d}.primary span{margin-left:12px}.secondary{background:white;border-color:#cbdad8;color:var(--ink)}.secondary:hover:not(:disabled){background:#edf5f2}.quiet{background:transparent;color:var(--muted);padding:8px 10px}.quiet:hover:not(:disabled){background:#e7eeeb;color:var(--ink)}.load-panel{background:white;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:23px 24px 0}.section-head{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:18px}.section-head h2{display:flex;align-items:center;gap:10px}.step{height:24px;width:24px;border:1px solid var(--line);border-radius:50%;font-size:10px;display:inline-flex;align-items:center;justify-content:center;color:var(--teal)}.file-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.file-zone{padding:20px 16px;border:1px dashed #bdcfcd;border-radius:9px;display:flex;gap:13px;align-items:center;min-width:0;background:#fcfdfc}.file-zone.dragover{border:2px solid var(--teal);background:var(--pale)}.file-icon{width:39px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;background:#e9eff8;color:#315480;border:1px solid #cfdae9;border-radius:6px;font-weight:750;font-size:17px}.xdp-icon{font-family:monospace;font-size:13px;background:var(--pale);border-color:#c5dcd3;color:var(--teal)}.file-copy{flex:1;min-width:0}.file-copy .small-label{font-size:9px;letter-spacing:1px;color:var(--muted)}.file-name{font-size:15px;font-weight:650;overflow-wrap:anywhere;margin:4px 0}.file-copy .muted{font-size:11px}.settings-bar{display:flex;gap:15px;align-items:center;justify-content:space-between;padding:20px 0 16px}.checks{display:flex;gap:17px;flex-wrap:wrap;color:var(--muted);font-size:11px}.checks label{display:flex;align-items:center;gap:5px}.advanced{border-top:1px solid var(--line);font-size:12px;padding:11px 0;color:var(--muted)}summary{cursor:pointer;font-size:12px;font-weight:650;list-style-position:outside}summary::marker{color:var(--teal)}.advanced summary{list-style-position:inside}.advanced-grid{padding:15px 0;display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:24px;align-items:center}.advanced-grid label{font-size:11px}.advanced-grid select{display:block;margin-top:6px;width:100%}select{border:1px solid #ccdad7;border-radius:6px;background:white;padding:8px;color:var(--ink)}.advanced-grid p{margin:0;font-size:12px}.status{padding:13px 3px;font-size:12px;color:var(--muted);min-height:44px}.status.busy{color:var(--teal);font-weight:600}.error{border:1px solid #ecc4c9;background:#fff1f2;color:#8c2736;border-radius:8px;padding:15px 18px;white-space:pre-wrap;margin:10px 0 20px;font-size:13px}.results-head{margin:12px 0 18px}.inline-actions{display:flex;gap:7px;align-items:center}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}.stat{background:white;border:1px solid var(--line);border-radius:9px;padding:15px 18px;display:flex;gap:12px;align-items:center}.stat strong{font-size:26px;letter-spacing:-1px;font-weight:700}.stat span{font-size:11px;color:var(--muted);line-height:1.35}.stat.emphasis{background:#e5f1ea;border-color:#c7ddd0}.stat.emphasis strong{color:var(--teal)}.notices{padding:12px 18px;background:#eef2ed;border:1px solid #d8e1d4;border-radius:8px;margin-bottom:21px;color:#465b4c}.notices summary{margin-left:13px}.notices p{font-size:12px;margin:10px 0 0}.notices .warning-item{padding-top:8px;border-top:1px solid #dbe4d7}.notices code{font-size:11px;background:transparent}.review-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 0 13px}.tabs{display:flex;gap:3px;background:#e6eeea;border-radius:7px;padding:4px}.tab{padding:7px 11px;border:0;background:transparent;color:var(--muted);border-radius:5px;font-size:11px;font-weight:650;white-space:nowrap}.tab.active{background:white;box-shadow:0 1px 5px #18362b15;color:var(--ink)}.search-box{display:flex;align-items:center;gap:9px;background:white;border:1px solid var(--line);border-radius:7px;padding:0 11px;min-width:220px}.search-box span{font-size:24px;color:var(--muted)}.search-box input{background:none;border:0;padding:10px 0;outline:none;width:100%;font-size:12px;color:var(--ink)}.review-grid{display:grid;grid-template-columns:minmax(250px,31%) minmax(0,1fr);gap:18px;align-items:start}.item-panel{background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden}.list-heading{display:flex;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px}.list-heading span+span{font-size:8px;letter-spacing:1px;padding-top:2px}.item-list{max-height:640px;overflow-y:auto}.item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #e6ecea;background:white;padding:16px 16px 14px;position:relative;color:var(--ink)}.item:last-child{border-bottom:0}.item:hover{background:#f5f9f7}.item.selected{background:#edf6f0}.item.selected:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal)}.item-top{display:flex;gap:8px;align-items:center;margin-bottom:6px}.item-name{font-size:12px;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.item-score{margin-left:auto;font:10px ui-monospace,monospace;color:var(--muted);white-space:nowrap}.item-preview{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:9px;line-height:1.5}.item-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}.badge{font-size:9px;font-weight:650;padding:3px 6px;border-radius:4px;line-height:1.3;background:#edf1ef;color:#5a6c62}.badge.suggested{background:#e7f3ed;color:#1b7251}.badge.ambiguous,.badge.unmatched{background:#fff1db;color:#8d5416}.badge.approved{background:#087b6f;color:white}.badge.rejected{background:#ebeff0;color:#566670}.badge.blocked{background:#fbe9eb;color:#9b384b}.badge.unchanged{background:#eff3f1;color:#607468}.badge.hidden{background:#f0eafa;color:#775791}.detail-panel{background:white;border:1px solid var(--line);border-radius:10px;min-height:450px;overflow:hidden;box-shadow:var(--shadow)}.empty-state{text-align:center;max-width:420px;margin:100px auto;padding:0 20px;color:var(--muted)}.empty-state h3{color:var(--ink);margin:14px 0 8px}.empty-state p{font-size:13px}.empty-icon{font-size:29px;color:var(--teal);width:53px;height:53px;border-radius:50%;background:var(--pale);margin:auto;padding-top:4px}.detail-head{padding:20px 22px 16px;border-bottom:1px solid var(--line)}.detail-title-row{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.detail-title-row h3{margin:0 0 5px;font-size:20px;overflow-wrap:anywhere}.detail-kind{font-size:11px;color:var(--muted)}.detail-path{display:block;color:#6e7f80;background:#f3f6f5;margin-top:12px;font-size:10px;padding:8px 10px;overflow-wrap:anywhere}.detail-body{padding:20px 22px}.match-info{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;color:var(--muted);margin-bottom:14px}.match-info strong{font-weight:650;color:var(--ink)}.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.text-column{border:1px solid var(--line);border-radius:7px;overflow:hidden}.column-label{padding:9px 12px;background:#f4f7f5;border-bottom:1px solid var(--line);font-size:9px;font-weight:700;letter-spacing:1px}.text-content{padding:14px 13px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;max-height:280px;overflow:auto;min-height:113px}.text-content del{background:#fde7e7;color:#a02b3e;text-decoration:line-through;text-decoration-thickness:1px}.text-content ins{background:#d9f1e2;color:#136641;text-decoration:none;border-bottom:1px solid #7dbb98}.word-location{font-size:11px;color:var(--muted);margin:10px 0 14px;overflow-wrap:anywhere}.review-alert{padding:10px 12px;background:#fff7e9;border:1px solid #eddcc0;border-radius:6px;font-size:11px;color:#805b29;margin:12px 0}.review-alert.block{background:#fff0f1;border-color:#ebcbd0;color:#97364a}.detail-disclosure{border-top:1px solid var(--line);padding:13px 0 0;margin-top:15px}.detail-disclosure summary{font-size:12px;list-style-position:inside}.mapping-controls{margin-top:12px}.mapping-controls>label{display:block;font-size:11px;color:var(--muted)}.mapping-controls select,.mapping-controls input{width:100%;margin:6px 0 10px;font-size:12px}.mapping-controls input{border:1px solid #ccdad7;padding:9px;border-radius:6px}.search-results{max-height:190px;overflow-y:auto;border:1px solid var(--line);border-radius:6px}.source-option{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #e4ede7;background:#f8fbf8;padding:10px 12px;color:var(--ink);font-size:12px}.source-option:hover{background:#eaf3ed}.source-option small{display:block;color:var(--muted);font-size:9px;margin-bottom:4px}.edit-label{display:block;font-size:11px;color:var(--muted);margin:15px 0 6px}textarea{width:100%;border:1px solid #c5d6cd;border-radius:6px;padding:11px;resize:vertical;min-height:110px;font-size:13px;color:var(--ink);line-height:1.6}.editor-hint{font-size:10px;color:var(--muted);margin:6px 0 10px}.edit-row{display:flex;gap:9px;align-items:center}.review-note{margin-top:15px}.review-note label{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}.review-note input{width:100%;border:1px solid var(--line);padding:8px 10px;border-radius:6px;font-size:12px}.detail-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);background:#fbfcfb;padding:15px 22px}.action-left{display:flex;gap:7px;align-items:center}.detail-nav{font-size:11px;color:var(--muted);padding:0 22px 14px;display:flex;justify-content:space-between;align-items:center;background:#fbfcfb}.detail-nav .quiet{padding:4px 7px}.unmatched-section{margin:20px 0 26px;padding:17px 20px;background:white;border:1px solid var(--line);border-radius:9px}.unmatched-section summary{margin-left:13px}.unmatched-section>p{margin:14px 0}.word-item{padding:12px 0;border-top:1px solid var(--line);font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.word-item small{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.export-panel{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 28px;border:1px solid #c5dacf;background:#e5f1e9;border-radius:11px}.export-panel .small-label{color:var(--teal);font-size:9px}.export-panel h2{margin:8px 0 5px;font-size:23px}.export-panel p{margin:0;font-size:12px;color:#4c6960}.validation-note{font-size:11px;line-height:1.65;color:var(--muted);padding:12px 3px 0}footer{border-top:1px solid var(--line);margin-top:23px;padding:19px 0 25px;display:flex;align-items:center;gap:25px;color:var(--muted);font-size:10px}footer span:nth-child(2){margin-left:auto}footer .text-button{font-size:10px}dialog{border:1px solid var(--line);border-radius:13px;max-width:740px;width:calc(100% - 32px);max-height:86vh;padding:0;box-shadow:0 25px 100px #18382944;color:var(--ink)}dialog::backdrop{background:#142f3580;backdrop-filter:blur(3px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 25px;border-bottom:1px solid var(--line)}.help-body{padding:24px 28px 30px}.help-body h3{margin:23px 0 8px;font-size:15px}.help-body h3:first-child{margin-top:0}.help-body p{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.8}.page-more{padding:10px 16px;width:100%;text-align:center;background:#f0f6f3;border:0;color:var(--teal);font-weight:650;font-size:12px}
+@media(min-width:1500px){.intro{padding-top:48px;padding-bottom:35px}}
+@media(max-width:1100px){.topbar,main{padding-left:28px;padding-right:28px}.file-grid{gap:12px}.file-zone{padding:16px 12px}.file-zone .secondary{padding:8px 10px}.checks{gap:10px;font-size:10px}.review-toolbar{flex-wrap:wrap}.search-box{flex:1}.stat{padding:13px 12px;gap:8px}.stat strong{font-size:24px}.stat span{font-size:10px}.review-grid{grid-template-columns:minmax(225px,30%) minmax(0,1fr)}.detail-body,.detail-head{padding-left:17px;padding-right:17px}.intro-note{max-width:270px}.intro h1{font-size:36px}}
+@media(max-width:820px){.topbar,main{padding-left:18px;padding-right:18px}.topbar{gap:12px}.local-badge{font-size:10px}.intro{padding-top:27px;gap:20px}.intro h1{font-size:31px}.intro-note{display:none}.load-panel{padding:18px 16px 0}.file-grid{grid-template-columns:1fr}.settings-bar{align-items:flex-start}.checks{display:grid;gap:6px}.advanced-grid{grid-template-columns:1fr 1fr}.advanced-grid p{grid-column:1/-1}.results-head{flex-wrap:wrap}.stats{gap:6px}.stat{display:block;padding:11px}.stat strong,.stat span{display:block}.stat span{margin-top:4px}.tabs{width:100%;overflow-x:auto}.tab{flex:1;padding:7px 8px}.search-box{width:100%}.review-grid{grid-template-columns:1fr}.item-list{max-height:260px}.detail-panel{min-height:350px}.detail-actions{padding-left:15px;padding-right:15px}.export-panel{padding:21px;align-items:flex-start;flex-direction:column}.export-panel .primary{width:100%}.export-panel h2{font-size:21px}footer{gap:12px;flex-wrap:wrap}footer span:nth-child(2){display:none}.intro p{font-size:13px}}
+@media(max-width:480px){.local-badge{display:none}.topbar .quiet{margin-left:auto}.file-icon{display:none}.section-head>.muted{display:none}.diff-grid{grid-template-columns:1fr}.stat{padding:9px}.stat span{font-size:9px}.stat strong{font-size:22px}.inline-actions{gap:2px}.inline-actions button{font-size:10px;padding:7px 9px}.match-info{align-items:flex-start;flex-direction:column;gap:4px}.detail-actions{flex-wrap:wrap}.settings-bar>.primary{font-size:11px;padding:10px}.advanced-grid{grid-template-columns:1fr}.intro h1{font-size:30px}}
+[hidden]{display:none!important}
+@media print{.topbar,.intro,.load-panel,.review-toolbar,.item-panel,.detail-actions,.export-panel,footer{display:none}.review-grid{display:block}main{padding:10px}.detail-panel{border:0;box-shadow:none}.text-content{max-height:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#workspace">Skip to workspace</a>
+<header class="topbar"><div class="brand"><span class="brand-mark" aria-hidden="true">F<span>↔</span></span><span>FormSync<small>DOCUMENT RECONCILIATION</small></span></div><div class="local-badge"><span class="dot"></span>Local files. Local processing.</div><button class="quiet" id="helpButton">How it works</button></header>
+<main id="workspace">
+<section class="intro"><div><div class="eyebrow">DOCX → XDP · TEXT REVIEW</div><h1>Keep the wording.<br><span>Lose the manual checking.</span></h1><p>Compare your Word source with an Adobe XDP template.<br>Review the differences. Export only the changes you approve.</p></div><div class="intro-note"><span class="small-label">YOUR FILES STAY HERE</span><p>No uploads, no server, no account.<br>Nothing is saved between sessions unless you export a review file.</p><button class="text-button" id="demoButton">Explore a built-in example <span aria-hidden="true">↗</span></button></div></section>
+<section class="load-panel" aria-labelledby="loadHeading"><div class="section-head"><h2 id="loadHeading"><span class="step">01</span> Choose your files</h2><span class="muted">Word is the source of truth</span></div>
+<div class="file-grid"><div class="file-zone" id="docxZone"><div class="file-icon" aria-hidden="true">W</div><div class="file-copy"><label class="small-label" for="docxInput">APPROVED WORD SOURCE</label><div id="docxName" class="file-name">Choose a .docx file</div><div id="docxMeta" class="muted">Drag a file here, or browse · up to 50 MiB</div></div><button id="docxBrowse" class="secondary">Browse</button><input id="docxInput" type="file" accept=".docx" class="sr-only" tabindex="-1"></div>
+<div class="file-zone" id="xdpZone"><div class="file-icon xdp-icon" aria-hidden="true">&lt;/&gt;</div><div class="file-copy"><label class="small-label" for="xdpInput">EXISTING FORM TEMPLATE</label><div id="xdpName" class="file-name">Choose an .xdp file</div><div id="xdpMeta" class="muted">Drag a file here, or browse · up to 50 MiB</div></div><button id="xdpBrowse" class="secondary">Browse</button><input id="xdpInput" type="file" accept=".xdp,.xml" class="sr-only" tabindex="-1"></div></div>
+<div class="settings-bar"><div class="checks"><label><input id="includeHeaders" type="checkbox" checked> Word headers &amp; footers</label><label><input id="includeCaptions" type="checkbox" checked> XDP field captions</label><label><input id="includeNotes" type="checkbox"> Word footnotes &amp; endnotes</label></div><button id="compareButton" class="primary" disabled>Compare wording <span aria-hidden="true">→</span></button></div>
+<details class="advanced"><summary>Matching options</summary><div class="advanced-grid"><label>Minimum similarity <select id="threshold"><option value="0.45">45% · broader suggestions</option value="0.55" selected>55% · balanced</option value="0.7">70% · more conservative</option></select></label><label>Join adjacent Word paragraphs <select id="groupSize"><option value="1">One paragraph only</option value="3" selected>Up to 3 paragraphs</option><option value="5">Up to 5 paragraphs</option></select></label><p>Scores measure textual similarity, not correctness. Short, shared or close-scoring matches are flagged. Every update needs approval.</p></div></details>
+</section>
+<div id="status" class="status" role="status" aria-live="polite">Choose both files to start, or explore the example.</div>
+<div id="error" class="error" role="alert" hidden></div>
+<section id="results" hidden>
+<div class="section-head results-head"><h2><span class="step">02</span> Review the differences</h2><div class="inline-actions"><button class="quiet" id="importReview">Load saved review</button><input type="file" accept=".json" class="sr-only" id="reviewInput" tabindex="-1"><button class="secondary" id="exportReport">Save review · JSON</button><button class="secondary" id="exportCsv">Export list · CSV</button></div></div>
+<div class="stats" id="stats"></div>
+<details class="notices" id="notices"><summary id="noticeSummary">Scope &amp; review notes</summary><div id="noticeContent"></div></details>
+<div class="review-toolbar"><div class="tabs" role="group" aria-label="Review filter"><button data-filter="changes" class="tab active" aria-pressed="true">Changes</button><button data-filter="unmatched" class="tab" aria-pressed="false">Needs mapping</button><button data-filter="unchanged" class="tab" aria-pressed="false">Unchanged</button><button data-filter="approved" class="tab" aria-pressed="false">Approved</button><button data-filter="all" class="tab" aria-pressed="false">All XDP text</button></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find wording or object name…" aria-label="Search XDP review items"></label></div>
+<div class="review-grid"><aside class="item-panel" aria-label="XDP text items"><div class="list-heading"><span id="listCount">0 items</span><span>SELECT TO REVIEW</span></div><div id="itemList" class="item-list"></div></aside><section class="detail-panel" id="detailPanel" aria-live="polite"><div class="empty-state"><div class="empty-icon" aria-hidden="true">↔</div><h3>Select an item to compare</h3><p>Review the current XDP text and the suggested wording from Word side by side.</p></div></section></div>
+<details class="unmatched-section"><summary id="wordSummary">Word text with no proposed mapping</summary><p class="muted">These blocks are not used by any current match. They may be new content, out-of-scope wording, or a missed match. FormSync will not create XDP objects automatically. Rejected proposals still count as proposed mappings.</p><div id="wordList"></div><button id="moreWord" class="quiet" hidden>Show more Word blocks</button></details>
+<section class="export-panel"><div><div class="small-label">03 · EXPORT A REVIEWED COPY</div><h2 id="exportHeading">No changes approved yet</h2><p id="exportHint">The original file is never overwritten. Unapproved and unmatched text stays unchanged.</p></div><button id="exportXdp" class="primary" disabled>Export updated XDP <span aria-hidden="true">↓</span></button></section>
+<p class="validation-note"><strong>Before release:</strong> open the exported XDP in your Adobe Designer workflow. Check wrapping, overflow, emphasis, page breaks and runtime behavior. XML checks are not Adobe rendering or schema validation.</p>
+</section>
+<footer><span>FormSync 1.0 · Offline HTML + JavaScript</span><span id="sessionInfo">Files are read only after you select them.</span><button id="resetButton" class="text-button">Clear session</button></footer>
+</main>
+<dialog id="helpDialog"><div class="dialog-head"><h2>Text reconciliation, not a form rebuild.</h2><button class="quiet" id="closeHelp" aria-label="Close help">Close ×</button></div><div class="help-body"><h3>Start with approved Word content</h3><p>Select a .docx source and an Adobe LiveCycle / AEM Forms Designer .xdp template, then compare. This application runs from a local HTML file. It contains all its code and makes no network requests.</p><h3>Review before updating</h3><p>Each XDP text block is matched to Word paragraphs. Exact text is separated from suggested and ambiguous matches. Pick an alternative, search the Word source, or edit a replacement. Click <strong>Approve update</strong> only after checking the mapping and wording. No updates are pre-approved.</p><h3>Keep review decisions portable</h3><p>Save a JSON review to retain proposed wording, source mappings and notes. Load it after comparing the same files. Text guards reject stale mappings, and restored approvals always need approval again. The CSV is a human-readable change list, not an import format.</p><h3>Preserve the template</h3><p>Only existing text-node spans in supported static draw values and field captions are patched. Scripts, bindings, geometry, XML namespaces, comments and other packets are not rewritten. UTF-8 / UTF-16 encoding and BOM are preserved. Rich-text wrappers remain in place; changed words inherit nearby run formatting.</p><h3>Know the limits</h3><p>Unmatched wording is not proof that an object should be added or deleted. Field values, choice-list options, tooltip/validation text, images, generated text, inherited prototypes and structural/layout changes are outside the automatic update scope. Scripted or bound objects are blocked for export. Signed/encrypted XDPs are comparison-only. Word revisions use a final-text approximation, not the Word layout engine. List numbering, images and unsaved field results are not reconstructed.</p><p>Rich-text line breaks must retain their existing structure. New paragraphs or empty replacements need Designer review. Word formatting is not imported. A browser cannot validate the Adobe runtime behavior of a form.</p><h3>More reliable recurring reviews</h3><p>Optional: wrap a Word paragraph in a content control and set its <em>Tag</em> to <code>xdp:YOUR_UNIQUE_XDP_OBJECT_ID</code>. Use the object's actual <code>id</code> attribute, not its display name. For multi-paragraph rich text, use <code>xdp:</code> followed by the exact block path shown in the review. IDs must be unique. Tagged matches still require approval.</p><h3>Browser &amp; privacy</h3><p>Use a current desktop Chrome or Edge browser. The app checks for native raw-DEFLATE support. Files and proposals stay in memory; reloading clears them. Exported review reports contain your document text, so protect them like the original files. Browser extensions and your device's security policies remain outside this app's control.</p></div></dialog>
+<noscript><p class="error">JavaScript must be enabled to compare local files.</p></noscript>
+<script>/* FormSync 1.0 — dependency-free, offline DOCX/XDP text reconciliation.
+   All inputs are untrusted. Never inject source markup into the page.
+   XML is parsed for meaning, but exports use guarded source-offset patches. */
+(() => {
+'use strict';
+const NS = {
+  word: new Set(['http://schemas.openxmlformats.org/wordprocessingml/2006/main','http://purl.oclc.org/ooxml/wordprocessingml/main']),
+  xhtml: 'http://www.w3.org/1999/xhtml',
+  mc: 'http://schemas.openxmlformats.org/markup-compatibility/2006',
+  xdp: 'http://ns.adobe.com/xdp/'
+};
+const LIMIT = Object.freeze({file:50*1024*1024, part:12*1024*1024, expanded:48*1024*1024, entries:12000, blocks:5000, text:30000, depth:180});
+const assert = (ok, message) => { if (!ok) throw new Error(message); };
+const pause = () => new Promise(resolve => setTimeout(resolve, 0));
+const elements = node => Array.from(node.children || []);
+const isW = (node,name) => node?.nodeType===1 && NS.word.has(node.namespaceURI) && (!name || node.localName===name);
+const isX = (node,name) => node?.nodeType===1 && /^https?:\/\/www\.xfa\.org\/schema\/xfa-template\/[\d.]+\/$/.test(node.namespaceURI||'') && (!name || node.localName===name);
+const attrW = (node,name) => { for (const ns of NS.word) if(node.hasAttributeNS(ns,name)) return node.getAttributeNS(ns,name); return ''; };
+const onValue = value => !['0','false','off'].includes(value);
+const descendants = (node,pred) => Array.from(node.getElementsByTagName('*')).filter(pred);
+const direct = (node,pred) => elements(node).find(pred);
+function ancestor(node,pred) { for(let n=node.parentElement;n;n=n.parentElement) if(pred(n)) return n; return null; }
+function parseXML(text,label='XML') {
+  assert(!/<!\s*(DOCTYPE|ENTITY)\b/i.test(text),`${label}: DTDs and entity declarations are not accepted.`);
+  const doc=new DOMParser().parseFromString(text,'application/xml');
+  const pe=Array.from(doc.getElementsByTagName('*')).find(n=>n.localName==='parsererror' && /parsererror|xhtml/.test(n.namespaceURI||''));
+  assert(doc.documentElement && !pe,`${label}: malformed XML${pe?': '+pe.textContent.trim().slice(0,240):'.'}`);
+  return doc;
+}
+function decodeXML(bytes,label='XML') {
+  assert(bytes.length<=LIMIT.file,`${label} exceeds the 50 MiB file limit.`);
+  let encoding='utf-8', bom=0;
+  if(bytes[0]===0xEF && bytes[1]===0xBB && bytes[2]===0xBF) bom=3;
+  else if(bytes[0]===0xFF && bytes[1]===0xFE) {encoding='utf-16le';bom=2;}
+  else if(bytes[0]===0xFE && bytes[1]===0xFF) {encoding='utf-16be';bom=2;}
+  else if(bytes[0]===0 && bytes[1]===60) encoding='utf-16be';
+  else if(bytes[0]===60 && bytes[1]===0) encoding='utf-16le';
+  let text;
+  try { text=new TextDecoder(encoding,{fatal:true,ignoreBOM:true}).decode(bytes.subarray(bom)); }
+  catch { throw new Error(`${label}: invalid ${encoding} data. Save the file as UTF-8 or UTF-16.`); }
+  const declared=text.match(/^<\?xml\s[^?]*encoding\s*=\s*['"]([^'"]+)['"]/i)?.[1].toLowerCase();
+  assert(!declared || ['utf-8','utf8','utf-16','utf-16le','utf-16be'].includes(declared),`${label}: unsupported encoding ${declared}. Save as UTF-8 or UTF-16.`);
+  assert(!declared || (encoding==='utf-8' ? ['utf-8','utf8'].includes(declared) : ['utf-16',encoding].includes(declared)),`${label}: encoding declaration does not match the file bytes.`);
+  return {text,encoding,bomBytes:bytes.slice(0,bom)};
+}
+function encodeXML(text,format) {
+  let body;
+  if(format.encoding==='utf-8') body=new TextEncoder().encode(text);
+  else {
+    body=new Uint8Array(text.length*2); const le=format.encoding==='utf-16le';
+    for(let i=0;i<text.length;i++) {const c=text.charCodeAt(i);body[2*i+(le?0:1)]=c&255;body[2*i+(le?1:0)]=c>>8;}
+  }
+  const out=new Uint8Array(format.bomBytes.length+body.length);out.set(format.bomBytes);out.set(body,format.bomBytes.length);return out;
+}
+const crcTable=Uint32Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=(n&1)?0xEDB88320^(n>>>1):n>>>1;return n>>>0;});
+function crc32(bytes){let c=0xFFFFFFFF;for(const b of bytes)c=crcTable[(c^b)&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+class ZipReader {
+  constructor(bytes) {
+    assert(bytes.length>=22 && bytes.length<=LIMIT.file,'DOCX must be a ZIP-based .docx file of at most 50 MiB; encrypted Word files are not supported.');
+    this.bytes=bytes;this.view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);this.entries=new Map();this.cache=new Map();this.expanded=0;
+    const u16=p=>this.view.getUint16(p,true),u32=p=>this.view.getUint32(p,true);
+    let e=-1;
+    for(let p=bytes.length-22;p>=Math.max(0,bytes.length-65557);p--) if(u32(p)===0x06054B50 && p+22+u16(p+20)===bytes.length){e=p;break;}
+    assert(e>=0,'DOCX ZIP directory not found. Password-protected and legacy .doc files are not supported.');
+    assert(u16(e+4)===0 && u16(e+6)===0 && u16(e+8)===u16(e+10),'Multi-disk ZIP files are not supported.');
+    const count=u16(e+10),size=u32(e+12),start=u32(e+16);
+    assert(count<LIMIT.entries && count!==65535 && start!==0xFFFFFFFF && size!==0xFFFFFFFF,'ZIP64 or excessive ZIP entries are not supported.');
+    assert(start+size<=e,'Invalid ZIP directory bounds.');
+    let p=start;
+    for(let i=0;i<count;i++) {
+      assert(p+46<=start+size && u32(p)===0x02014B50,'Invalid DOCX ZIP entry.');
+      const flags=u16(p+8),method=u16(p+10),crc=u32(p+16),compressed=u32(p+20),length=u32(p+24),nl=u16(p+28),xl=u16(p+30),cl=u16(p+32),offset=u32(p+42);
+      assert(p+46+nl+xl+cl<=start+size && u16(p+34)===0,'Invalid ZIP entry bounds.');
+      const name=new TextDecoder('utf-8',{fatal:true}).decode(bytes.subarray(p+46,p+46+nl));
+      assert(!this.entries.has(name),'Duplicate ZIP paths are not accepted.');
+      assert(!name.includes('\\') && !name.startsWith('/') && !name.split('/').includes('..'),'Unsafe ZIP path.');
+      this.entries.set(name,{name,flags,method,crc,compressed,length,offset});p+=46+nl+xl+cl;
+    }
+    assert(p===start+size,'Unexpected ZIP directory trailing data.');
+    this.directoryStart=start;
+  }
+  async read(name) {
+    if(this.cache.has(name))return this.cache.get(name);
+    const e=this.entries.get(name);assert(e,`DOCX part is missing: ${name}`);
+    assert(!(e.flags&0x41),'Encrypted DOCX parts are not supported.');
+    assert([0,8].includes(e.method),`Unsupported ZIP compression in ${name}.`);
+    assert(e.length<=LIMIT.part && this.expanded+e.length<=LIMIT.expanded,'DOCX XML expansion limit exceeded (12 MiB per part / 48 MiB total).');
+    const v=this.view,p=e.offset;
+    assert(p+30<=this.directoryStart && v.getUint32(p,true)===0x04034B50,'Invalid ZIP local header.');
+    const nl=v.getUint16(p+26,true),xl=v.getUint16(p+28,true),start=p+30+nl+xl;
+    assert(start+e.compressed<=this.directoryStart && v.getUint16(p+8,true)===e.method && v.getUint16(p+6,true)===e.flags,'ZIP local/central header mismatch.');
+    assert(new TextDecoder().decode(this.bytes.subarray(p+30,p+30+nl))===name,'ZIP local path mismatch.');
+    const compressed=this.bytes.subarray(start,start+e.compressed);let out;
+    if(e.method===0)out=compressed.slice();
+    else {
+      let ds;try {ds=new DecompressionStream('deflate-raw');} catch {throw new Error('This browser lacks raw DEFLATE support. Open this file in a current desktop Chrome or Edge browser.');}
+      const reader=new Blob([compressed]).stream().pipeThrough(ds).getReader();const chunks=[];let n=0;
+      try {
+        while(true){const {done,value}=await reader.read();if(done)break;n+=value.length;assert(n<=e.length && n<=LIMIT.part,'DOCX decompressed size exceeds its declared limit.');chunks.push(value);}
+      }catch(err){try{await reader.cancel();}catch{}throw err;}finally{reader.releaseLock();}
+      out=new Uint8Array(n);let at=0;for(const chunk of chunks){out.set(chunk,at);at+=chunk.length;}
+    }
+    assert(out.length===e.length && crc32(out)===e.crc,`DOCX ZIP integrity check failed: ${name}`);
+    this.expanded+=out.length;this.cache.set(name,out);return out;
+  }
+  async xml(name){return parseXML(decodeXML(await this.read(name),name).text,name);}
+}
+function resolvePart(base,target) {
+  assert(!/^[a-z][a-z\d+.-]*:/i.test(target) && !target.includes('\\'),'External or invalid package path.');
+  let decoded;try{decoded=decodeURIComponent(target.split('#')[0]);}catch{throw new Error('Invalid package path encoding.');}
+  const stack=decoded.startsWith('/')?[]:base.split('/').slice(0,-1);
+  for(const part of decoded.split('/')){if(!part||part==='.')continue;if(part==='..'){assert(stack.length,'Package path escapes its root.');stack.pop();}else stack.push(part);}
+  return stack.join('/');
+}
+const relPath=part=>{const a=part.split('/');const f=a.pop();return [...a,'_rels',f+'.rels'].join('/');};
+function relations(doc){return elements(doc.documentElement).filter(n=>n.localName==='Relationship').map(n=>({id:n.getAttribute('Id'),type:n.getAttribute('Type')||'',target:n.getAttribute('Target')||'',external:n.getAttribute('TargetMode')==='External'}));}
+function skippedWord(node) {
+  if(isW(node) && ['del','moveFrom','instrText','delText'].includes(node.localName))return true;
+  if(isW(node,'r')){
+    const props=direct(node,n=>isW(n,'rPr'));
+    if(props && elements(props).some(n=>isW(n)&&['vanish','webHidden'].includes(n.localName)&&onValue(attrW(n,'val'))))return true;
+  }
+  if(node.namespaceURI===NS.mc && node.localName==='Fallback' && elements(node.parentElement).some(n=>n.localName==='Choice'))return true;
+  if(node.namespaceURI===NS.mc && node.localName==='Choice' && elements(node.parentElement).find(n=>n.localName==='Choice')!==node)return true;
+  return false;
+}
+function wordParagraphText(p) {
+  const visit=n=>{
+    if(n.nodeType!==1 || skippedWord(n))return '';
+    if(n!==p && isW(n,'p'))return ''; // Text boxes are their own paragraphs, not duplicated in their anchors.
+    if(isW(n,'t'))return n.textContent;
+    if(isW(n,'tab'))return '\t';
+    if(isW(n) && ['br','cr'].includes(n.localName))return '\n';
+    if(isW(n,'noBreakHyphen'))return '\u2011';
+    if(isW(n,'softHyphen'))return '\u00AD';
+    return elements(n).map(visit).join('');
+  };
+  return visit(p).replace(/\r\n?/g,'\n').trim();
+}
+function parseWordPart(doc,part,story,blocks,warnings) {
+  const paras=descendants(doc,n=>isW(n,'p'));
+  const revisions=descendants(doc,n=>isW(n)&&['ins','del','moveTo','moveFrom'].includes(n.localName));
+  if(revisions.length)warnings.add('Word tracked changes: inserted/moved-to text is included; deleted/moved-from text is excluded. Review complex paragraph-mark/table revisions in Word.');
+  if(descendants(doc,n=>isW(n)&&['fldChar','fldSimple'].includes(n.localName)).length)warnings.add('Word fields use their saved display values; page numbers, dates and other fields are not recalculated.');
+  if(descendants(doc,n=>isW(n,'numPr')).length)warnings.add('Word list text is read, but automatic bullet/number labels are not expanded.');
+  if(descendants(doc,n=>isW(n,'altChunk')).length)warnings.add('Embedded altChunk content is not read. Convert it to ordinary Word paragraphs first.');
+  if(descendants(doc,n=>isW(n,'sym')).length)warnings.add('Font-encoded Word symbols are not decoded. Review those paragraphs in Word.');
+  if(descendants(doc,n=>n.namespaceURI===NS.mc&&n.localName==='AlternateContent').length)warnings.add('Word alternate content uses the first Choice branch, not its Fallback. Check text boxes against the source document.');
+  let ordinal=0;
+  for(const p of paras){
+    ordinal++;
+    if(ancestor(p,skippedWord))continue;
+    const note=ancestor(p,n=>isW(n)&&['footnote','endnote'].includes(n.localName));
+    if(note && Number(attrW(note,'id'))<=0)continue;
+    const text=wordParagraphText(p);if(!text)continue;
+    assert(text.length<=LIMIT.text,`Word paragraph ${ordinal} exceeds the 30,000-character limit.`);
+    const cell=ancestor(p,n=>isW(n,'tc'));const box=ancestor(p,n=>isW(n,'txbxContent'));
+    const group=cell||box||note||p.parentElement;
+    const sdt=ancestor(p,n=>isW(n,'sdt'));let key='';
+    if(sdt){const pr=direct(sdt,n=>isW(n,'sdtPr'));const tag=pr && direct(pr,n=>isW(n,'tag'));const value=tag?attrW(tag,'val'):'';if(value.startsWith('xdp:'))key=value.slice(4);}
+    blocks.push({id:`${part}#p${ordinal}`,text,part,story,ordinal,group,key,location:`${story} · paragraph ${ordinal}${cell?' · table cell':''}${box?' · text box':''}`});
+    assert(blocks.length<=LIMIT.blocks,'More than 5,000 Word text blocks. Split this document before comparing.');
+  }
+}
+async function readDocx(bytes,options={}) {
+  const zip=new ZipReader(bytes),warnings=new Set();
+  assert(zip.entries.has('[Content_Types].xml') && zip.entries.has('_rels/.rels'),'This ZIP is not an Office Open XML document.');
+  const rootRels=relations(await zip.xml('_rels/.rels'));
+  const main=rootRels.find(r=>/\/officeDocument$/.test(r.type)&&!r.external);assert(main,'DOCX main document relationship not found.');
+  const part=resolvePart('',main.target);const doc=await zip.xml(part);
+  assert(isW(doc.documentElement,'document'),'The main package part is not a WordprocessingML document.');
+  const blocks=[];parseWordPart(doc,part,'Body',blocks,warnings);
+  const rp=relPath(part);const rels=zip.entries.has(rp)?relations(await zip.xml(rp)):[];
+  const used=new Set(descendants(doc,n=>isW(n)&&['headerReference','footerReference'].includes(n.localName)).map(n=>Array.from(n.attributes).find(a=>a.localName==='id')?.value));
+  const seen=new Set([part]);
+  for(const r of rels){
+    const type=r.type.split('/').pop();
+    if(r.external || (!(['header','footer'].includes(type)&&options.headers!==false&&used.has(r.id)) && !(['footnotes','endnotes'].includes(type)&&options.notes)))continue;
+    const target=resolvePart(part,r.target);if(seen.has(target))continue;seen.add(target);
+    parseWordPart(await zip.xml(target),target,type[0].toUpperCase()+type.slice(1),blocks,warnings);
+  }
+  if(Array.from(zip.entries.keys()).some(k=>/vbaProject\.bin$/i.test(k)))warnings.add('This package contains macros. They are not executed or inspected. Use a trusted, macro-free .docx copy.');
+  assert(blocks.reduce((n,b)=>n+b.text.length,0)<=2000000,'Word text exceeds the 2,000,000-character comparison limit. Split the document.');
+  assert(blocks.length,'No supported text paragraphs found in DOCX.');
+  return {blocks,warnings:[...warnings],part};
+}
+/* Lexical XML index. DOMParser validates names/entities/namespaces; this scanner
+   only records source spans. Pairing with DOM nodes must match exactly. */
+function indexXML(text,doc) {
+  const root={kind:'root',children:[]},stack=[root];let p=0;
+  const add=t=>stack[stack.length-1].children.push(t);
+  const endOf=(mark,start)=>{const q=text.indexOf(mark,start);assert(q>=0,'Unterminated XML token.');return q+mark.length;};
+  while(p<text.length){
+    const start=p;
+    if(text[p]!=='<'){p=text.indexOf('<',p);if(p<0)p=text.length;add({kind:'text',start,end:p});continue;}
+    if(text.startsWith('<!--',p)){p=endOf('-->',p+4);continue;}
+    if(text.startsWith('<?',p)){p=endOf('?>',p+2);continue;}
+    if(text.startsWith('<![CDATA[',p)){p=endOf(']]>',p+9);add({kind:'cdata',start:start+9,end:p-3,outerStart:start,outerEnd:p});continue;}
+    assert(!text.startsWith('<!',p),'Unsupported XML declaration.');
+    let quote='';p++;
+    for(;p<text.length;p++){const c=text[p];if(quote){if(c===quote)quote='';}else if(c==='"'||c==="'")quote=c;else if(c==='>')break;}
+    assert(p<text.length,'Unterminated XML tag.');p++;
+    const raw=text.slice(start,p);
+    if(raw.startsWith('</')) {const node=stack.pop();assert(node&&node.kind==='element','XML source index is unbalanced.');node.closeStart=start;node.end=p;}
+    else {const name=raw.match(/^<([^\s/>]+)/)?.[1];assert(name,'Invalid XML opening tag.');const empty=/\/\s*>$/.test(raw);const node={kind:'element',name,start,openEnd:p,closeStart:empty?p:null,end:empty?p:null,empty,children:[]};add(node);if(!empty){stack.push(node);assert(stack.length<=LIMIT.depth,'XML nesting limit exceeded.');}}
+  }
+  assert(stack.length===1,'XML source index is unbalanced.');
+  const map=new WeakMap();
+  const pair=(dom,raw)=>{
+    assert(dom.nodeName===raw.name,'XML source index/name mismatch.');map.set(dom,raw);
+    const dc=Array.from(dom.childNodes).filter(n=>[1,3,4].includes(n.nodeType));const rc=raw.children;
+    assert(dc.length===rc.length,'XML source index/children mismatch.');
+    for(let i=0;i<dc.length;i++){
+      const d=dc[i],r=rc[i];assert((d.nodeType===1)===(r.kind==='element') && (d.nodeType===4)===(r.kind==='cdata'),'XML source index/token mismatch.');
+      if(d.nodeType===1)pair(d,r);else {r.value=d.nodeValue;map.set(d,r);}
+    }
+  };
+  const r=root.children.find(n=>n.kind==='element');assert(r,'No XML root element.');pair(doc.documentElement,r);return map;
+}
+function xdpPath(node) {
+  const parts=[];
+  for(let n=node;n?.nodeType===1;n=n.parentElement){
+    if(n.namespaceURI===NS.xdp)break;
+    const siblings=n.parentElement?elements(n.parentElement).filter(e=>e.localName===n.localName&&e.namespaceURI===n.namespaceURI):[n];
+    const name=n.getAttribute('name'),id=n.getAttribute('id');
+    parts.unshift(`${n.localName}${name?'[@name='+JSON.stringify(name)+']':id?'[@id='+JSON.stringify(id)+']':''}[${siblings.indexOf(n)+1}]`);
+    if(isX(n,'template'))break;
+  }
+  return '/'+parts.join('/');
+}
+function textSegments(node,map,rich) {
+  const segments=[];let unsafe='';
+  const visit=n=>{
+    if(n.nodeType===3||n.nodeType===4){const r=map.get(n);assert(r,'Unmapped XML text node.');segments.push({kind:'text',raw:r,text:n.nodeValue});return;}
+    if(n.nodeType!==1)return;
+    if(rich && n.localName==='br' && n.namespaceURI===NS.xhtml){segments.push({kind:'break',text:'\n'});return;}
+    if(rich){
+      const allowed=new Set(['body','p','li','span','b','strong','i','em','u','s','strike','sub','sup','a']);
+      if(n.namespaceURI!==NS.xhtml || !allowed.has(n.localName))unsafe=`Unsupported rich-text element: ${n.localName}`;
+      if(Array.from(n.attributes).some(a=>a.localName==='embed' || (a.localName==='href' && a.namespaceURI!=='http://www.w3.org/1999/xhtml' && /xfa/.test(a.namespaceURI||''))))unsafe='Embedded or calculated rich-text content';
+    }
+    for(const child of n.childNodes)visit(child);
+  };
+  visit(node);return {segments,unsafe};
+}
+function readXdp(bytes,options={}) {
+  const format=decodeXML(bytes,'XDP'),doc=parseXML(format.text,'XDP'),index=indexXML(format.text,doc);
+  const root=doc.documentElement;
+  assert((root.localName==='xdp'&&root.namespaceURI===NS.xdp)||isX(root,'template'),'Expected an Adobe XDP container or an XFA template packet.');
+  const templates=[...(isX(root,'template')?[root]:descendants(root,n=>isX(n,'template')))];
+  assert(templates.length===1,'Exactly one XFA template packet is required. Data-only XDPs cannot be updated.');
+  const template=templates[0],blocks=[],excluded=[],warnings=new Set();
+  let signed=descendants(doc,n=>/xmldsig|xmlenc/.test(n.namespaceURI||'')&&['Signature','EncryptedData'].includes(n.localName)).length>0;
+  if(signed)warnings.add('This XDP contains an XML signature or encrypted XML. Comparison is available, but XDP export is blocked. Work on an unsigned, decrypted design copy.');
+  if(descendants(doc,n=>n.localName==='pdf'&&/ns\.adobe\.com\/xdp\/pdf/.test(n.namespaceURI||'')).length)warnings.add('An embedded PDF packet will remain unchanged. Regenerate it in the Adobe toolchain; it may contain a stale appearance.');
+  let defaults=0,items=0;
+  for(const value of descendants(template,n=>isX(n,'value'))){
+    const parent=value.parentElement;let owner,kind;
+    if(isX(parent,'draw')){owner=parent;kind='Static text';}
+    else if(isX(parent,'caption') && isX(parent.parentElement,'field')){owner=parent.parentElement;kind='Field caption';if(options.captions===false)continue;}
+    else {if(isX(parent,'field'))defaults++;continue;}
+    const content=elements(value).find(n=>isX(n,'text')||isX(n,'exData'));if(!content)continue;
+    const add=(node,rich,extra='')=>{
+      const path=xdpPath(node),{segments,unsafe}=textSegments(node,index,rich);
+      const text=segments.map(s=>s.text).join('');if(!text.trim())return;
+      let reason=extra||unsafe;
+      const chain=[node];for(let a=node.parentElement;a&&a!==template;a=a.parentElement)chain.push(a);
+      if(chain.some(n=>n.hasAttribute('use')||n.hasAttribute('usehref')) || ancestor(node,n=>isX(n,'proto')))reason='Prototype or inherited content requires Designer review';
+      if(descendants(owner,n=>isX(n,'script')||isX(n,'bindItems')).length || elements(owner).some(n=>isX(n,'bind')&&n.getAttribute('match')!=='none'))reason='Object contains scripts or a data binding';
+      if(text.length>LIMIT.text)reason='Text block exceeds 30,000 characters';
+      if(!segments.some(s=>s.kind==='text'&&s.text.length))reason='No writable text node';
+      const hidden=chain.some(n=>['hidden','invisible','inactive'].includes(n.getAttribute('presence')));
+      const id=owner.getAttribute('id')||'';const name=owner.getAttribute('name')||owner.localName;
+      const block={id:path,path,key:id,ownerName:name,kind:kind+(rich?' · rich text':''),text,segments,rich,hidden,blocked:reason||'',node,location:path};
+      blocks.push(block);assert(blocks.length<=LIMIT.blocks,'More than 5,000 XDP text blocks. Split this template before comparing.');
+    };
+    if(isX(content,'text')){
+      add(content,false,elements(content).length?'Nested markup in a plain XFA text value':'');
+    } else {
+      const type=(content.getAttribute('contentType')||'').toLowerCase();
+      if(type==='text/plain' && !elements(content).length){add(content,false);continue;}
+      if(type!=='text/html'){excluded.push(`${xdpPath(content)} — exData content type ${type||'(unspecified)'} is not supported.`);continue;}
+      const body=elements(content).find(n=>n.localName==='body'&&n.namespaceURI===NS.xhtml);
+      if(!body){excluded.push(`${xdpPath(content)} — escaped or non-XHTML rich text requires Designer review.`);continue;}
+      const paras=descendants(body,n=>n.namespaceURI===NS.xhtml&&['p','li'].includes(n.localName));
+      const leaves=paras.filter(n=>!descendants(n,k=>k.namespaceURI===NS.xhtml&&['p','li'].includes(k.localName)).length);
+      if(!leaves.length)add(body,true);
+      else {
+        for(const p of leaves)add(p,true);
+        // Do not quietly omit text outside the selected paragraph/list blocks.
+        const tw=doc.createTreeWalker(body,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_CDATA_SECTION);let n;let uncovered=false;
+        while((n=tw.nextNode()))if(n.nodeValue.trim()&&!leaves.some(p=>p.contains(n)))uncovered=true;
+        if(uncovered)excluded.push(`${xdpPath(content)} — text outside supported rich-text paragraphs was not matched.`);
+      }
+    }
+  }
+  items=descendants(template,n=>isX(n,'items')).length;
+  if(defaults)warnings.add(`${defaults} field default value(s) are outside the static-text scope and are left untouched.`);
+  if(items)warnings.add(`${items} choice-list item container(s) are outside scope; display/export values are left untouched.`);
+  if(descendants(template,n=>n.hasAttribute('use')||n.hasAttribute('usehref')).length)warnings.add('Prototype/fragment references are not resolved. Text inherited from external or local fragments may not be present in this comparison.');
+  if(descendants(template,n=>isX(n,'script')).length)warnings.add('Scripts are not executed or analyzed. An object containing a script is blocked, but scripts elsewhere can still change its text at runtime.');
+  if(blocks.some(b=>b.hidden))warnings.add('Hidden/invisible objects are included and labelled; confirm their intended use.');
+  if(blocks.some(b=>b.rich))warnings.add('Rich-text tags and style attributes are retained. New wording inherits nearby text-run formatting; review emphasis and line wrapping in Designer.');
+  assert(blocks.reduce((n,b)=>n+b.text.length,0)<=2000000,'XDP text exceeds the 2,000,000-character comparison limit. Split the template.');
+  assert(blocks.length||excluded.length,'No supported static draw text or field captions were found in the XFA template.');
+  return {format,doc,index,blocks,excluded,warnings:[...warnings],signed,originalBytes:bytes};
+}
+// Whitespace is normalized only for matching. Punctuation, case and numbers are
+// retained for the final comparison; a fuzzy match never authorizes an edit.
+const normalize=s=>s.normalize('NFC').replace(/[\s\u00A0]+/gu,' ').trim();
+const folded=s=>normalize(s).toLocaleLowerCase().replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[‐‑‒–—]/g,'-');
+function tokens(s){return folded(s).match(/[\p{L}\p{N}]+|[^\p{L}\p{N}\s]/gu)||[];}
+function grams(s){const a=Array.from(folded(s));const out=new Map();for(let i=1;i<a.length;i++){const g=a[i-1]+a[i];out.set(g,(out.get(g)||0)+1);}return out;}
+function dice(a,b){let sum=0,n=0,m=0;for(const [k,v]of a){n+=v;sum+=Math.min(v,b.get(k)||0);}for(const v of b.values())m+=v;return n+m?2*sum/(n+m):0;}
+function setDice(a,b){if(!a.size&&!b.size)return 1;let n=0;for(const x of a)if(b.has(x))n++;return 2*n/(a.size+b.size);}
+function features(s){return {fold:folded(s),grams:grams(s),words:new Set(tokens(s)),length:normalize(s).length};}
+function similarity(a,b){if(a.fold===b.fold)return 1;const len=Math.min(a.length,b.length)/Math.max(1,a.length,b.length);return .62*dice(a.grams,b.grams)+.30*setDice(a.words,b.words)+.08*len;}
+function makeCandidates(word,maxGroup=3) {
+  const candidates=[];
+  for(let i=0;i<word.length;i++){
+    let text='',parts=[];
+    for(let g=0;g<maxGroup && i+g<word.length;g++){
+      const b=word[i+g];if(g && (b.group!==word[i].group || b.part!==word[i].part))break;
+      text+=(g?'\n':'')+b.text;parts.push(i+g);if(text.length>LIMIT.text)break;
+      candidates.push({id:parts.join(','),indices:[...parts],text,location:g?`${word[i].location} – ${b.ordinal}`:b.location,key:g?'':b.key,features:features(text)});
+    }
+  }
+  return candidates;
+}
+async function compare(wordData,xdpData,options={},progress=()=>{}) {
+  const word=wordData.blocks,xdp=xdpData.blocks,candidates=makeCandidates(word,Math.min(5,Math.max(1,options.group||3)));
+  const exact=new Map(),index=new Map(),tagged=new Map();
+  for(let i=0;i<candidates.length;i++){
+    const c=candidates[i],key=normalize(c.text);if(!exact.has(key))exact.set(key,[]);exact.get(key).push(i);
+    if(c.key){if(!tagged.has(c.key))tagged.set(c.key,[]);tagged.get(c.key).push(i);}
+    const ks=new Set([...c.features.words].map(w=>'w:'+w).concat([...c.features.grams.keys()].map(g=>'g:'+g)));
+    for(const k of ks){if(!index.has(k))index.set(k,[]);index.get(k).push(i);}
+  }
+  const keyCounts=new Map();for(const x of xdp)if(x.key)keyCounts.set(x.key,(keyCounts.get(x.key)||0)+1);
+  const threshold=options.threshold??.55;const rows=[];
+  for(let i=0;i<xdp.length;i++){
+    const x=xdp[i],f=features(x.text),matches=[];
+    const taggedIds=[...(tagged.get(x.path)||[]),...(x.key&&keyCounts.get(x.key)===1?(tagged.get(x.key)||[]):[])];
+    const explicit=[...new Set(taggedIds)];
+    if(explicit.length===1){const c=candidates[explicit[0]];matches.push({...c,score:similarity(f,c.features),method:'Word content-control ID'});}
+    else {
+      const exactIds=exact.get(normalize(x.text))||[];
+      if(exactIds.length){for(const id of exactIds.slice(0,8))matches.push({...candidates[id],score:1,method:'Exact text (whitespace normalized)'});}
+      else {
+        const votes=new Map();const ks=new Set([...f.words].map(w=>'w:'+w).concat([...f.grams.keys()].map(g=>'g:'+g)));
+        // Prefer rarer features and cap work on repetitive boilerplate. This is a
+        // candidate-retrieval heuristic, not a semantic or confidence model.
+        const signals=[...ks].map(k=>({k,ids:index.get(k)})).filter(s=>s.ids).sort((a,b)=>a.ids.length-b.ids.length);let postings=0;
+        for(const {k,ids} of signals){if(postings&&postings+ids.length>40000)continue;postings+=ids.length;const weight=(k.startsWith('w:')?4:1)/Math.sqrt(ids.length);for(const id of ids)votes.set(id,(votes.get(id)||0)+weight);if(postings>=40000)break;}
+        const shortlist=[...votes].sort((a,b)=>b[1]-a[1]).slice(0,160).map(([id])=>id);
+        for(const id of shortlist){const c=candidates[id],score=similarity(f,c.features);if(score>=threshold)matches.push({...c,score,method:'Text similarity'});}
+        matches.sort((a,b)=>b.score-a.score||a.indices.length-b.indices.length);matches.splice(8);
+      }
+    }
+    const top=matches[0];const same=top && normalize(x.text)===normalize(top.text);
+    const gap=top?top.score-(matches[1]?.score||0):0;
+    const duplicate=!!top&&matches.length>1&&Math.abs(top.score-matches[1].score)<.025;
+    const status=same?'unchanged':!top?'unmatched':top.method==='Word content-control ID'?'suggested':(gap<.08||top.score<.72||normalize(x.text).length<15)?'ambiguous':'suggested';
+    const row={id:i,xdp:x,status,match:top||null,alternatives:matches,proposed:top?.text||'',decision:'pending',duplicate,reason:top?top.method:'No candidate above the similarity threshold',note:''};
+    if(x.blocked)row.reason=x.blocked;
+    if(explicit.length>1){row.status=same?'unchanged':'ambiguous';row.reason='Duplicate Word content-control IDs; mapping requires review.';}
+    rows.push(row);
+    if(i%25===0){progress(i,xdp.length);await pause();}
+  }
+  const usages=new Map();for(const r of rows)if(r.match)for(const k of r.match.indices){if(!usages.has(k))usages.set(k,[]);usages.get(k).push(r);}
+  for(const rs of usages.values())if(rs.length>1)for(const r of rs){r.shared=true;if(r.status==='suggested')r.status='ambiguous';}
+  progress(xdp.length,xdp.length);
+  return {word,xdp:xdpData,rows,candidates,options,created:new Date().toISOString(),warnings:[...wordData.warnings,...xdpData.warnings]};
+}
+/* Bounded LCS with prefix/suffix stripping. Large edits fall back to a single
+   replacement hunk. This is for diff display and preserving rich-text runs. */
+function diffArrays(a,b,maxCells=1500000) {
+  let pre=0;while(pre<a.length&&pre<b.length&&a[pre]===b[pre])pre++;
+  let suf=0;while(suf<a.length-pre&&suf<b.length-pre&&a[a.length-1-suf]===b[b.length-1-suf])suf++;
+  const aa=a.slice(pre,a.length-suf),bb=b.slice(pre,b.length-suf),ops=[];
+  const push=(type,values)=>{if(!values.length)return;const last=ops[ops.length-1];if(last?.type===type)last.values.push(...values);else ops.push({type,values:[...values]});};
+  push('equal',a.slice(0,pre));
+  const n=aa.length,m=bb.length;
+  if(n*m>maxCells){push('delete',aa);push('insert',bb);}
+  else {
+    const dp=new Uint16Array((n+1)*(m+1));
+    for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)dp[i*(m+1)+j]=aa[i]===bb[j]?1+dp[(i+1)*(m+1)+j+1]:Math.max(dp[(i+1)*(m+1)+j],dp[i*(m+1)+j+1]);
+    let i=0,j=0;
+    while(i<n||j<m){if(i<n&&j<m&&aa[i]===bb[j]){push('equal',[aa[i++]]);j++;}else if(i<n&&(j===m||dp[(i+1)*(m+1)+j]>=dp[i*(m+1)+j+1]))push('delete',[aa[i++]]);else push('insert',[bb[j++]]);}
+  }
+  push('equal',suf?a.slice(a.length-suf):[]);return ops;
+}
+const wordDiff=(a,b)=>diffArrays(a.match(/\s+|[\p{L}\p{N}]+|[^\p{L}\p{N}\s]/gu)||[],b.match(/\s+|[\p{L}\p{N}]+|[^\p{L}\p{N}\s]/gu)||[],500000);
+function validText(s){return typeof s==='string'&&s.length<=LIMIT.text&&!/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]/u.test(s)&&!/[\uD800-\uDFFF]/u.test(s);}
+function escapeXML(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\r/g,'&#13;');}
+function distribute(slots,newText) {
+  // Work in Unicode code points; surrogate pairs must never be split across runs.
+  const old=[],owners=[];slots.forEach((s,i)=>{for(const c of s.text){old.push(c);owners.push(i);}});
+  assert(slots.length,'No writable text runs.');const out=slots.map(()=>[]),ops=diffArrays(old,Array.from(newText));
+  let pos=0;
+  for(let i=0;i<ops.length;i++){
+    const op=ops[i];
+    if(op.type==='equal'){for(const c of op.values){out[owners[pos]].push(c);pos++;}}
+    else if(op.type==='delete'){
+      const start=pos;pos+=op.values.length;
+      if(ops[i+1]?.type==='insert'){const at=owners[start]??owners[Math.max(0,start-1)]??0;out[at].push(...ops[++i].values);}
+    }else {const at=owners[pos]??owners[Math.max(0,pos-1)]??0;out[at].push(...op.values);}
+  }
+  return out.map(a=>a.join(''));
+}
+function blockPatches(block,proposed,original) {
+  assert(!block.blocked,`Cannot update ${block.ownerName}: ${block.blocked}`);
+  assert(validText(proposed),'Replacement contains invalid XML characters or exceeds 30,000 characters.');
+  assert(normalize(proposed).length>0,'Blank replacements are not supported. Deleting an object requires Designer review.');
+  const groups=[[]];for(const s of block.segments){if(s.kind==='break')groups.push([]);else groups[groups.length-1].push(s);}
+  let pieces=[proposed];
+  if(groups.length>1){pieces=proposed.split('\n');assert(pieces.length===groups.length,'Rich-text line-break structure would change. Keep the existing number of line breaks or update this object in Designer.');}
+  else if(block.rich)assert(!/[\r\n]/.test(proposed),'Adding rich-text paragraphs/line breaks is structural; update this object in Designer.');
+  const patches=[];
+  for(let i=0;i<groups.length;i++){
+    if(!groups[i].length){assert(!pieces[i],'A rich-text break has no writable text run.');continue;}
+    const output=distribute(groups[i],pieces[i]);
+    groups[i].forEach((s,k)=>{
+      if(output[k]===s.text)return;
+      const r=s.raw;const replacement=r.kind==='cdata'?output[k].replace(/\]\]>/g,']]]]><![CDATA[>'):escapeXML(output[k]);
+      patches.push({start:r.start,end:r.end,before:original.slice(r.start,r.end),after:replacement,path:block.path});
+    });
+  }
+  return patches;
+}
+function applyPatches(original,patches) {
+  const sorted=[...patches].sort((a,b)=>a.start-b.start);let prev=0;const parts=[];
+  for(const p of sorted){assert(p.start>=prev && p.end>=p.start && p.end<=original.length,'Overlapping or invalid XML patches.');assert(original.slice(p.start,p.end)===p.before,'XDP content changed since comparison. Reload the original files.');parts.push(original.slice(prev,p.start),p.after);prev=p.end;}
+  parts.push(original.slice(prev));return parts.join('');
+}
+function exportXdp(result) {
+  assert(result && !result.xdp.signed,'Signed or encrypted XDP export is blocked.');
+  const approved=result.rows.filter(r=>r.decision==='approved');assert(approved.length,'Approve at least one change before exporting.');
+  const original=result.xdp.format.text,patches=[];
+  for(const r of approved){assert(normalize(r.proposed)!==normalize(r.xdp.text),'An approved change no longer differs from the original.');patches.push(...blockPatches(r.xdp,r.proposed,original));}
+  const output=applyPatches(original,patches),bytes=encodeXML(output,result.xdp.format);
+  // Reparse and re-extract to validate every approved text and unchanged block.
+  const checked=readXdp(bytes,{captions:result.options.captions});const after=new Map(checked.blocks.map(b=>[b.path,b]));
+  assert(checked.blocks.length===result.xdp.blocks.length,'Export changed the set of XDP text objects.');
+  for(const r of result.rows){const b=after.get(r.xdp.path);assert(b,`Export lost the object ${r.xdp.path}.`);const expected=r.decision==='approved'?r.proposed:r.xdp.text;assert(b.text===expected,`Export verification failed for ${r.xdp.ownerName}.`);}
+  return {bytes,text:output,patches,approved:approved.length,verification:'XML well-formedness, text postconditions and source-span isolation passed; Adobe rendering/schema validation not performed.'};
+}
+function unmappedWord(result) {
+  const used=new Set();for(const r of result.rows)if(r.match)for(const i of r.match.indices)used.add(i);
+  return result.word.map((b,i)=>({...b,index:i})).filter(b=>!used.has(b.index));
+}
+function report(result,files={}) {
+  return {format:'formsync-review',version:1,created:new Date().toISOString(),files,options:result.options,warnings:result.warnings,excludedXdp:result.xdp.excluded,
+    rows:result.rows.map(r=>({path:r.xdp.path,object:r.xdp.ownerName,kind:r.xdp.kind,status:r.status,decision:r.decision,blocked:r.xdp.blocked,hidden:r.xdp.hidden,original:r.xdp.text,proposed:r.proposed,sourceIds:r.match?r.match.indices.map(i=>result.word[i].id):[],sourceLocation:r.match?.location||'',similarity:r.match?Number(r.match.score.toFixed(4)):null,method:r.reason,note:r.note})),
+    unmatchedWord:unmappedWord(result).map(b=>({id:b.id,location:b.location,text:b.text})),
+    safety:'Only approved text changes are exported. Unmatched text is not an instruction to add/delete an XDP object. Validate the output in Designer.'};
+}
+function restoreReview(result,data) {
+  assert(data?.format==='formsync-review' && data.version===1 && Array.isArray(data.rows),'Not a FormSync review file.');
+  let restored=0,skipped=0;const rows=new Map(result.rows.map(r=>[r.xdp.path,r]));
+  for(const item of data.rows){
+    if(!item || typeof item!=='object'){skipped++;continue;}
+    const r=rows.get(item.path);if(!r || r.xdp.text!==item.original || !validText(item.proposed)||!Array.isArray(item.sourceIds)){skipped++;continue;}
+    if(item.decision==='pending' && item.proposed===r.proposed && !item.note)continue;
+    const indices=item.sourceIds.map(id=>result.word.findIndex(b=>b.id===id));
+    if(indices.some(i=>i<0)){skipped++;continue;}
+    const source=indices.map(i=>result.word[i].text).join('\n');
+    // A saved approval must never silently apply to changed Word source text.
+    if(indices.length && normalize(source)!==normalize(item.proposed)){skipped++;continue;}
+    if(item.decision==='approved' && (r.xdp.blocked||!normalize(item.proposed)||normalize(item.proposed)===normalize(r.xdp.text))){skipped++;continue;}
+    try{if(item.decision==='approved')blockPatches(r.xdp,item.proposed,result.xdp.format.text);}catch{skipped++;continue;}
+    r.proposed=item.proposed;r.match=indices.length?{indices,text:source,location:item.sourceLocation||'Restored mapping',score:similarity(features(r.xdp.text),features(source)),method:'Restored review'}:null;
+    // Re-open saved approvals for explicit review in this session.
+    r.decision=item.decision==='rejected'?'rejected':'pending';r.status=normalize(r.proposed)===normalize(r.xdp.text)?'unchanged':normalize(r.proposed)?'suggested':'unmatched';r.reason='Restored review — approve again';r.note=typeof item.note==='string'?item.note.slice(0,4000):'';restored++;
+  }
+  return {restored,skipped};
+}
+window.FormSyncCore=Object.freeze({NS,LIMIT,parseXML,decodeXML,encodeXML,crc32,ZipReader,readDocx,readXdp,compare,normalize,folded,features,similarity,makeCandidates,diffArrays,wordDiff,blockPatches,applyPatches,exportXdp,report,restoreReview,unmappedWord,validText,escapeXML,pause});
+})();
+</script>
+<script>/* Synthetic fixture, generated in the browser. No external files are needed. */
+(() => {
+'use strict';
+const XDP=`<?xml version="1.0" encoding="UTF-8"?>
+<?xfa generator="FormSync synthetic example"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/" uuid="formsync-demo-001">
+ <template xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+  <subform name="Application" layout="tb" locale="en_GB">
+   <pageSet><pageArea name="Page1" id="Page1"><medium stock="a4" short="210mm" long="297mm"/><contentArea x="15mm" y="15mm" w="180mm" h="267mm"/></pageArea></pageSet>
+   <!-- This comment, geometry, styles and event script must remain unchanged. -->
+   <draw name="ApplicationTitle" id="title" w="170mm" h="12mm"><value><text>Service application</text></value><font typeface="Arial" size="18pt" weight="bold"/></draw>
+   <draw name="ProcessingTime" id="processingTime" w="170mm" h="12mm"><value><text>We will process your application within 10 working days.</text></value><font typeface="Arial" size="10pt"/></draw>
+   <draw name="Eligibility" id="eligibility" w="170mm" h="12mm"><value><text>You must be aged 18 or over to apply.</text></value><font typeface="Arial" size="10pt"/></draw>
+   <draw name="RequiredDocuments" id="documents" w="170mm" h="18mm"><value><exData contentType="text/html"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-family:Arial;font-size:10pt">Please provide <b>two</b> forms of identification.</p></body></exData></value></draw>
+   <draw name="ContactInstructions" id="contact" w="170mm" h="12mm"><value><text>Contact our team at support@example.org for assistance.</text></value><font typeface="Arial" size="10pt"/></draw>
+   <field name="EmailAddress" id="email" w="100mm" h="12mm"><ui><textEdit/></ui><caption reserve="35mm"><value><text>Email address</text></value></caption><bind match="none"/></field>
+   <draw name="PrivacyStatement" id="privacy" w="170mm" h="20mm"><value><exData contentType="text/html"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-family:Arial;font-size:10pt">We keep your records for <span style="font-weight:bold">three years</span> after your application closes.</p></body></exData></value></draw>
+   <draw name="LegacyInstruction" id="legacy" w="170mm" h="12mm"><value><text>For a paper voucher, visit the reception desk.</text></value></draw>
+   <field name="RuntimeNotice" id="runtime" w="100mm" h="12mm"><caption><value><text>Your reference number</text></value></caption><value><text>APP-0001</text></value><event activity="initialize"><script contentType="application/x-javascript">this.rawValue = "APP-" + 1001;<\/script></event></field>
+  </subform>
+ </template>
+ <config xmlns="http://www.xfa.org/schema/xci/3.0/"><present><pdf><version>1.7</version></pdf></present></config>
+ <xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><xfa:data><keep>Do not change customer data &amp; values.</keep></xfa:data></xfa:datasets>
+</xdp:xdp>`;
+const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main';
+const esc=s=>FormSyncCore.escapeXML(s);
+const texts=[
+'Service application',
+'We will process your application within 15 working days.',
+'You must be aged 18 or over to apply.',
+'Please provide three forms of identification.',
+'Contact our team at help@example.org for assistance.',
+'Your email address',
+'We keep your records for five years after your application closes.',
+'You can now upload supporting documents through the secure portal.',
+'Your application reference number'
+];
+const WORD=`<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="${W}"><w:body>${texts.map((t,i)=>i===5?`<w:tbl><w:tr><w:tc><w:p><w:r><w:t>${esc(t)}</w:t></w:r></w:p></w:tc></w:tr></w:tbl>`:`<w:p><w:r><w:t>${esc(t)}</w:t></w:r></w:p>`).join('')}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/></w:sectPr></w:body></w:document>`;
+const parts={
+'[Content_Types].xml':'<?xml version="1.0"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>',
+'_rels/.rels':'<?xml version="1.0"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>',
+'word/document.xml':WORD};
+// Small stored-ZIP writer for the synthetic fixture only; real DOCX ingestion
+// also handles DEFLATE. This is not a Word document authoring feature.
+function storedZip(parts) {
+ const enc=new TextEncoder(),local=[],central=[];let offset=0;
+ const u16=(v,p,n)=>v.setUint16(p,n,true),u32=(v,p,n)=>v.setUint32(p,n,true);
+ for(const [name,value]of Object.entries(parts)){
+  const n=enc.encode(name),b=typeof value==='string'?enc.encode(value):value,crc=FormSyncCore.crc32(b);
+  const l=new Uint8Array(30+n.length+b.length),lv=new DataView(l.buffer);u32(lv,0,0x04034b50);u16(lv,4,20);u16(lv,6,0x800);u32(lv,14,crc);u32(lv,18,b.length);u32(lv,22,b.length);u16(lv,26,n.length);l.set(n,30);l.set(b,30+n.length);local.push(l);
+  const c=new Uint8Array(46+n.length),cv=new DataView(c.buffer);u32(cv,0,0x02014b50);u16(cv,4,20);u16(cv,6,20);u16(cv,8,0x800);u32(cv,16,crc);u32(cv,20,b.length);u32(cv,24,b.length);u16(cv,28,n.length);u32(cv,42,offset);c.set(n,46);central.push(c);offset+=l.length;
+ }
+ const cdSize=central.reduce((n,c)=>n+c.length,0),end=new Uint8Array(22),ev=new DataView(end.buffer);u32(ev,0,0x06054b50);u16(ev,8,central.length);u16(ev,10,central.length);u32(ev,12,cdSize);u32(ev,16,offset);
+ const out=new Uint8Array(offset+cdSize+22);let p=0;for(const b of [...local,...central,end]){out.set(b,p);p+=b.length;}return out;
+}
+window.FormSyncDemo={XDP,WORD,parts,storedZip,files:()=>({docx:new File([storedZip(parts)],'example-approved-source.docx'),xdp:new File([XDP],'example-existing-template.xdp')})};
+})();
+</script>
+<script>(() => {
+'use strict';
+const C=window.FormSyncCore,$=id=>document.getElementById(id);
+let files={docx:null,xdp:null},result=null,filter='changes',selected=null,busy=false,limit=150,wordLimit=40,version=0;
+let metadata={};
+const text=(tag,value,cls)=>{const n=document.createElement(tag);n.textContent=value;if(cls)n.className=cls;return n;};
+const button=(label,cls,fn)=>{const b=text('button',label,cls);b.type='button';b.addEventListener('click',fn);return b;};
+const status=s=>{$('status').textContent=s;};
+const fail=e=>{$('error').textContent=e.message||String(e);$('error').hidden=false;status('No file was changed. Resolve the issue and try again.');};
+const clearError=()=>{$('error').hidden=true;$('error').textContent='';};
+const hasWork=()=>result?.rows.some(r=>r.decision!=='pending'||r.note||r.draft!==undefined);
+function noDrafts(){const r=result?.rows.find(r=>r.draft!==undefined&&r.draft!==r.proposed);if(r){fail(new Error(`Apply or revert the edited wording for ${r.xdp.ownerName} before exporting.`));return false;}return true;}
+const opts=()=>({headers:$('includeHeaders').checked,notes:$('includeNotes').checked,captions:$('includeCaptions').checked,threshold:Number($('threshold').value),group:Number($('groupSize').value)});
+function setBusy(value){busy=value;$('status').classList.toggle('busy',value);for(const id of ['docxBrowse','xdpBrowse','docxInput','xdpInput','demoButton','includeHeaders','includeNotes','includeCaptions','threshold','groupSize','importReview','resetButton'])$(id).disabled=value;$('compareButton').disabled=value||!files.docx||!files.xdp;$('compareButton').textContent=value?'Comparing…':'Compare wording →';}
+function invalidate(message){version++;result=null;selected=null;$('results').hidden=true;status(message||'Files or options changed. Compare again to start a new review.');}
+function choose(kind,file){
+ if(busy||!file)return;
+ const ext=kind==='docx'?/\.docx$/i:/\.(xdp|xml)$/i;
+ if(!ext.test(file.name)){fail(new Error(`Choose a ${kind==='docx'?'.docx':'.xdp'} file.`));return;}
+ if(file.size>C.LIMIT.file){fail(new Error('This file exceeds the 50 MiB limit.'));return;}
+ if(!file.size){fail(new Error('This file is empty.'));return;}
+ if(hasWork()&&!confirm('Changing files clears the current review. Save JSON first to keep your decisions and notes. Continue?'))return;
+ clearError();files[kind]=file;$(kind+'Name').textContent=file.name;$(kind+'Meta').textContent=`${(file.size/1024).toLocaleString(undefined,{maximumFractionDigits:1})} KiB · selected locally`;
+ invalidate(files.docx&&files.xdp?'Both files are ready. Compare to build your review list.':'Choose the other file to start.');setBusy(false);
+}
+for(const kind of ['docx','xdp']){
+ $(kind+'Browse').addEventListener('click',()=>$(kind+'Input').click());
+ $(kind+'Input').addEventListener('change',e=>{choose(kind,e.target.files[0]);e.target.value='';});
+ const zone=$(kind+'Zone');zone.addEventListener('dragover',e=>{e.preventDefault();if(!busy)zone.classList.add('dragover');});zone.addEventListener('dragleave',()=>zone.classList.remove('dragover'));
+ zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('dragover');if(e.dataTransfer.files.length!==1){fail(new Error('Drop one file in each file box.'));return;}choose(kind,e.dataTransfer.files[0]);});
+}
+window.addEventListener('dragover',e=>e.preventDefault());window.addEventListener('drop',e=>e.preventDefault());
+for(const id of ['includeHeaders','includeNotes','includeCaptions','threshold','groupSize'])$(id).addEventListener('change',()=>{
+ if(hasWork()&&!confirm('Changing matching options clears the current review. Save JSON first to keep it. Continue?')){const o=result.options;$('includeHeaders').checked=o.headers;$('includeNotes').checked=o.notes;$('includeCaptions').checked=o.captions;$('threshold').value=String(o.threshold);$('groupSize').value=String(o.group);return;}invalidate();
+});
+async function digest(bytes){try{if(crypto?.subtle)return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');}catch{}return null;}
+async function run(){
+ if(busy||!files.docx||!files.xdp)return;
+ if(hasWork()&&!confirm('Comparing again clears current decisions. Save a JSON review first to retain them. Continue?'))return;
+ clearError();invalidate('Reading local files…');setBusy(true);const token=version;
+ try{
+  await C.pause();const o=opts();const [db,xb]=await Promise.all([files.docx.arrayBuffer(),files.xdp.arrayBuffer()]);
+  const dbytes=new Uint8Array(db),xbytes=new Uint8Array(xb);
+  status('Reading the Word package and indexing XDP text…');await C.pause();
+  const w=await C.readDocx(dbytes,o);const x=C.readXdp(xbytes,o);
+  metadata={docx:{name:files.docx.name,size:files.docx.size,sha256:await digest(dbytes)},xdp:{name:files.xdp.name,size:files.xdp.size,sha256:await digest(xbytes)}};
+  const comparison=await C.compare(w,x,o,(n,total)=>status(`Matching XDP wording · ${n.toLocaleString()} of ${total.toLocaleString()} blocks…`));
+  if(token!==version)return;result=comparison;filter='changes';selected=null;limit=150;wordLimit=40;$('search').value='';$('results').hidden=false;renderAll();
+  status(`Compared ${w.blocks.length.toLocaleString()} Word blocks with ${x.blocks.length.toLocaleString()} XDP text blocks. No updates have been approved.`);
+  $('sessionInfo').textContent='Review lives in memory · save JSON before closing';
+ }catch(e){fail(e);}finally{setBusy(false);}
+}
+$('compareButton').addEventListener('click',run);
+$('demoButton').addEventListener('click',async()=>{
+ if(result&&!confirm('Replace the current session with synthetic example files?'))return;
+ result=null;const demo=FormSyncDemo.files();choose('docx',demo.docx);choose('xdp',demo.xdp);await run();
+ if(result)status('Synthetic example loaded. Review a change, approve it, then export an updated example XDP.');
+});
+function visibleRows(){
+ if(!result)return [];
+ const q=$('search').value.trim().toLocaleLowerCase();
+ return result.rows.filter(r=>{
+  const match=filter==='all'||filter==='changes'&&r.status!=='unchanged'&&r.status!=='unmatched'||filter==='unmatched'&&(r.status==='unmatched'||r.status==='ambiguous'||!!r.xdp.blocked)||filter==='unchanged'&&r.status==='unchanged'||filter==='approved'&&r.decision==='approved';
+  return match&&(!q||[r.xdp.text,r.proposed,r.xdp.ownerName,r.xdp.path].some(s=>s.toLocaleLowerCase().includes(q)));
+ });
+}
+const label=r=>r.decision==='approved'?'Approved':r.decision==='rejected'?'Kept original':r.status==='unchanged'?'Unchanged':r.status==='unmatched'?'Needs mapping':r.status==='ambiguous'?'Check mapping':'Suggested update';
+function badge(r){return text('span',label(r),'badge '+(r.decision==='pending'?r.status:r.decision));}
+function renderStats(){
+ const rs=result.rows,approved=rs.filter(r=>r.decision==='approved').length;
+ const specs=[[rs.length,'XDP text blocks'],[rs.filter(r=>r.status==='unchanged').length,'Unchanged'],[rs.filter(r=>r.status!=='unchanged'&&r.decision==='pending').length,'Awaiting review'],[C.unmappedWord(result).length,'Word blocks unmapped'],[approved,'Approved updates']];
+ $('stats').replaceChildren(...specs.map(([value,name],i)=>{const d=text('div','','stat'+(i===4?' emphasis':''));d.append(text('strong',value.toLocaleString()),text('span',name));return d;}));
+ $('exportHeading').textContent=approved?`${approved} approved update${approved===1?'':'s'} ready to export`:'No changes approved yet';
+ $('exportXdp').disabled=!approved||result.xdp.signed;
+ $('exportHint').textContent=result.xdp.signed?'This XDP is signed or encrypted. Export is blocked; use an unsigned, decrypted design copy.':'The original file is never overwritten. Unapproved and unmatched text stays unchanged.';
+}
+function renderNotices(){
+ const notes=[...result.warnings];const blocked=result.rows.filter(r=>r.xdp.blocked).length;
+ if(blocked)notes.unshift(`${blocked} text block(s) are comparison-only because they are scripted, bound, inherited or use unsupported markup.`);
+ if(result.xdp.excluded.length)notes.push(...result.xdp.excluded);
+ $('noticeSummary').textContent=`Scope & review notes${notes.length?' · '+notes.length+' notices':''}`;
+ $('noticeContent').replaceChildren(text('p','Scope: existing static XFA draw text and enabled field captions. The app does not create/delete form objects, update field data, execute scripts or import Word formatting.'));
+ for(const note of notes)$('noticeContent').append(text('p',note,'warning-item'));
+}
+function renderList(){
+ const rows=visibleRows();if(!rows.some(r=>r.id===selected))selected=rows[0]?.id??null;
+ $('listCount').textContent=`${rows.length.toLocaleString()} item${rows.length===1?'':'s'}`;
+ document.querySelectorAll('[data-filter]').forEach(b=>{const a=b.dataset.filter===filter;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});
+ const list=$('itemList'),scroll=list.scrollTop;list.replaceChildren();
+ if(!rows.length)list.append(text('p','No items in this view. Try another filter.','empty-state'));
+ for(const r of rows.slice(0,limit)){
+  const item=button('','item'+(r.id===selected?' selected':''),()=>{selected=r.id;renderList();renderDetail();});item.setAttribute('aria-pressed',String(r.id===selected));
+  const top=text('div','','item-top');top.append(text('span',r.xdp.ownerName,'item-name'));if(r.match)top.append(text('span',`${Math.round(r.match.score*100)}% similar`,'item-score'));
+  const meta=text('div','','item-meta');meta.append(badge(r));if(r.xdp.blocked)meta.append(text('span','Export blocked','badge blocked'));if(r.xdp.hidden)meta.append(text('span','Hidden','badge hidden'));
+  item.append(top,text('div',C.normalize(r.xdp.text),'item-preview'),meta);list.append(item);
+ }
+ if(rows.length>limit)list.append(button(`Show next ${Math.min(150,rows.length-limit)} items`,'page-more',()=>{limit+=150;renderList();}));
+ list.scrollTop=scroll;
+}
+function navigate(direction){const rows=visibleRows();const i=rows.findIndex(r=>r.id===selected);const next=rows[i+direction];if(next){selected=next.id;limit=Math.max(limit,i+direction+1);renderList();renderDetail();}}
+function diffColumn(title,value,ops,side){
+ const div=text('div','','text-column');div.append(text('div',title,'column-label'));const content=text('div','','text-content');
+ if(!ops)content.textContent=value;
+ else for(const op of ops){if(side==='old'&&op.type==='insert'||side==='new'&&op.type==='delete')continue;content.append(text(op.type==='delete'?'del':op.type==='insert'?'ins':'span',op.values.join('')));}
+ div.append(content);return div;
+}
+function updateMatch(r,match){delete r.draft;r.match=match;r.proposed=match.text;r.decision='pending';r.reason=match.method||'Manual Word mapping';r.status=C.normalize(r.proposed)===C.normalize(r.xdp.text)?'unchanged':'suggested';clearError();renderAll(false);}
+function sourceSearch(r,query,target){
+ const q=C.folded(query);if(q.length<2){target.replaceChildren(text('p','Enter at least two characters.','muted'));return;}
+ const terms=q.split(' ').filter(Boolean);const found=result.word.map((b,i)=>({b,i})).filter(({b})=>terms.every(t=>C.folded(b.text).includes(t))).slice(0,50);
+ target.replaceChildren();if(!found.length)target.append(text('p','No Word blocks match this search.','muted'));
+ for(const {b,i}of found){const btn=button('','source-option',()=>updateMatch(r,{indices:[i],text:b.text,location:b.location,score:C.similarity(C.features(r.xdp.text),C.features(b.text)),method:'Manual Word mapping'}));btn.append(text('small',b.location),text('span',b.text.slice(0,280)+(b.text.length>280?'…':'')));target.append(btn);}
+ if(found.length===50)target.append(text('p','Showing the first 50 matches. Refine the search for more specific results.','muted'));
+}
+function renderDetail(){
+ const panel=$('detailPanel');panel.replaceChildren();const r=result.rows.find(r=>r.id===selected);
+ if(!r){const empty=text('div','','empty-state');empty.append(text('div','✓','empty-icon'),text('h3','Nothing to review in this view'),text('p','Use another filter to inspect unchanged or unmatched text.'));panel.append(empty);return;}
+ const head=text('div','','detail-head'),titleRow=text('div','','detail-title-row'),titleBox=text('div','');titleBox.append(text('h3',r.xdp.ownerName),text('div',r.xdp.kind+(r.xdp.hidden?' · hidden object':''),'detail-kind'));titleRow.append(titleBox,badge(r));head.append(titleRow,text('code',r.xdp.path,'detail-path'));panel.append(head);
+ const body=text('div','','detail-body'),info=text('div','','match-info');info.append(text('strong',r.reason),text('span',r.match?`${Math.round(r.match.score*100)}% text similarity · not a correctness score`:'No source mapping selected'));body.append(info);
+ const ops=r.proposed?C.wordDiff(r.xdp.text,r.proposed):null;const diff=text('div','','diff-grid');diff.append(diffColumn('CURRENT XDP WORDING',r.xdp.text,ops,'old'),diffColumn('PROPOSED REPLACEMENT',r.proposed||'No proposed replacement. Choose a Word block or enter wording below.',ops,'new'));body.append(diff);
+ body.append(text('div',r.match?`Word source: ${r.match.location}`:r.proposed?'Manually entered wording · no Word source mapping':'No Word source mapped','word-location'));
+ if(r.xdp.blocked)body.append(text('div',`Export blocked: ${r.xdp.blocked}. Review this object in Designer.`,'review-alert block'));
+ else if(r.status==='ambiguous')body.append(text('div','Check the mapping carefully. Similar alternatives, a short label, or a source block shared by other XDP objects make this suggestion uncertain.','review-alert'));
+ if(r.shared)body.append(text('div','The suggested Word block is also proposed for another XDP object. Confirm each occurrence separately.','review-alert'));
+ if(r.duplicate&&r.status==='unchanged')body.append(text('div','This text appears more than once in Word. The wording is unchanged, but the exact occurrence is not uniquely identified.','review-alert'));
+ if(r.proposed.length>r.xdp.text.length*1.2+15)body.append(text('div','The replacement is longer. Check the existing text box for overflow and wrapping in Designer.','review-alert'));
+ if(r.xdp.rich)body.append(text('div','Rich-text styles are retained, not copied from Word. Check emphasis and line wrapping after export. Existing line-break structure must stay the same.','review-alert'));
+ const mapping=text('details','','detail-disclosure');if(r.status==='unmatched')mapping.open=true;mapping.append(text('summary','Choose another Word match or edit the wording'));const controls=text('div','','mapping-controls');
+ if(r.alternatives.length){const lab=text('label','Suggested Word matches');const select=document.createElement('select');select.setAttribute('aria-label','Choose a suggested Word match');select.append(new Option('Select a match…',''));r.alternatives.forEach((a,i)=>select.append(new Option(`${Math.round(a.score*100)}% · ${a.text.replace(/\s+/g,' ').slice(0,100)}`,String(i))));select.addEventListener('change',()=>{if(select.value!=='')updateMatch(r,{...r.alternatives[Number(select.value)],method:'Manually chosen candidate'});});lab.append(select);controls.append(lab);}
+ const searchLabel=text('label','Search all Word paragraphs (including unchanged matches)');const search=document.createElement('input');search.type='search';search.placeholder='Enter distinctive words from the source…';search.setAttribute('aria-label','Search Word source paragraphs');searchLabel.append(search);controls.append(searchLabel);
+ const searchResults=text('div','','search-results');searchResults.hidden=true;search.addEventListener('input',()=>{searchResults.hidden=!search.value;sourceSearch(r,search.value,searchResults);});controls.append(searchResults);
+ const editorLabel=text('label','Replacement wording','edit-label');editorLabel.htmlFor='replacementEditor';const editor=document.createElement('textarea');editor.id='replacementEditor';editor.value=r.draft??r.proposed;editor.maxLength=C.LIMIT.text;editor.spellcheck=false;editor.addEventListener('input',()=>{r.draft=editor.value;if(r.decision==='approved')r.decision='pending';$('approveButton').disabled=true;$('approveButton').textContent='Apply edited wording first';renderStats();renderList();status('Choose “Use edited wording” to apply this draft. Drafts stay with this item until applied.');});controls.append(editorLabel,editor,text('p','Applying edited wording resets approval and records it as a manual replacement. Empty text is not allowed.','editor-hint'));
+ const editRow=text('div','','edit-row');editRow.append(button('Use edited wording','secondary',()=>{
+  const value=editor.value.replace(/\r\n?/g,'\n');if(!C.validText(value)||!C.normalize(value)){fail(new Error('Enter non-empty wording containing valid XML text.'));return;}
+  delete r.draft;r.proposed=value;r.match=null;r.reason='Manual replacement';r.status=C.normalize(value)===C.normalize(r.xdp.text)?'unchanged':'suggested';r.decision='pending';clearError();renderAll(false);
+ }));controls.append(editRow);mapping.append(controls);body.append(mapping);
+ const noteBox=text('div','','review-note'),noteLabel=text('label','Review note (included in exports)');noteLabel.htmlFor='reviewNote';const note=document.createElement('input');note.id='reviewNote';note.maxLength=4000;note.value=r.note;note.placeholder='Optional rationale or follow-up for the form owner';note.addEventListener('input',()=>r.note=note.value);noteBox.append(noteLabel,note);body.append(noteBox);panel.append(body);
+ const actions=text('div','','detail-actions'),left=text('div','','action-left');
+ left.append(button(r.decision==='rejected'?'Reopen review':'Keep original','secondary',()=>{r.decision=r.decision==='rejected'?'pending':'rejected';clearError();renderAll(false);}));
+ if(r.decision==='approved')left.append(button('Undo approval','quiet',()=>{r.decision='pending';renderAll(false);}));
+ const approve=button(r.decision==='approved'?'Approved ✓':'Approve update','primary',()=>{
+  try{C.blockPatches(r.xdp,r.proposed,result.xdp.format.text);r.decision='approved';clearError();renderAll(false);status(`Approved ${r.xdp.ownerName}. The original file is unchanged until you export a copy.`);}catch(e){fail(e);}
+ });approve.id='approveButton';approve.disabled=!!r.xdp.blocked||!C.normalize(r.proposed)||C.normalize(r.proposed)===C.normalize(r.xdp.text)||r.decision==='approved'||result.xdp.signed||(r.draft!==undefined&&r.draft!==r.proposed);actions.append(left,approve);panel.append(actions);
+ const nav=text('div','','detail-nav');const rows=visibleRows(),idx=rows.findIndex(x=>x.id===r.id);const prev=button('← Previous','quiet',()=>navigate(-1)),next=button('Next →','quiet',()=>navigate(1));prev.disabled=idx<=0;next.disabled=idx>=rows.length-1;nav.append(prev,text('span',`${idx+1} of ${rows.length} in this view`),next);panel.append(nav);
+}
+function renderWord(){
+ const unused=C.unmappedWord(result);$('wordSummary').textContent=`Word text with no proposed mapping · ${unused.length.toLocaleString()} blocks`;$('wordList').replaceChildren();
+ for(const b of unused.slice(0,wordLimit)){const item=text('div','','word-item');item.append(text('small',b.location),text('span',b.text));$('wordList').append(item);}
+ if(!unused.length)$('wordList').append(text('p','Every Word block participates in at least one proposed mapping. This does not mean every proposal was approved.','muted'));
+ $('moreWord').hidden=unused.length<=wordLimit;
+}
+function renderAll(notices=true){if(!result)return;renderStats();if(notices)renderNotices();renderList();renderDetail();renderWord();}
+$('moreWord').addEventListener('click',()=>{wordLimit+=100;renderWord();});
+for(const b of document.querySelectorAll('[data-filter]'))b.addEventListener('click',()=>{filter=b.dataset.filter;selected=null;limit=150;renderList();renderDetail();});
+$('search').addEventListener('input',()=>{limit=150;renderList();renderDetail();});
+function download(contents,name,type){const blob=new Blob([contents],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
+function baseName(){return (files.xdp?.name||'template').replace(/\.(xdp|xml)$/i,'').replace(/[<>:"/\\|?*\u0000-\u001F]/g,'_');}
+$('exportReport').addEventListener('click',()=>{if(result&&noDrafts()){download(JSON.stringify(C.report(result,metadata),null,2),baseName()+'.review.json','application/json');status('Review JSON exported. It contains source document text; handle it like the original files.');}});
+$('exportCsv').addEventListener('click',()=>{
+ if(!result||!noDrafts())return;
+ const data=C.report(result,metadata),fields=['recordType','object','kind','status','decision','similarity','sourceLocation','path','original','proposed','blocked','note'];
+ // Prefix spreadsheet formulas even after leading whitespace; double quotes do
+ // not prevent formula execution in spreadsheet applications.
+ const cell=v=>{let s=String(v??'');if(/^[\s\uFEFF]*[=+@-]/u.test(s)||/^[\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};
+ const rows=data.rows.map(r=>({...r,recordType:'XDP text'})).concat(data.unmatchedWord.map(b=>({recordType:'Unmapped Word text',status:'unmapped',sourceLocation:b.location,proposed:b.text})),data.excludedXdp.map(t=>({recordType:'Excluded XDP',blocked:t})));
+ const csv=[fields,...rows.map(r=>fields.map(f=>r[f]??''))].map(row=>row.map(cell).join(',')).join('\r\n');download('\uFEFF'+csv,baseName()+'.changes.csv','text/csv;charset=utf-8');status('The review list was exported as CSV. It includes unmapped Word text and excluded XDP items.');
+});
+$('exportXdp').addEventListener('click',()=>{
+ if(!result||!noDrafts())return;clearError();try{const output=C.exportXdp(result);download(output.bytes,baseName()+'.updated.xdp','application/vnd.adobe.xdp+xml');status(`Exported ${output.approved} approved update${output.approved===1?'':'s'}. XML/text checks passed; validate appearance and behavior in Designer before release.`);}catch(e){fail(e);}
+});
+$('importReview').addEventListener('click',()=>$('reviewInput').click());
+$('reviewInput').addEventListener('change',async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f||!result)return;
+ try{if(f.size>30*1024*1024)throw new Error('Review JSON exceeds 30 MiB.');const data=JSON.parse(await f.text());if(data.files?.xdp?.sha256&&metadata.xdp.sha256&&data.files.xdp.sha256!==metadata.xdp.sha256)throw new Error('This review belongs to a different XDP file. Compare against the exact original XDP before restoring.');
+ if(data.files?.docx?.sha256&&metadata.docx.sha256&&data.files.docx.sha256!==metadata.docx.sha256)throw new Error('This review belongs to a different Word file. Re-compare and review new suggestions instead.');
+ const restored=C.restoreReview(result,data);clearError();renderAll();status(`Restored ${restored.restored} review items; skipped ${restored.skipped} stale or unsupported items. Saved approvals must be approved again.`);
+ }catch(err){fail(err);}
+});
+$('helpButton').addEventListener('click',()=>$('helpDialog').showModal());$('closeHelp').addEventListener('click',()=>$('helpDialog').close());
+$('helpDialog').addEventListener('click',e=>{if(e.target===$('helpDialog')){const r=$('helpDialog').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('helpDialog').close();}});
+$('resetButton').addEventListener('click',()=>{if((files.docx||files.xdp)&&!confirm('Clear this session? Export a JSON review first to keep your notes and proposed changes.'))return;location.reload();});
+window.addEventListener('beforeunload',e=>{if(hasWork()){e.preventDefault();e.returnValue='';}});
+// The test harness can inspect state without bypassing the normal UI workflow.
+window.FormSyncApp={getResult:()=>result,getFiles:()=>metadata};
+try{new DecompressionStream('deflate-raw');}catch{$('error').hidden=false;$('error').textContent='This browser lacks native raw-DEFLATE support. Open this HTML file in a current desktop Chrome or Edge browser.';}
+})();
+</script>
+</body></html>
