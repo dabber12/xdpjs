@@ -19,6 +19,12 @@
 .mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 20px}.mode-option{background:#fff;border:1px solid var(--line);border-radius:9px;text-align:left;padding:16px 20px;color:var(--ink)}.mode-option.active{background:#edf6f0;border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}.mode-option strong,.mode-option span{display:block}.mode-option strong{font-size:14px}.mode-option span{font-size:11px;margin-top:5px;color:var(--muted)}.mode-option em{font:700 8px system-ui,sans-serif;letter-spacing:.5px;font-style:normal;background:var(--teal);color:#fff;padding:3px 5px;border-radius:3px;margin-left:7px;vertical-align:middle}.file-grid.single-file{grid-template-columns:1fr}.create-settings{border-top:1px solid var(--line);padding:19px 0 22px}.generator-options{display:grid;grid-template-columns:2fr 1.6fr 1fr;gap:14px 18px}.generator-options label{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--muted)}.generator-options input,.generator-options select{width:100%;min-height:38px;border:1px solid #cbd8d1;border-radius:6px;padding:8px 10px;font-size:13px;background:#fff;color:var(--ink)}.create-explainer{font-size:12px;line-height:1.7;color:var(--muted);margin:15px 0 10px;max-width:1000px}.placeholder-option{display:flex!important;align-items:center;gap:8px;font-size:11px;color:var(--muted);line-height:1.7}.advanced-grid .placeholder-option{grid-column:1/-1}.gen-section-label{padding:12px 16px;background:#f2f5f3;font-size:10px;font-weight:700;color:var(--teal);overflow-wrap:anywhere;border-bottom:1px solid var(--line)}.generation-export{margin-top:22px}.field-map-line{font:11px/1.8 ui-monospace,monospace;overflow-wrap:anywhere;padding:8px 10px;background:#f3f6f4;border-radius:5px}.badge.addition{color:#2e6578;background:#e7f1f7}.review-alert .text-button{display:block;text-align:left;font-size:11px;margin:7px 0}.review-toolbar p{font-size:12px;margin:3px 0}.review-toolbar{gap:12px}.tabs{flex-wrap:wrap}.genDetail h3{overflow-wrap:anywhere}
 @media(max-width:820px){.generator-options{grid-template-columns:1fr 1fr}.mode-option{padding:13px 14px}.mode-option strong{font-size:13px}.mode-option span{font-size:10px}.intro-note{display:block;max-width:none}.intro{flex-direction:column}.intro-note .small-label,.intro-note p{display:none}.intro-note .text-button{margin:0}.intro{gap:10px}}
 @media(max-width:480px){.mode-switch{grid-template-columns:1fr;gap:7px}.mode-option span{margin-top:3px}.generator-options{grid-template-columns:1fr 1fr}.generator-options label:first-child,.generator-options label:nth-child(2){grid-column:1/-1}.tabs .tab{flex:initial}.genDetail .detail-head h3{font-size:17px}.stats{grid-template-columns:repeat(5,minmax(0,1fr))}.stat{min-width:0}.mode-option em{font-size:7px}.file-copy{min-width:0}.file-name{overflow-wrap:anywhere}.create-settings .placeholder-option{align-items:flex-start}}
+
+/* 1.3: source formatting and explicit fidelity review */
+.fidelity-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0 12px}.fidelity-options label{display:flex;align-items:flex-start;gap:10px;cursor:pointer}.fidelity-options input,.loss-override input{flex:0 0 auto;margin-top:3px;accent-color:var(--accent,#276b5a)}.fidelity-options strong{display:block;font-size:13px;line-height:1.5}.fidelity-options small{display:block;font-size:12px;line-height:1.6;color:var(--muted,#626b67);margin-top:4px}
+.fidelity-panel{border:1px solid #c4d7d0;background:#f5faf7;border-radius:12px;padding:24px;margin:20px 0}.fidelity-panel.has-loss{border-color:#dac1a1;background:#fffaf2}.fidelity-header{display:flex;justify-content:space-between;gap:16px;align-items:center}.fidelity-header h3{font-size:19px;margin:6px 0}.fidelity-panel p{font-size:13px;line-height:1.7;max-width:110ch}.fidelity-panel summary{cursor:pointer;font-weight:600;font-size:13px;padding:8px 0}.fidelity-issue{padding:12px 0;border-top:1px solid #deded7}.fidelity-issue strong{font-size:11px;letter-spacing:.03em}.fidelity-issue p{margin:5px 0}.fidelity-issue.loss strong{color:#8c4b20}.fidelity-issue.review strong{color:#456458}.loss-override{display:flex;align-items:flex-start;gap:10px;padding:16px;background:#fff;border:1px solid #dbc2a3;border-radius:8px;margin-top:16px;font-size:13px;line-height:1.7}
+.word-rich-preview{background:#fff;color:#000;border:1px solid #d5d9d4;border-radius:6px;padding:22px 24px;margin:12px 0;max-height:580px;overflow:auto;isolation:isolate}.word-rich-preview p{padding:0;max-width:none;line-height:normal}.word-rich-preview .preview-field{font:inherit;outline:1px dashed #8e9d99;background:#edf3f0;color:#3f6356}.generation-export button:disabled{opacity:.48;cursor:not-allowed}
+@media(max-width:780px){.fidelity-options{grid-template-columns:1fr;gap:16px}.fidelity-panel{padding:18px}.fidelity-header{align-items:flex-start;flex-direction:column;gap:8px}.word-rich-preview{padding:18px 12px}.fidelity-panel p{overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
@@ -26,15 +32,20 @@
 <header class="topbar"><div class="brand"><span class="brand-mark" aria-hidden="true">F<span>↔</span></span><span>FormSync<small>DOCUMENT RECONCILIATION</small></span></div><div class="local-badge"><span class="dot"></span>Local files. Local processing.</div><button class="quiet" id="helpButton">How it works</button></header>
 <main id="workspace">
 <section class="intro"><div><div class="eyebrow">DOCX → XDP · TEXT REVIEW</div><h1 id="introTitle">Keep the wording.<br><span>Lose the manual checking.</span></h1><p id="introText">Compare your Word source with an Adobe XDP template.<br>Review the differences. Export only the changes you approve.</p></div><div class="intro-note"><span class="small-label">YOUR FILES STAY HERE</span><p>No uploads, no server, no account.<br>Nothing is saved between sessions unless you export a review file.</p><button class="text-button" id="demoButton">Explore a built-in example <span aria-hidden="true">↗</span></button></div></section>
-<div class="mode-switch" role="group" aria-label="Workspace mode"><button id="modeCompare" class="mode-option active" aria-pressed="true"><strong>Compare &amp; update</strong><span>Review Word against an existing XDP</span></button><button id="modeCreate" class="mode-option" aria-pressed="false"><strong>Create XDP from Word <em>NEW</em></strong><span>Split text into named, editable form objects</span></button></div>
+<div class="mode-switch" role="group" aria-label="Workspace mode"><button id="modeCompare" class="mode-option active" aria-pressed="true"><strong>Compare &amp; update</strong><span>Review Word against an existing XDP</span></button><button id="modeCreate" class="mode-option" aria-pressed="false"><strong>Create XDP from Word <em>NEW</em></strong><span>Preserve rich text in named form objects</span></button></div>
 <section class="load-panel" aria-labelledby="loadHeading"><div class="section-head"><h2 id="loadHeading"><span class="step">01</span> Choose your files</h2><span class="muted">Word is the source of truth</span></div>
 <div class="file-grid" id="fileGrid"><div class="file-zone" id="docxZone"><div class="file-icon" aria-hidden="true">W</div><div class="file-copy"><label class="small-label" for="docxInput">APPROVED WORD SOURCE</label><div id="docxName" class="file-name">Choose a .docx file</div><div id="docxMeta" class="muted">Drag a file here, or browse · up to 50 MiB</div></div><button id="docxBrowse" class="secondary">Browse</button><input id="docxInput" type="file" accept=".docx" class="sr-only" tabindex="-1"></div>
 <div class="file-zone" id="xdpZone"><div class="file-icon xdp-icon" aria-hidden="true">&lt;/&gt;</div><div class="file-copy"><label class="small-label" for="xdpInput">EXISTING FORM TEMPLATE</label><div id="xdpName" class="file-name">Choose an .xdp file</div><div id="xdpMeta" class="muted">Drag a file here, or browse · up to 50 MiB</div></div><button id="xdpBrowse" class="secondary">Browse</button><input id="xdpInput" type="file" accept=".xdp,.xml" class="sr-only" tabindex="-1"></div></div>
 <div class="settings-bar"><div class="checks"><label><input id="includeHeaders" type="checkbox" checked> Word headers &amp; footers</label><label id="captionOption"><input id="includeCaptions" type="checkbox" checked> XDP field captions</label><label><input id="includeNotes" type="checkbox"> Word footnotes &amp; endnotes</label></div><button id="generateButton" class="primary" disabled hidden>Build object preview →</button><button id="compareButton" class="primary" disabled>Compare wording <span aria-hidden="true">→</span></button></div>
 <details class="advanced" id="compareOptions"><summary>Matching &amp; placeholder options</summary><div class="advanced-grid"><label>Minimum similarity <select id="threshold"><option value="0.45">45% · broader suggestions</option value="0.55" selected>55% · balanced</option value="0.7">70% · more conservative</option></select></label><label>Join adjacent Word paragraphs <select id="groupSize"><option value="1">One paragraph only</option value="3" selected>Up to 3 paragraphs</option><option value="5">Up to 5 paragraphs</option></select></label><label class="placeholder-option"><input id="includePlaceholders" type="checkbox" checked> Recognise literal field placeholders: {{name}}, &lt;&lt;name&gt;&gt;, «name», ${name}</label><p>Scores measure textual similarity, not correctness. Short, shared or close-scoring matches are flagged. Every update needs approval.</p></div></details>
 <div id="createOptions" class="create-settings" hidden>
-<div class="generator-options"><label>Form title<input id="genTitle" type="text" maxlength="200" value="Word form"></label><label>Maximum characters per object<input id="genMaxChars" type="number" min="100" max="4000" step="100" value="800"></label><label>Page size<select id="genPage"><option value="A4">A4</option><option value="Letter">US Letter</option></select></label><label>Page margin (mm)<input id="genMargin" type="number" min="10" max="35" value="18"></label><label>Body typeface<select id="genFont"><option>Arial</option><option>Times New Roman</option><option>Helvetica</option><option>Courier</option></select></label><label>Body size (pt)<input id="genFontSize" type="number" min="8" max="16" step="0.5" value="10"></label></div>
-<p class="create-explainer">Paragraphs and headings stay separate. Long paragraphs split at sentence or word boundaries; names come from the heading and wording. Recognised fields become blank, unbound placeholders for configuration in Designer. This creates a text-first template, not a replica of Word’s page layout.</p>
+<div class="generator-options"><label>Form title<input id="genTitle" type="text" maxlength="200" value="Word form"></label><label>Split limit (when splitting is enabled)<input id="genMaxChars" type="number" min="100" max="4000" step="100" value="800"></label><label>Fallback page size<select id="genPage"><option value="A4">A4</option><option value="Letter">US Letter</option></select></label><label>Fallback margin (mm)<input id="genMargin" type="number" min="10" max="35" value="18"></label><label>Uniform-mode typeface<select id="genFont"><option>Arial</option><option>Times New Roman</option><option>Helvetica</option><option>Courier</option></select></label><label>Uniform-mode size (pt)<input id="genFontSize" type="number" min="8" max="16" step="0.5" value="10"></label></div>
+<div class="fidelity-options">
+<label><input id="genRich" type="checkbox" checked><span><strong>Preserve Word rich formatting</strong><small>Resolve document defaults, named styles and individual text runs.</small></span></label>
+<label><input id="genWordPage" type="checkbox" checked><span><strong>Use Word page size and margins</strong><small>Use the source section’s geometry rather than the fallback settings.</small></span></label>
+<label><input id="genKeepParagraphs" type="checkbox" checked><span><strong>Keep Word paragraphs intact</strong><small>Avoid new line boundaries inside paragraphs. Turn off to create smaller, labelled parts.</small></span></label>
+</div>
+<p class="create-explainer">Source fonts, emphasis, colours, alignment and supported spacing are carried into XFA rich text. Names still come from headings and wording. The fidelity report identifies known losses; a browser preview does not certify an identical Word/Adobe render.</p>
 <label class="placeholder-option"><input id="genPlaceholders" type="checkbox" checked> Treat {{name}}, &lt;&lt;name&gt;&gt;, «name» and ${name} as fields, not static text</label>
 </div>
 </section>
@@ -51,19 +62,20 @@
 <p class="validation-note"><strong>Before release:</strong> open the exported XDP in your Adobe Designer workflow. Check wrapping, overflow, emphasis, page breaks and runtime behavior. XML checks are not Adobe rendering or schema validation.</p>
 </section>
 <section id="generationResults" hidden>
-<div class="section-head results-head"><h2><span class="step">02</span> Review the generated objects</h2><button class="secondary" id="exportObjectMap">Export object map · JSON</button></div>
+<div class="section-head results-head"><h2><span class="step">02</span> Review the generated objects</h2><div class="inline-actions"><button class="secondary" id="exportFidelity">Export fidelity report · JSON</button><button class="secondary" id="exportObjectMap">Export object map · JSON</button></div></div>
 <div id="genStats" class="stats"></div>
+<section class="fidelity-panel" id="fidelityPanel" aria-labelledby="fidelityHeading"><div class="fidelity-header"><div><div class="small-label">FORMATTING CHECK</div><h3 id="fidelityHeading">Source formatting assessment</h3></div><span id="fidelityBadge" class="badge">Review</span></div><p id="fidelitySummary"></p><p id="fidelityFonts" class="muted"></p><details id="fidelityDetails"><summary id="fidelityDetailSummary">Detected issues</summary><div id="fidelityIssues"></div></details><label class="loss-override" id="allowLossyLabel" hidden><input id="genAllowLossy" type="checkbox"><span>Allow draft export despite the listed formatting/layout losses. This output is not identical to Word.</span></label></section>
 <details class="notices" id="genNotices"><summary id="genNoticeSummary">Generation scope &amp; notes</summary><div id="genNoticeContent"></div></details>
 <div class="review-toolbar"><p class="muted">Select an object to inspect its wording and edit its name or label.</p><label class="search-box"><span aria-hidden="true">⌕</span><input id="genSearch" type="search" placeholder="Find a generated object…" aria-label="Search generated text objects"></label></div>
 <div class="review-grid"><aside class="item-panel" aria-label="Generated objects"><div class="list-heading"><span id="genCount">0 objects</span><span>SELECT TO INSPECT</span></div><div id="genObjectList" class="item-list"></div></aside><section id="genDetail" class="detail-panel" aria-live="polite"></section></div>
-<section class="export-panel generation-export"><div><div class="small-label">03 · EXPORT A NEW TEMPLATE</div><h2 id="genExportHeading">Your new XDP is ready</h2><p>Includes every previewed object. Empty floating fields need real bindings in Designer; the Word file is not changed.</p></div><button id="exportGeneratedXdp" class="primary">Export new XDP ↓</button></section>
-<p class="validation-note"><strong>Designer review required:</strong> this is a new, text-first XFA 3.3 template with flowed content. Tables are flattened to cell paragraphs; images and original page layout are not recreated. XML/text checks do not verify Adobe rendering or runtime behaviour.</p>
+<section class="export-panel generation-export"><div><div class="small-label">03 · EXPORT A NEW TEMPLATE</div><h2 id="genExportHeading">Review formatting before export</h2><p>Includes every previewed object and its supported source formatting. Empty floating fields need real bindings in Designer; the Word file is not changed.</p></div><button id="exportGeneratedXdp" class="primary">Export new XDP ↓</button></section>
+<p class="validation-note"><strong>Designer review required:</strong> this is a new XFA 3.3 template with flowed content. Use the same fonts as Word. Check line wrapping, pagination, emphasis and field behaviour. Detected losses are reported, not silently treated as equivalent; XML/text checks are not Adobe rendering or schema validation.</p>
 </section>
-<footer><span>FormSync 1.2 · Offline HTML + JavaScript</span><span id="sessionInfo">Files are read only after you select them.</span><button id="resetButton" class="text-button">Clear session</button></footer>
+<footer><span>FormSync 1.3 · Offline HTML + JavaScript</span><span id="sessionInfo">Files are read only after you select them.</span><button id="resetButton" class="text-button">Clear session</button></footer>
 </main>
-<dialog id="helpDialog"><div class="dialog-head"><h2>Compare existing forms. Create text-first templates.</h2><button class="quiet" id="closeHelp" aria-label="Close help">Close ×</button></div><div class="help-body"><h3>Compare and update an existing form</h3><p>Select approved Word content and an XDP. Review each suggested text update and each new list item. Nothing is pre-approved. Only supported approved changes enter the exported copy.</p><h3>Lists and floating fields</h3><p>Automatic Word list labels are reconstructed for decimal, alphabetic and Roman numbering. Leading marker punctuation and spacing do not count as a wording change; the actual number, letter and clause still do. List additions are proposed only where a clear, ordered neighbouring list provides a match.</p><p>Supported new items reuse an XDP paragraph or existing plain-text list. Separate draws can be cloned only inside top-to-bottom flowed subforms. Positioned additions are shown but blocked for Designer placement. Any required renumbering must also be approved.</p><p>Recognised Word data fields and XFA embedded floating fields appear as protected ⟦FIELD:1⟧ slots. Saved field display values do not become static text. Compare surrounding wording; field counts and order must agree. Bindings are not verified by field names. Literal placeholder recognition can be disabled.</p><h3>Create XDP from Word</h3><p>Switch modes and select only a DOCX. Choose fragment length and typography, then build the preview. Word headings become named sections. Long paragraphs split at sentence or word boundaries. Each text object has an editable content label and unique, XML-safe name. The limit counts JavaScript UTF-16 text units, including protected markers.</p><p>Recognised field occurrences become separate hidden, blank, unbound text fields with inline XFA references. Configure their real bindings, types and calculations in Designer. Word fonts, inline emphasis, images, tables and page geometry are not converted. Included headers, footers and notes appear as appended sections.</p><h3>Export and validate</h3><p>Comparison exports patch guarded source positions rather than rewriting the whole template. JSON saves a review; CSV exports the change list. Generated templates have their own JSON object/source map; it is documentation, not an import format. Save any files before closing this in-memory session.</p><p>Open exported templates in your Adobe Designer workflow to check wrapping, overflow, page breaks, formatting and runtime behaviour. XML well-formedness and text checks are not Adobe schema or rendering validation. Signed/encrypted comparison targets cannot be exported.</p><h3>Stable recurring mappings</h3><p>A Word content-control tag <code>xdp:OBJECT_ID</code> can link one paragraph to one unique XDP text block. For generated objects, the map records their IDs. A paragraph split across several objects cannot use a single owner ID to map all parts automatically; re-splitting or manual mapping may be needed.</p><h3>Local processing</h3><p>The HTML embeds all JavaScript and CSS. No server, installation, network request or upload is needed. Open it in a current desktop Chrome or Edge browser that permits local HTML, file selection and downloads. Source files and reports can contain confidential text; protect the exports accordingly.</p></div></dialog>
+<dialog id="helpDialog"><div class="dialog-head"><h2>Compare existing forms. Preserve Word rich text.</h2><button class="quiet" id="closeHelp" aria-label="Close help">Close ×</button></div><div class="help-body"><h3>Compare and update an existing form</h3><p>Select approved Word content and an XDP. Review each suggested text update and each new list item. Nothing is pre-approved. Only supported approved changes enter the exported copy.</p><h3>Lists and floating fields</h3><p>Automatic Word list labels are reconstructed for decimal, alphabetic and Roman numbering. Leading marker punctuation and spacing do not count as a wording change; the actual number, letter and clause still do. List additions are proposed only where a clear, ordered neighbouring list provides a match.</p><p>Supported new items reuse an XDP paragraph or existing plain-text list. Separate draws can be cloned only inside top-to-bottom flowed subforms. Positioned additions are shown but blocked for Designer placement. Any required renumbering must also be approved.</p><p>Recognised Word data fields and XFA embedded floating fields appear as protected ⟦FIELD:1⟧ slots. Saved field display values do not become static text. Compare surrounding wording; field counts and order must agree. Bindings are not verified by field names. Literal placeholder recognition can be disabled.</p><h3>Create XDP from Word</h3><p>Switch modes and select only a DOCX. Keep rich formatting, source page geometry and intact paragraphs enabled for closest fidelity, then build the preview. Word headings become named sections. Optional splitting uses sentence or word boundaries but introduces new line boundaries and is flagged as a layout loss. Each text object has an editable content label and unique, XML-safe name. The limit counts JavaScript UTF-16 text units, including protected markers.</p><p>Recognised field occurrences become separate hidden, blank, unbound text fields with inline XFA references. Configure their real bindings, types and calculations in Designer. Source font names, sizes, bold/italic, supported underlining, strike, colours, superscripts/subscripts, alignment, indents, tabs and spacing are mapped to XFA. Font files are not embedded. Tables, images and complex layout features are not reproduced and trigger a fidelity warning. Included headers, footers and notes appear as appended sections, not repeated page content.</p><h3>Fidelity report and draft export</h3><p>The report separates detected losses from renderer-verification notes. Known losses block XDP export until you explicitly allow a draft. This does not block exporting the report or object map. A report with no detected losses is not proof of visual identity: Word and Adobe rendering must still be compared. Superscript metrics, multiple line spacing and font substitution can affect appearance. Existing-XDP comparison remains wording-only; it does not import Word styling into an existing form.</p><h3>Export and validate</h3><p>Comparison exports patch guarded source positions rather than rewriting the whole template. JSON saves a review; CSV exports the change list. Generated templates have their own JSON object/source map; it is documentation, not an import format. Save any files before closing this in-memory session.</p><p>Open exported templates in your Adobe Designer workflow to check wrapping, overflow, page breaks, formatting and runtime behaviour. XML well-formedness and text checks are not Adobe schema or rendering validation. Signed/encrypted comparison targets cannot be exported.</p><h3>Stable recurring mappings</h3><p>A Word content-control tag <code>xdp:OBJECT_ID</code> can link one paragraph to one unique XDP text block. For generated objects, the map records their IDs. A paragraph split across several objects cannot use a single owner ID to map all parts automatically; re-splitting or manual mapping may be needed.</p><h3>Local processing</h3><p>The HTML embeds all JavaScript and CSS. No server, installation, network request or upload is needed. Open it in a current desktop Chrome or Edge browser that permits local HTML, file selection and downloads. Source files and reports can contain confidential text; protect the exports accordingly.</p></div></dialog>
 <noscript><p class="error">JavaScript must be enabled to compare local files.</p></noscript>
-<script>/* FormSync 1.2 — dependency-free, offline DOCX/XDP text reconciliation.
+<script>/* FormSync 1.3 — dependency-free, offline DOCX/XDP text reconciliation.
    All inputs are untrusted. Never inject source markup into the page.
    XML is parsed for meaning, but exports use guarded source-offset patches. */
 (() => {
@@ -271,7 +283,7 @@ function numberingModel(numbering,styles,warnings){
     });
     if(!['decimal','decimalZero','lowerLetter','upperLetter','lowerRoman','upperRoman','bullet','none'].includes(d.format))unsupported=true;
     if(unsupported){warnings.add('An unsupported Word numbering format was found. Those labels are not guessed; review them in Word.');return {unresolved:true,numId:props.numId,level:lvl};}
-    return {label,level:lvl,numId:props.numId,format:d.format,pattern:d.pattern,suffix:d.suffix==='nothing'?'':d.suffix==='space'?' ':'\t',generated:true};
+    return {label,level:lvl,numId:props.numId,format:d.format,pattern:d.pattern,suffix:d.suffix==='nothing'?'':d.suffix==='space'?' ':'\t',generated:true,_levelNode:d.node};
   }};
 }
 function dynamicInstruction(code){
@@ -281,45 +293,53 @@ function dynamicInstruction(code){
 /* Protect recognised template data fields, not all Word fields. SEQ, REF, PAGE,
    DATE, and arbitrary field expressions keep their saved displayed wording. */
 function wordParagraphContent(p,options={}){
-  const fields=[],root=[],stack=[];let malformed=false;
+  const fields=[],root=[],stack=[],fmt=options.formatting;let malformed=false;
   const destination=()=>stack.length?stack[stack.length-1].parts:root;
   const add=v=>{const parent=stack[stack.length-1];if(!parent||!parent.complex||parent.separated)destination().push(v);};
   const placeholder=(meta,display)=>{fields.push({...meta,display,index:fields.length+1});return fieldToken(fields.length);};
-  function render(parts){return parts.map(v=>typeof v==='string'?v:renderField(v)).join('');}
-  function renderField(f){const display=render(f.parts),info=dynamicInstruction(f.code);return info?placeholder(info,display):display;}
-  const visit=n=>{
+  const plain=parts=>parts.map(v=>typeof v==='string'?v:v.kind==='text'?v.text:plain(v.parts)).join('');
+  const displayStyle=parts=>{for(const p of parts||[]){if(p.kind==='text'&&p.text.length)return p.style;if(p.parts){const s=displayStyle(p.parts);if(s)return s;}}return null;};
+  function render(parts){const out=[];for(const v of parts){if(v.kind==='text'){out.push(v);continue;}const info=dynamicInstruction(v.code);if(info)out.push({text:placeholder(info,plain(v.parts)),style:displayStyle(v.parts)||v.style||fmt?.base||{},kind:'text'});else out.push(...render(v.parts));}return out;}
+  const visit=(n,style=fmt?.base||{},href='')=>{
     if(n.nodeType!==1||skippedWord(n))return;
     if(n!==p&&isW(n,'p'))return;
-    if(isW(n,'fldSimple')){const field={code:attrW(n,'instr'),parts:[]};add(field);stack.push(field);for(const c of elements(n))visit(c);stack.pop();return;}
+    if(isW(n,'pPr')||isW(n,'rPr'))return;
+    if(isW(n,'r')&&fmt){style=fmt.run(n);if(style.hidden||style.webHidden)return;}
+    if(isW(n,'hyperlink')&&fmt){const id=Array.from(n.attributes).find(a=>a.localName==='id')?.value;href=options.hyperlinks?.get(id)||'';}
+    if(isW(n,'fldSimple')){const field={code:attrW(n,'instr'),parts:[],style:fmt?.run(n)||style};add(field);stack.push(field);for(const c of elements(n))visit(c,style,href);stack.pop();return;}
     if(isW(n,'fldChar')){
       const t=attrW(n,'fldCharType');
-      if(t==='begin'){const f={code:'',parts:[],complex:true,separated:false};add(f);stack.push(f);}
+      if(t==='begin'){const f={code:'',parts:[],complex:true,separated:false,style};add(f);stack.push(f);}
       else if(t==='separate'){if(stack.length)stack[stack.length-1].separated=true;else malformed=true;}
       else if(t==='end'){if(stack.length)stack.pop();else malformed=true;}return;
     }
-    // instrText is handled before the normal skip rule in the child walker.
     if(isW(n,'sdt')&&!descendants(n,c=>isW(c,'p')).length){
       const pr=childW(n,'sdtPr'),tag=valueW(pr,'tag');
       const isField=!!pr&&(!!childW(pr,'dataBinding')||!!childW(pr,'showingPlcHdr')||/^(?:field|xfa|floating):/i.test(tag)||elements(pr).some(c=>isW(c)&&['text','date','dropDownList','comboBox','checkBox'].includes(c.localName)));
-      if(isField&&!tag.startsWith('xdp:')){add({code:'MERGEFIELD "'+(tag||valueW(pr,'alias')||'content-control').replace(/"/g,'')+'"',parts:[wordParagraphText(n)]});return;}
+      if(isField&&!tag.startsWith('xdp:')){add({code:'MERGEFIELD "'+(tag||valueW(pr,'alias')||'content-control').replace(/"/g,'')+'"',parts:[{kind:'text',text:wordParagraphText(n),style}],style:fmt?.run(n)||style});return;}
     }
-    if(isW(n,'t')){add(n.textContent);return;}
-    if(isW(n,'tab')){add('\t');return;}
-    if(isW(n)&&['br','cr'].includes(n.localName)){add('\n');return;}
-    if(isW(n,'noBreakHyphen')){add('\u2011');return;}
-    if(isW(n,'softHyphen')){add('\u00AD');return;}
-    for(const c of elements(n)){
-      if(isW(c,'instrText')){if(stack.length)stack[stack.length-1].code+=c.textContent;continue;}visit(c);
-    }
+    let value=null;
+    if(isW(n,'t'))value=n.textContent;
+    if(isW(n,'tab'))value='\t';
+    if(isW(n)&&['br','cr'].includes(n.localName))value='\n';
+    if(isW(n,'noBreakHyphen'))value='\u2011';
+    if(isW(n,'softHyphen'))value='\u00AD';
+    if(value!==null){add({kind:'text',text:value.replace(/\r\n?/g,'\n'),style,href});return;}
+    for(const c of elements(n)){if(isW(c,'instrText')){if(stack.length)stack[stack.length-1].code+=c.textContent;continue;}visit(c,style,href);}
   };
   visit(p);if(stack.length)malformed=true;
-  let text=render(root).replace(/\r\n?/g,'\n').trim();
+  let runs=render(root),text=runs.map(r=>r.text).join('');
+  const slice=(items,start,end)=>{let pos=0;const out=[];for(const r of items){const a=Math.max(start,pos),b=Math.min(end,pos+r.text.length);if(b>a)out.push({...r,text:r.text.slice(a-pos,b-pos)});pos+=r.text.length;}return out;};
+  if(!options.preserveWhitespace){const start=text.length-text.trimStart().length,end=text.trimEnd().length;runs=slice(runs,start,end);text=runs.map(r=>r.text).join('');}
   if(options.placeholders!==false){
-    text=text.replace(/\{\{\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*\}\}|<<\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*>>|«\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*»|\$\{\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*\}/gu,(m,...args)=>placeholder({kind:'Literal placeholder',name:args.slice(0,4).find(Boolean).trim()},m));
+    const re=/\{\{\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*\}\}|<<\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*>>|«\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*»|\$\{\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*\}/gu;
+    const matches=Array.from(text.matchAll(re));if(matches.length){const out=[];let pos=0;for(const m of matches){out.push(...slice(runs,pos,m.index));const original=slice(runs,m.index,m.index+m[0].length);out.push({kind:'text',text:placeholder({kind:'Literal placeholder',name:m.slice(1,5).find(Boolean).trim()},m[0]),style:original[0]?.style||fmt?.base||{}});pos=m.index+m[0].length;}out.push(...slice(runs,pos,text.length));runs=out;}
   }
-  // Literal and structural fields can interleave: renumber them in reading order.
-  const ordered=[];text=text.replace(/⟦FIELD:(\d+)⟧/g,(m,n)=>{const f=fields[Number(n)-1];if(!f){malformed=true;return m;}ordered.push({...f,index:ordered.length+1});return fieldToken(ordered.length);});
-  return {text,fields:ordered,rawText:wordParagraphText(p),fieldIssue:malformed?'Malformed or cross-paragraph Word field structure; confirm in Word before updating.':''};
+  // All protected markers are atomic runs after replacement, including literal
+  // placeholders spanning differently styled Word runs.
+  const ordered=[];runs=runs.map(r=>({...r,text:r.text.replace(/⟦FIELD:(\d+)⟧/g,(m,n)=>{const f=fields[Number(n)-1];if(!f){malformed=true;return m;}ordered.push({...f,index:ordered.length+1});return fieldToken(ordered.length);})}));
+  text=runs.map(r=>r.text).join('');
+  return {text,runs,fields:ordered,rawText:wordParagraphText(p),fieldIssue:malformed?'Malformed or cross-paragraph Word field structure; confirm in Word before updating.':''};
 }
 function parseListLabel(text){
   // Only the leading list marker is normalised. Punctuation within the clause is
@@ -361,7 +381,7 @@ function paragraphMetadataModel(styles){
     let headingLevel=Number.isInteger(level)?(level>=0&&level<9?level+1:0):conventional?Number(conventional[1]):/^title$/i.test(styleId)||/^title$/i.test(inherited.styleName||'')?1:0;
     return {headingLevel,styleId,styleName:inherited.styleName||styleId};};
 }
-function parseWordPart(doc,part,story,blocks,warnings,model,options={},meta=()=>({})) {
+function parseWordPart(doc,part,story,blocks,warnings,model,options={},meta=()=>({}),formatting=null) {
   const paras=descendants(doc,n=>isW(n,'p'));
   const revisions=descendants(doc,n=>isW(n)&&['ins','del','moveTo','moveFrom'].includes(n.localName));
   if(revisions.length)warnings.add('Word tracked changes: inserted/moved-to text is included; deleted/moved-from text is excluded. Review complex paragraph-mark/table revisions in Word.');
@@ -375,14 +395,18 @@ function parseWordPart(doc,part,story,blocks,warnings,model,options={},meta=()=>
     if(ancestor(p,skippedWord))continue;
     const note=ancestor(p,n=>isW(n)&&['footnote','endnote'].includes(n.localName));
     if(note && Number(attrW(note,'id'))<=0)continue;
-    const content=wordParagraphContent(p,options),list=model?.next(p,part);
-    let text=content.text;if(list?.label)text=list.label+list.suffix+text;if(!text)continue;
+    const list=model?.next(p,part),location=`${story} · paragraph ${ordinal}`;
+    const fmt=formatting?.paragraph(p,list,location);
+    const content=wordParagraphContent(p,{...options,formatting:fmt});
+    const rich=fmt?{runs:content.runs,paragraph:fmt.paragraph,base:fmt.base}:null;
+    if(list?._levelNode)delete list._levelNode;
+    let text=content.text;if(list?.label){const prefix=list.label+list.suffix;text=prefix+text;if(rich)rich.runs.unshift({text:prefix,style:fmt.marker});}if(!text.trim())continue;
     assert(text.length<=(options.generation?2000000:LIMIT.text),`Word paragraph ${ordinal} exceeds the ${options.generation?'2,000,000':'30,000'}-character limit.`);
     const cell=ancestor(p,n=>isW(n,'tc'));const box=ancestor(p,n=>isW(n,'txbxContent'));
     const group=cell||box||note||p.parentElement;
     const sdt=ancestor(p,n=>isW(n,'sdt'));let key='';
     if(sdt){const pr=direct(sdt,n=>isW(n,'sdtPr'));const tag=pr && direct(pr,n=>isW(n,'tag'));const value=tag?attrW(tag,'val'):'';if(value.startsWith('xdp:'))key=value.slice(4);}
-    blocks.push(withList({...meta(p),id:`${part}#p${ordinal}`,text,rawText:content.rawText,fields:content.fields,fieldIssue:content.fieldIssue,list,part,story,ordinal,group,key,location:`${story} · paragraph ${ordinal}${cell?' · table cell':''}${box?' · text box':''}`}));
+    blocks.push(withList({...meta(p),rich,_node:p,id:`${part}#p${ordinal}`,text,rawText:content.rawText,fields:content.fields,fieldIssue:content.fieldIssue,list,part,story,ordinal,group,key,location:`${story} · paragraph ${ordinal}${cell?' · table cell':''}${box?' · text box':''}`}));
     if(content.fieldIssue)warnings.add(content.fieldIssue);
     assert(blocks.length<=LIMIT.blocks,'More than 5,000 Word text blocks. Split this document before comparing.');
   }
@@ -396,23 +420,28 @@ async function readDocx(bytes,options={}) {
   assert(isW(doc.documentElement,'document'),'The main package part is not a WordprocessingML document.');
   const rp=relPath(part);const rels=zip.entries.has(rp)?relations(await zip.xml(rp)):[];
   const related=async type=>{const r=rels.find(r=>r.type.endsWith('/'+type)&&!r.external);return r?zip.xml(resolvePart(part,r.target)):null;};
-  const [numbering,styles]=await Promise.all([related('numbering'),related('styles')]);
+  const [numbering,styles,theme,settings]=await Promise.all([related('numbering'),related('styles'),options.generation?related('theme'):null,options.generation?related('settings'):null]);
+  const formatting=options.generation&&window.FormSyncRich?FormSyncRich.model({styles,theme,settings,document:doc}):null;
+  const makeLinks=rels=>new Map(rels.filter(r=>r.type.endsWith('/hyperlink')&&/^(https?:\/\/|mailto:)/i.test(r.target)).map(r=>[r.id,r.target]));
+  const partOptions={...options,hyperlinks:makeLinks(rels)};
   const model=numberingModel(numbering,styles,warnings),meta=paragraphMetadataModel(styles);
-  const blocks=[];parseWordPart(doc,part,'Body',blocks,warnings,model,options,meta);
+  const blocks=[];parseWordPart(doc,part,'Body',blocks,warnings,model,partOptions,meta,formatting);
+  const trailing={};if(formatting)trailing.Body=formatting.inspectPart(doc,part,'Body',blocks,options);
   const used=new Set(descendants(doc,n=>isW(n)&&['headerReference','footerReference'].includes(n.localName)).map(n=>Array.from(n.attributes).find(a=>a.localName==='id')?.value));
   const seen=new Set([part]);
   for(const r of rels){
     const type=r.type.split('/').pop();
     if(r.external || (!(['header','footer'].includes(type)&&options.headers!==false&&used.has(r.id)) && !(['footnotes','endnotes'].includes(type)&&options.notes)))continue;
     const target=resolvePart(part,r.target);if(seen.has(target))continue;seen.add(target);
-    parseWordPart(await zip.xml(target),target,type[0].toUpperCase()+type.slice(1),blocks,warnings,model,options,meta);
+    const pd=await zip.xml(target),story=type[0].toUpperCase()+type.slice(1),pr=relPath(target);const plinks=zip.entries.has(pr)?makeLinks(relations(await zip.xml(pr))):new Map();
+    parseWordPart(pd,target,story,blocks,warnings,model,{...options,hyperlinks:plinks},meta,formatting);if(formatting)trailing[story]=formatting.inspectPart(pd,target,story,blocks,options);
   }
   if(Array.from(zip.entries.keys()).some(k=>/vbaProject\.bin$/i.test(k)))warnings.add('This package contains macros. They are not executed or inspected. Use a trusted, macro-free .docx copy.');
   assert(blocks.reduce((n,b)=>n+b.text.length,0)<=2000000,'Word text exceeds the 2,000,000-character comparison limit. Split the document.');
   assert(blocks.length,'No supported text paragraphs found in DOCX.');
   if(blocks.some(b=>b.fields?.length))warnings.add('Field placeholders are compared by position and count; saved field values are not static wording. Field-binding identity still requires review. Literal {{name}}, <<name>>, «name» and ${name} placeholders are recognised when enabled.');
   if(options.generation&&descendants(doc,n=>isW(n)&&['drawing','pict','object'].includes(n.localName)).length)warnings.add('Images, shapes and embedded objects are not generated. Supported text-box paragraphs are read in XML order, not positioned as in Word.');
-  return {blocks,warnings:[...warnings],part};
+  return {blocks,warnings:[...warnings],part,formatting:formatting?{page:formatting.page,issues:formatting.issues,fonts:[...formatting.fonts],trailing}:null};
 }
 /* Lexical XML index. DOMParser validates names/entities/namespaces; this scanner
    only records source spans. Pairing with DOM nodes must match exactly. */
@@ -465,6 +494,8 @@ function textSegments(node,map,rich) {
     if(n.nodeType!==1)return;
     const embed=rich&&Array.from(n.attributes).find(a=>a.localName==='embed'&&/^https?:\/\/www\.xfa\.org\/schema\/xfa-data\/[\d.]+\/$/.test(a.namespaceURI||''));
     if(embed&&n.localName==='span'&&n.namespaceURI===NS.xhtml){const raw=map.get(n);segments.push({kind:'field',text:fieldToken(++fieldCount),raw,ref:embed.value,node:n,cached:n.textContent});return;}
+    const tab=rich&&n.localName==='span'&&n.namespaceURI===NS.xhtml&&(n.getAttribute('style')||'').match(/(?:^|;)\s*xfa-tab-count\s*:\s*(\d+)\s*(?:;|$)/i);
+    if(tab){const count=Number(tab[1]);assert(count<=100,'XFA tab count exceeds the supported limit.');for(let i=0;i<count;i++)segments.push({kind:'tab',text:'\t',raw:map.get(n)});return;}
     if(rich && n.localName==='br' && n.namespaceURI===NS.xhtml){segments.push({kind:'break',text:'\n'});return;}
     if(rich){
       const allowed=new Set(['body','p','li','span','b','strong','i','em','u','s','strike','sub','sup','a']);
@@ -775,14 +806,14 @@ function blockPatches(block,proposed,original) {
     return blockPatches(parent,parent.text.slice(0,block.lineStart)+proposed+parent.text.slice(block.lineEnd),original);
   }
   const groups=[[]],anchors=[];
-  for(const s of block.segments){if(s.kind==='break'||s.kind==='field'){anchors.push(s.text);groups.push([]);}else groups[groups.length-1].push(s);}
+  for(const s of block.segments){if(s.kind==='break'||s.kind==='field'||s.kind==='tab'){anchors.push(s.text);groups.push([]);}else groups[groups.length-1].push(s);}
   const expectedFields=block.segments.filter(s=>s.kind==='field').map(s=>s.text).join('|');
   assert(fieldSignature(proposed)===expectedFields,'Floating-field markers must keep their existing count and order. Do not remove, rename, duplicate or replace a marker with a saved value.');
   let pieces=[proposed];
   if(anchors.length){
-    const pattern=block.rich?/⟦FIELD:\d+⟧|\n/g:/⟦FIELD:\d+⟧/g;
+    const pattern=block.rich?(block.segments.some(s=>s.kind==='tab')?/⟦FIELD:\d+⟧|\n|\t/g:/⟦FIELD:\d+⟧|\n/g):/⟦FIELD:\d+⟧/g;
     const found=Array.from(proposed.matchAll(pattern));
-    assert(found.length===anchors.length&&found.every((m,i)=>m[0]===anchors[i]),'Rich-text line-break structure or floating-field order would change. Keep the existing line breaks and protected markers, or use Designer.');
+    assert(found.length===anchors.length&&found.every((m,i)=>m[0]===anchors[i]),'Rich-text line-break structure, native tabs or floating-field order would change. Keep the existing line breaks and protected markers, or use Designer.');
     pieces=[];let at=0;for(const m of found){pieces.push(proposed.slice(at,m.index));at=m.index+m[0].length;}pieces.push(proposed.slice(at));
   }else if(block.rich)assert(!/[\r\n]/.test(proposed),'Adding rich-text paragraphs/line breaks is structural; use a list-addition proposal or Designer.');
   const patches=[];
@@ -896,7 +927,7 @@ function unmappedWord(result) {
   return result.word.map((b,i)=>({...b,index:i})).filter(b=>!used.has(b.index));
 }
 function report(result,files={}) {
-  return {format:'formsync-review',version:2,appVersion:'1.2',created:new Date().toISOString(),files,options:result.options,warnings:result.warnings,excludedXdp:result.xdp.excluded,
+  return {format:'formsync-review',version:2,appVersion:'1.3',created:new Date().toISOString(),files,options:result.options,warnings:result.warnings,excludedXdp:result.xdp.excluded,
     rows:result.rows.map(r=>({operation:r.operation||'update',insertionGuard:insertionGuard(result,r),sourceText:r.match?r.match.indices.map(i=>result.word[i].text).join('\n'):null,protectedFields:r.xdp.fields,updateBlocked:r.updateBlocked||'',path:r.xdp.path,object:r.xdp.ownerName,kind:r.xdp.kind,status:r.status,decision:r.decision,blocked:r.xdp.blocked,hidden:r.xdp.hidden,original:r.xdp.text,proposed:r.proposed,sourceIds:r.match?r.match.indices.map(i=>result.word[i].id):[],sourceLocation:r.match?.location||'',similarity:r.match?Number(r.match.score.toFixed(4)):null,method:r.reason,note:r.note})),
     unmatchedWord:unmappedWord(result).map(b=>({id:b.id,location:b.location,text:b.text})),
     safety:'Only approved changes and supported, anchored list additions are exported. Field markers remain protected. Positioned additions and new field definitions require Designer. Validate layout and runtime behavior in Designer.'};
@@ -924,6 +955,246 @@ function restoreReview(result,data) {
   return {restored,skipped};
 }
 window.FormSyncCore=Object.freeze({NS,LIMIT,parseXML,decodeXML,encodeXML,crc32,ZipReader,readDocx,readXdp,compare,normalize,folded,features,similarity,makeCandidates,diffArrays,wordDiff,blockPatches,validateRow,applyPatches,exportXdp,report,comparisonKey,parseListLabel,formatListLike,fieldTokens,chooseProposal,restoreReview,unmappedWord,validText,escapeXML,pause});
+})();
+</script>
+<script>/* FormSync 1.3 — OOXML formatting resolver and XFA rich-text writer.
+ * Only allowlisted properties are emitted. Word markup/CSS is never injected.
+ * XFA supports a restricted XHTML/CSS vocabulary (XFA 3.3, chapter 27).
+ */
+(() => {
+'use strict';
+const C=window.FormSyncCore;
+const W=C.NS.word, E=n=>Array.from(n?.children||[]);
+const is=(n,k)=>n?.nodeType===1&&W.has(n.namespaceURI)&&(!k||n.localName===k);
+const A=(n,k)=>{if(n)for(const ns of W)if(n.hasAttributeNS(ns,k))return n.getAttributeNS(ns,k);return '';};
+const ch=(n,k)=>E(n).find(v=>is(v,k));
+const val=(n,k,d='')=>{const v=ch(n,k);return v?A(v,'val'):d;};
+const on=v=>!['false','0','off'].includes(v);
+const all=(n,k)=>Array.from(n?.getElementsByTagName('*')||[]).filter(v=>is(v,k));
+const ancestor=(n,k)=>{for(let a=n?.parentElement;a;a=a.parentElement)if(is(a,k))return a;return null;};
+const number=(s,d=0)=>s!==''&&Number.isFinite(Number(s))?Number(s):d;
+const round=n=>Math.round(n*10000)/10000;
+const pt=n=>round(n)+'pt';
+const twips=(s,d=0)=>number(s,d*20)/20;
+const cleanFont=s=>typeof s==='string'&&s.length<=150&&!/[\x00-\x1f\x7f]/.test(s)?s:'';
+const hex=s=>/^[0-9a-f]{6}$/i.test(s)?'#'+s.toUpperCase():null;
+const attr=s=>C.escapeXML(String(s)).replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+const cssFont=s=>"'"+String(s).replace(/[^\p{L}\p{N} _-]/gu,c=>'\\'+c.codePointAt(0).toString(16)+' ') +"'";
+const merge=(a,b)=>{const r={...a};for(const [k,v]of Object.entries(b||{}))r[k]=v&&typeof v==='object'&&!Array.isArray(v)?merge(r[k]||{},v):v;return r;};
+const BASE={font:'Times New Roman',size:12,bold:false,italic:false,underline:'none',strike:false,color:'#000000',letterSpacing:0,baseline:0,scale:100,vertical:'baseline'};
+function model({styles,theme,settings,document:doc}){
+  const issues=[],issueKeys=new Set(),styleMap=new Map(),styleCache=new Map(),contexts=new WeakMap(),fonts=new Set();
+  let defaultParagraph='',defaultCharacter='';
+  function issue(code,message,location='Document',severity='loss'){
+    const key=code+'|'+location+'|'+message;if(issueKeys.has(key))return;issueKeys.add(key);if(issues.length<1000)issues.push({code,severity,location,message});
+  }
+  const themeFonts={},themeColors={};
+  if(theme){
+    const nodes=Array.from(theme.getElementsByTagName('*'));
+    const scheme=nodes.find(n=>n.localName==='fontScheme');
+    for(const family of ['major','minor']){const f=E(scheme).find(n=>n.localName===family+'Font');if(f){for(const name of ['latin','ea','cs']){const s=E(f).find(n=>n.localName===name);themeFonts[family+':'+name]=s?.getAttribute('typeface')||'';}for(const s of E(f).filter(n=>n.localName==='font'))themeFonts[family+':'+s.getAttribute('script')]=s.getAttribute('typeface')||'';}}
+    const colors=nodes.find(n=>n.localName==='clrScheme');for(const c of E(colors)){const s=E(c)[0];const color=hex(s?.getAttribute('val'))||hex(s?.getAttribute('lastClr'));if(color)themeColors[c.localName]=color;}
+  }
+  const mapping=ch(settings?.documentElement,'clrSchemeMapping');
+  const colorKeys={background1:'lt1',text1:'dk1',background2:'lt2',text2:'dk2',hyperlink:'hlink',followedHyperlink:'folHlink',light1:'lt1',dark1:'dk1',light2:'lt2',dark2:'dk2'};
+  function color(n,key='val',location='Document'){
+    if(!n)return undefined;let result;
+    const themeName=A(n,'themeColor')||(key==='fill'?A(n,'themeFill'):'');
+    if(themeName){const aliases={background1:'bg1',text1:'t1',background2:'bg2',text2:'t2',hyperlink:'hyperlink',followedHyperlink:'followedHyperlink'};const mapped=A(mapping,aliases[themeName]||themeName)||themeName;result=themeColors[colorKeys[mapped]||mapped];if(!result)issue('theme-color','A theme colour could not be resolved; its saved RGB value is used.',location);}
+    result=result||hex(A(n,key));if(A(n,key)==='auto'&&!themeName)result='#000000';
+    if(!result)return undefined;
+    const shade=A(n,key==='fill'?'themeFillShade':'themeShade'),tint=A(n,key==='fill'?'themeFillTint':'themeTint');
+    if(themeName&&(shade||tint)){
+      const saved=hex(A(n,key));
+      if(saved){issue('saved-theme-colour','A tinted/shaded theme colour uses the RGB value saved by Word. Re-save in Word after changing the theme.',location,'review');return saved;}
+      issue('transformed-theme-colour','A tinted/shaded theme colour has no saved RGB value. Its unmodified theme colour is used; correct it before fidelity-critical export.',location);
+    }
+    return result;
+
+  }
+  function fontName(n,script,location){
+    const themeKey=A(n,script+'Theme');let name='';
+    if(themeKey){const family=themeKey.startsWith('major')?'major':'minor';const type=/EastAsia/i.test(themeKey)?'ea':/Bidi/i.test(themeKey)?'cs':'latin';name=themeFonts[family+':'+type]||'';if(!name&&type==='latin')issue('theme-font',`Theme font ${themeKey} was not resolved. A saved face or fallback is used.`,location);}
+    name=name||A(n,script);if(name&&!cleanFont(name)){issue('font-name','A malformed font name was rejected.',location);return undefined;}return name||undefined;
+  }
+  const toggles={b:'bold',i:'italic',bCs:'boldCs',iCs:'italicCs',strike:'strike',dstrike:'doubleStrike',caps:'caps',smallCaps:'smallCaps',vanish:'hidden',webHidden:'webHidden',rtl:'rtl',cs:'complex'};
+  function runProps(pr,location){
+    const s={};if(!pr)return s;
+    for(const [name,key]of Object.entries(toggles)){const n=ch(pr,name);if(n)s[key]=on(A(n,'val'));}
+    const f=ch(pr,'rFonts');if(f){s.fonts={};for(const script of ['ascii','hAnsi','eastAsia','cs']){const n=fontName(f,script,location);if(n)s.fonts[script]=n;}if(s.fonts.ascii)s.font=s.fonts.ascii;else if(s.fonts.hAnsi)s.font=s.fonts.hAnsi;}
+    for(const [name,key,div] of [['sz','size',2],['szCs','sizeCs',2],['spacing','letterSpacing',20],['position','baseline',2],['w','scale',1],['kern','kern',2]]){const n=ch(pr,name);if(n){const v=Number(A(n,'val'))/div;if(Number.isFinite(v)&&Math.abs(v)<=10000&&(key!=='size'&&key!=='sizeCs'||v>0))s[key]=v;else issue('invalid-size',`Invalid ${name} value was rejected.`,location);}}
+    const col=color(ch(pr,'color'),'val',location);if(col)s.color=col;
+    const u=ch(pr,'u');if(u){s.underline=A(u,'val')||'single';if(A(u,'color')||A(u,'themeColor')){const uc=color(u,'color',location);if(uc)s.underlineColor=uc;}}
+    const v=ch(pr,'vertAlign');if(v)s.vertical=A(v,'val')||'baseline';
+    const lang=ch(pr,'lang');if(lang)s.language=A(lang,'val')||A(lang,'bidi')||A(lang,'eastAsia');
+    const highlight=ch(pr,'highlight');if(highlight)s.highlight=A(highlight,'val');
+    const shade=ch(pr,'shd');if(shade)s.shading=color(shade,'fill',location)||A(shade,'val');
+    for(const n of E(pr)){
+      const ignored=new Set(['rStyle','rFonts',...Object.keys(toggles),'sz','szCs','spacing','position','w','kern','color','u','vertAlign','lang','highlight','shd','noProof','snapToGrid','specVanish','rPrChange']);
+      if(!ignored.has(n.localName)&&!(is(n)&&['outline','shadow','emboss','imprint','effect'].includes(n.localName)&&!on(A(n,'val'))))issue('run-property',`Run property ${n.localName} has no implemented XFA mapping.`,location);
+    }
+    return s;
+  }
+  function paraProps(pr,location){
+    const s={};if(!pr)return s;
+    const jc=ch(pr,'jc');if(jc){const a=A(jc,'val'),m={both:'justify',distribute:'justify-all',start:'left',end:'right'};s.align=m[a]||a;if(!['left','right','center','justify','justify-all'].includes(s.align)){issue('alignment',`Alignment ${a} cannot be represented exactly.`,location);s.align='left';}}
+    const ind=ch(pr,'ind');if(ind){for(const [names,k]of [[['start','left'],'left'],[['end','right'],'right'],[['firstLine'],'indent']]){const n=names.find(n=>A(ind,n)!=='');if(n)s[k]=twips(A(ind,n));}if(A(ind,'hanging')!=='')s.indent=-twips(A(ind,'hanging'));if(E(pr).some(n=>is(n,'mirrorIndents'))||['leftChars','rightChars','firstLineChars','hangingChars','startChars','endChars'].some(k=>A(ind,k)))issue('character-indent','Character-based or mirrored indents are not reproduced exactly.',location);}
+    const space=ch(pr,'spacing');if(space){for(const [a,k]of [['before','before'],['after','after']])if(A(space,a)!=='')s[k]=twips(A(space,a));if(A(space,'line')!==''){s.line=number(A(space,'line'));s.lineRule=A(space,'lineRule')||'auto';}for(const k of ['beforeLines','afterLines','beforeAutospacing','afterAutospacing'])if(A(space,k)&&on(A(space,k)))issue('automatic-spacing',`Word ${k} spacing uses renderer-specific metrics.`,location);}
+    const tabs=ch(pr,'tabs');if(tabs)s.tabs=E(tabs).filter(n=>is(n,'tab')).map(n=>({position:twips(A(n,'pos')),align:A(n,'val')||'left',leader:A(n,'leader')||'none'}));
+    for(const [name,key]of [['keepNext','keepNext'],['keepLines','keepLines'],['pageBreakBefore','pageBreakBefore'],['widowControl','widows'],['contextualSpacing','contextualSpacing'],['bidi','rtl']]){const n=ch(pr,name);if(n)s[key]=on(A(n,'val'));}
+    if(s.rtl)issue('rtl-paragraph','Right-to-left paragraph layout needs Adobe/Word visual verification.',location);
+    const allowed=new Set(['pStyle','rPr','numPr','outlineLvl','jc','ind','spacing','tabs','keepNext','keepLines','pageBreakBefore','widowControl','contextualSpacing','bidi','sectPr','pPrChange','suppressAutoHyphens','snapToGrid','suppressLineNumbers','suppressOverlap','autoSpaceDE','autoSpaceDN','adjustRightInd','cnfStyle']);
+    for(const n of E(pr))if(!allowed.has(n.localName))issue('paragraph-property',`Paragraph property ${n.localName} has no implemented XFA mapping.`,location);
+    return s;
+  }
+  if(styles)for(const s of all(styles,'style')){styleMap.set(A(s,'styleId'),s);if(on(A(s,'default'))&&A(s,'default')){if(A(s,'type')==='paragraph')defaultParagraph=A(s,'styleId');if(A(s,'type')==='character')defaultCharacter=A(s,'styleId');}}
+  function styleChain(id,seen=new Set()){
+    if(!id)return [];if(styleCache.has(id))return styleCache.get(id);if(seen.has(id)||seen.size>180){issue('style-cycle','Cyclic or excessively deep style inheritance was stopped.','Style '+id);return [];}seen.add(id);const n=styleMap.get(id);if(!n){issue('missing-style','A referenced Word style is missing.','Style '+id);return [];}
+    const list=[...styleChain(val(n,'basedOn'),seen),{id,type:A(n,'type'),r:runProps(ch(n,'rPr'),'Style '+id),p:paraProps(ch(n,'pPr'),'Style '+id)}];styleCache.set(id,list);return list;
+  }
+  // Style-level toggles invert inherited values; direct formatting sets them.
+  function applyRun(base,next,toggle=false){const out=merge(base,next);if(toggle)for(const k of Object.values(toggles))if(Object.hasOwn(next,k)&&!['rtl','complex'].includes(k))out[k]=next[k]?!base[k]:!!base[k];return out;}
+  const defaults=ch(styles?.documentElement,'docDefaults');
+  const defaultRun=applyRun(BASE,runProps(ch(ch(defaults,'rPrDefault'),'rPr'),'Document defaults'));
+  const defaultPara=merge({align:'left',before:0,after:0,left:0,right:0,indent:0,line:240,lineRule:'auto',widows:true,tabInterval:twips(val(settings?.documentElement,'defaultTabStop','720'),36)},paraProps(ch(ch(defaults,'pPrDefault'),'pPr'),'Document defaults'));
+  function checkStyle(s,location){
+    if(s.highlight&&s.highlight!=='none')issue('highlight','Text highlighting has no XFA rich-text background equivalent and is not emitted.',location);
+    if(s.shading&&s.shading!=='clear'&&s.shading!=='nil'&&s.shading!=='#FFFFFF')issue('run-shading','Run background shading is not supported by XFA rich text and is not emitted.',location);
+    if(s.caps||s.smallCaps)issue('caps','All-caps/small-caps presentation is not mapped; underlying wording is kept unchanged.',location);
+    if(s.doubleStrike)issue('double-strike','Double strikethrough is approximated by a single line.',location);
+    if(!['none','single','double','words'].includes(s.underline||'none'))issue('underline-style',`Underline style ${s.underline} is approximated by a single underline.`,location);
+    if(s.underlineColor&&s.underlineColor!==s.color)issue('underline-colour','XFA rich text uses the text colour for its underline; a different underline colour is not reproduced.',location);
+    if(s.rtl||s.complex)issue('complex-script','Complex-script shaping and bidirectional layout need renderer verification.',location,'review');
+    if(s.vertical&&s.vertical!=='baseline')issue('script-metrics','Superscript/subscript uses XFA font metrics; check its size and baseline against Word.',location,'review');
+    if(s.font)fonts.add(s.font);for(const f of Object.values(s.fonts||{}))fonts.add(f);
+  }
+  function paragraph(p,list,location){
+    const pr=ch(p,'pPr'),id=val(pr,'pStyle',defaultParagraph),chain=styleChain(id);
+    let r={...defaultRun},q={...defaultPara};
+    // Numbering level pPr participates before paragraph styles; its rPr formats
+    // the generated marker, not the ordinary text runs.
+    if(list?._levelNode)q=merge(q,paraProps(ch(list._levelNode,'pPr'),location+' / list level'));
+    for(const s of chain){r=applyRun(r,s.r,true);q=merge(q,s.p);}
+    const beforeTabs=q.tabs||[];const directP=paraProps(pr,location);q=merge(q,directP);
+    if(directP.tabs){const map=new Map(beforeTabs.map(t=>[t.position,t]));for(const t of directP.tabs){if(t.align==='clear')map.delete(t.position);else map.set(t.position,t);}q.tabs=[...map.values()].sort((a,b)=>a.position-b.position);}
+    q.styleId=id;
+    if(q.tabs)for(const t of q.tabs){if(!['left','right','center','decimal','num'].includes(t.align))issue('tab-type',`Tab type ${t.align} is not supported.`,location);if(!['none','dot','hyphen','underscore'].includes(t.leader))issue('tab-leader',`Tab leader ${t.leader} is not reproduced exactly.`,location);}
+    if(q.lineRule==='auto'&&q.line!==240)issue('multiple-line-spacing','Word multiple line spacing is emitted as a font-size-based point value; Word and XFA line metrics can differ.',location,'review');
+    if(q.lineRule==='atLeast')issue('minimum-line-spacing','Word minimum line spacing is emitted as a fixed point value; taller inline content may differ.',location);
+    let marker=applyRun(r,runProps(ch(pr,'rPr'),location+' / paragraph mark'));
+    if(list?._levelNode){marker=applyRun(marker,runProps(ch(list._levelNode,'rPr'),location+' / list marker'));if(list.suffix==='\t'&&!q.tabs?.some(t=>t.position===q.left))q.tabs=[...(q.tabs||[]),{position:q.left,align:'left',leader:'none'}].sort((a,b)=>a.position-b.position);}
+    if(list)checkStyle(marker,location+' / list marker');
+    const runCache=new WeakMap();
+    function run(node){
+      let run=is(node,'r')?node:ancestor(node,'r');if(!run){const candidate=all(node,'r')[0];if(candidate)run=candidate;}
+      if(!run)return {...r};if(runCache.has(run))return runCache.get(run);
+      const own=ch(run,'rPr'),styleId=val(own,'rStyle',defaultCharacter);let s={...r};for(const layer of styleChain(styleId))s=applyRun(s,layer.r,true);s=applyRun(s,runProps(own,location));checkStyle(s,location);runCache.set(run,s);return s;
+    }
+    const out={paragraph:q,base:r,marker,run,location};contexts.set(p,out);return out;
+  }
+  function inspectPart(partDoc,part,story,blocks,options){
+    const structural={drawing:'Images or anchored drawings',pict:'VML images or shapes',object:'Embedded objects',altChunk:'Embedded alternative-format content',sym:'Font-encoded symbols',tbl:'Table geometry and conditional table styles',txbxContent:'Positioned text boxes'};
+    for(const [tag,label]of Object.entries(structural))if(all(partDoc,tag).length)issue('unsupported-'+tag,label+' are not reproduced by this rich-text converter.',story);
+    if(all(partDoc,'br').some(n=>['page','column'].includes(A(n,'type'))))issue('inline-break','Inline page/column breaks are emitted as line breaks, not page/column boundaries.',story);
+    if(blocks.some(b=>b.part===part&&/ {2,}|^ | $|\n | \n/.test(b.text)))issue('preserved-spaces','Extra/edge spaces are protected with non-breaking spaces to prevent XFA whitespace collapse. Check wrapping at those spaces.',story,'review');
+    if(blocks.some(b=>b.part===part&&(b.rich?.runs||[]).some(r=>/[\u0590-\u08ff\u2e80-\u9fff]/.test(r.text)&&/[a-z]/i.test(r.text))))issue('mixed-script','A mixed-script run uses one selected font for the run; script-specific fallback may differ.',story);
+    const nodes=Array.from(partDoc.getElementsByTagName('*'));if(nodes.some(n=>n.localName==='oMath'||n.localName==='oMathPara'))issue('equation','Word equations are not converted.',story);
+    if(all(partDoc,'ins').length||all(partDoc,'del').length||all(partDoc,'moveFrom').length||all(partDoc,'moveTo').length)issue('tracked-changes','Tracked revisions use final-text view, not Word revision markup. Accept/reject changes in Word first for a visual comparison.',story);
+    const bodyMap=new Map(blocks.filter(b=>b.part===part).map(b=>[b._node,b]));let pending=[];const trailing=[];
+    for(const p of all(partDoc,'p')){
+      if(ancestor(p,'del')||ancestor(p,'moveFrom'))continue;
+      const b=bodyMap.get(p);
+      if(b){b.rich.beforeBlank=pending;pending=[];continue;}
+      // Do not create a blank line for a paragraph whose visible content was
+      // intentionally suppressed (fields/revisions/drawings) or is out of scope.
+      if(all(p,'t').some(t=>t.textContent)||all(p,'drawing').length||all(p,'txbxContent').length)continue;
+      const pr=ch(p,'pPr'),fmt=contexts.get(p)||paragraph(p,null,story+' / blank paragraph');
+      pending.push({paragraph:fmt.paragraph,base:applyRun(fmt.base,runProps(ch(pr,'rPr'),story+' / blank paragraph'))});
+    }
+    trailing.push(...pending);if(trailing.length||blocks.some(b=>b.part===part&&b.rich?.beforeBlank?.length))issue('blank-metrics','Empty Word paragraphs become spacer objects using their font size and paragraph spacing. Verify blank-line heights in Adobe.',story,'review');return trailing;
+  }
+  function pageInfo(){
+    const body=ch(doc.documentElement,'body'),sects=all(doc,'sectPr').filter(n=>!ancestor(n,'sectPrChange'));
+    const s=sects[0]||ch(body,'sectPr');
+    if(sects.length>1)issue('sections','Multiple Word sections are present. Only the first section page geometry is used; section-specific headers, margins and orientation are not reproduced.');
+    const size=ch(s,'pgSz'),m=ch(s,'pgMar');
+    if(!size||!m){issue('page-default','Word page geometry is incomplete. The selected fallback page settings are used.','Document','review');return null;}
+    const width=twips(A(size,'w'))*25.4/72,height=twips(A(size,'h'))*25.4/72;
+    const margins={left:twips(A(m,'left'))*25.4/72,right:twips(A(m,'right'))*25.4/72,top:twips(A(m,'top'))*25.4/72,bottom:twips(A(m,'bottom'))*25.4/72};
+    if(width<40||height<40||width>1500||height>1500||Object.values(margins).some(v=>v<0)||width<=margins.left+margins.right||height<=margins.top+margins.bottom){issue('page-geometry','Invalid Word page geometry was rejected.');return null;}
+    if(number(A(m,'gutter')))issue('gutter','Binding gutter is not added to the page margins.');
+    const cols=ch(s,'cols');if(number(A(cols,'num'),1)>1||E(cols).filter(n=>is(n,'col')).length>1)issue('columns','Multi-column Word layout is not reproduced.');
+    for(const k of ['pgBorders','vAlign','docGrid','textDirection'])if(ch(s,k)&&!(k==='docGrid'&&(!A(ch(s,k),'type')||A(ch(s,k),'type')==='default')))issue('section-property',`Section property ${k} is not reproduced.`);
+    if(all(doc,'headerReference').length||all(doc,'footerReference').length)issue('master-content','Word headers/footers are not repeated on master pages. Included text is appended; excluded text is omitted.');
+    if(all(doc,'footnoteReference').length||all(doc,'endnoteReference').length)issue('notes-layout','Footnote/endnote references and anchored placement are not reproduced.');
+    if(ch(settings?.documentElement,'mirrorMargins'))issue('mirror-margins','Mirrored odd/even page margins are not reproduced.');
+    return {width:round(width),height:round(height),...Object.fromEntries(Object.entries(margins).map(([k,v])=>[k,round(v)])),orientation:width>height?'landscape':'portrait'};
+  }
+  const page=pageInfo();
+  return {paragraph,inspectPart,page,issues,fonts,issue,defaultRun,defaultPara};
+}
+function chooseScriptStyle(s,text){
+  const complex=s.complex||s.rtl||/[\u0590-\u08FF]/u.test(text),east=/[\u2E80-\u9FFF\uAC00-\uD7AF\uF900-\uFAFF]/u.test(text);
+  const font=complex?s.fonts?.cs:east?s.fonts?.eastAsia:/[^\x00-\x7f]/u.test(text)?s.fonts?.hAnsi:s.fonts?.ascii;
+  return {...s,font:font||s.font||BASE.font,size:complex?(s.sizeCs||s.size):s.size,bold:complex?(s.boldCs??s.bold):s.bold,italic:complex?(s.italicCs??s.italic):s.italic};
+}
+function runCss(style,text='',preview=false){
+  const s=chooseScriptStyle({...BASE,...style},text),out=[`font-family:${cssFont(cleanFont(s.font)||BASE.font)}`,`font-size:${pt(s.size)}`,`font-weight:${s.bold?'bold':'normal'}`,`font-style:${s.italic?'italic':'normal'}`,`color:${s.color}`];
+  let decoration=s.underline==='double'?'double':s.underline==='words'?'word':s.underline&&s.underline!=='none'?'underline':'';
+  if(s.strike||s.doubleStrike)decoration+=' line-through';
+  if(preview){if(s.underline==='double')out.push('text-decoration-style:double');decoration=decoration.replace(/double|word/,'underline');}
+  out.push('text-decoration:'+(decoration.trim()||'none'));
+  if(s.letterSpacing)out.push('letter-spacing:'+pt(s.letterSpacing));
+  if(s.baseline)out.push('vertical-align:'+pt(s.baseline));
+  if(s.scale!==100&&!preview)out.push('xfa-font-horizontal-scale:'+round(s.scale)+'%');
+  if(s.kern!==undefined)out.push((preview?'font-kerning:':'kerning-mode:')+(s.size>=s.kern?(preview?'normal':'pair'):'none'));
+  return out.join(';');
+}
+function paragraphCss(p={},base=BASE,fragment={},preview=false){
+  const first=(fragment.part||1)===1,last=(fragment.part||1)===(fragment.totalParts||1);
+  const indent=first?(p.indent||0):0;
+  const out=[`text-align:${p.align||'left'}`,`margin-left:${pt(p.left||0)}`,`margin-right:${pt(p.right||0)}`,`text-indent:${pt(indent)}`,`margin-top:${pt(first?(p.before||0):0)}`,`margin-bottom:${pt(last?(p.after||0):0)}`];
+  if(p.lineRule==='exact'||p.lineRule==='atLeast')out.push('line-height:'+pt((p.line||240)/20));
+  else if(p.line&&p.line!==240)out.push('line-height:'+(preview?round(p.line/240):pt((base.size||12)*p.line/240)));
+  if(p.widows!==undefined)out.push('widows:'+(p.widows?2:1),'orphans:'+(p.widows?2:1));
+  if(!preview){out.push('tab-interval:'+pt(p.tabInterval||36));if(p.tabs?.length){const stop=[];for(const t of p.tabs){if(!['left','right','center','decimal','num'].includes(t.align))continue;const leaders={dot:'leader(dots())',hyphen:'leader(rule(dashed))',underscore:'leader(rule(solid))'};stop.push([(t.align==='num'?'left':t.align),leaders[t.leader]||'',pt(t.position)].filter(Boolean).join(' '));}if(stop.length)out.push('xfa-tab-stops:'+stop.join(' '));}}
+  if(p.pageBreakBefore&&first)out.push('page-break-before:always');if(p.keepNext&&last)out.push('page-break-after:avoid');if(p.keepLines)out.push('page-break-inside:avoid');
+  if(preview)out.push('white-space:pre-wrap','overflow-wrap:anywhere');
+  return out.join(';');
+}
+function sliceRuns(runs,start,end){let pos=0;const result=[];for(const r of runs||[]){const a=Math.max(start,pos),b=Math.min(end,pos+r.text.length);if(b>a)result.push({...r,text:r.text.slice(a-pos,b-pos)});pos+=r.text.length;if(pos>=end)break;}return result;}
+function reindexRuns(runs){const fields=[];const result=runs.map(r=>({...r,text:r.text.replace(/⟦FIELD:(\d+)⟧/g,(_,n)=>{fields.push(Number(n));return `⟦FIELD:${fields.length}⟧`;})}));return result;}
+function sourceRuns(fragment){const runs=fragment.rich?.runs;if(runs&&runs.map(r=>r.text).join('')!==fragment.text)throw new Error('Formatting/text coverage failed for '+fragment.name+'. Rebuild the preview.');return runs||[{text:fragment.text,style:fragment.rich?.base||BASE}];}
+function inlineXML(fragment){
+  const out=[],full=fragment.text;let absolute=0;
+  // XFA collapses ordinary spaces. Protect additional and paragraph-edge spaces
+  // without nesting spans (nested spans are outside XFA's rich-text subset).
+  function escaped(value,start){let result='';for(let i=0;i<value.length;i++){const c=value[i],at=start+i;result+=c===' '&&(at===0||at===full.length-1||/[ \t\n]/.test(full[at-1])||full[at+1]==='\n')?'&#160;':C.escapeXML(c);}return result;}
+  for(const r of sourceRuns(fragment)){
+    const css=attr(runCss(r.style,r.text)),tokens=[];let pos=0;
+    const wrap=value=>{if(r.style?.vertical==='superscript')value='<sup>'+value+'</sup>';if(r.style?.vertical==='subscript')value='<sub>'+value+'</sub>';return `<span style="${css}">${value}</span>`;};
+    for(const m of r.text.matchAll(/⟦FIELD:(\d+)⟧|\t|\n/g)){
+      if(m.index>pos)tokens.push(wrap(escaped(r.text.slice(pos,m.index),absolute+pos)));
+      if(m[1]){const f=fragment.fields[Number(m[1])-1];if(!f)throw new Error('Unknown floating field reference.');tokens.push(`<span style="${css}" xfa:embedType="uri" xfa:embed="#${attr(f.name)}" xfa:embedMode="raw"/>`);}
+      else if(m[0]==='\t')tokens.push(`<span style="${css};xfa-tab-count:1"/>`);
+      else tokens.push('<br/>');pos=m.index+m[0].length;
+    }
+    if(pos<r.text.length)tokens.push(wrap(escaped(r.text.slice(pos),absolute+pos)));
+    let value=tokens.join('');if(r.href&&/^(https?:\/\/|mailto:)/i.test(r.href))value=`<a href="${attr(r.href)}">${value}</a>`;out.push(value);absolute+=r.text.length;
+  }
+  return out.join('');
+}
+function preview(fragment){
+  const root=document.createElement('div');root.className='word-rich-preview';const p=document.createElement('p');const fmt=fragment.rich||{};
+  p.setAttribute('style',paragraphCss(fmt.paragraph,fmt.base,fragment,true));
+  for(const r of sourceRuns(fragment)){
+    const span=document.createElement('span');span.setAttribute('style',runCss(r.style,r.text,true));
+    let node=span;if(r.style?.vertical==='superscript'||r.style?.vertical==='subscript'){node=document.createElement(r.style.vertical==='superscript'?'sup':'sub');span.append(node);}
+    const re=/⟦FIELD:(\d+)⟧/g;let pos=0;for(const m of r.text.matchAll(re)){node.append(document.createTextNode(r.text.slice(pos,m.index)));const mark=document.createElement('span');mark.className='preview-field';mark.textContent='['+(fragment.fields[Number(m[1])-1]?.sourceName||'field')+']';mark.title='Blank field in exported XDP';node.append(mark);pos=m.index+m[0].length;}node.append(document.createTextNode(r.text.slice(pos)));p.append(span);
+  }
+  root.append(p);return root;
+}
+window.FormSyncRich=Object.freeze({model,BASE,runCss,paragraphCss,inlineXML,sliceRuns,reindexRuns,sourceRuns,preview,chooseScriptStyle});
 })();
 </script>
 <script>/* Synthetic fixture, generated in the browser. No external files are needed. */
@@ -991,15 +1262,35 @@ function enhancedFiles(){
   </subform>\n </template>`);
  return {docx:new File([storedZip({...parts,'word/document.xml':word})],'example-approved-source.docx'),xdp:new File([x],'example-existing-template.xdp')};
 }
-window.FormSyncDemo={XDP,WORD,parts,storedZip,enhancedFiles,files:()=>({docx:new File([storedZip(parts)],'example-approved-source.docx'),xdp:new File([XDP],'example-existing-template.xdp')})};
+function richFiles(){
+ const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main',R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+ const run=(text,props='')=>`<w:r>${props?'<w:rPr>'+props+'</w:rPr>':''}<w:t xml:space="preserve">${esc(text)}</w:t></w:r>`;
+ const p=(text,props='')=>`<w:p>${props?'<w:pPr>'+props+'</w:pPr>':''}${text}</w:p>`;
+ const body=p(run('Application guidance'),'<w:pStyle w:val="Title"/>')+
+ p(run('Keep the source typography. ','<w:b/>')+run('This paragraph uses Georgia 11 pt, with ')+run('italic wording','<w:i/>')+run(', ')+run('underlined wording','<w:u w:val="single"/>')+run(' and ')+run('a coloured phrase.','<w:color w:val="24694E"/>'))+
+ p(run('Before you apply'),'<w:pStyle w:val="Heading1"/>')+
+ p(run('1.')+'<w:r><w:tab/></w:r>'+run('Provide evidence of your identity. ','<w:b/>')+run('A valid passport is one example.'),'<w:ind w:left="360" w:hanging="360"/><w:tabs><w:tab w:val="left" w:pos="360"/></w:tabs>')+
+ p(run('2.')+'<w:r><w:tab/></w:r>'+run('Check the information and sign the declaration.'),'<w:ind w:left="360" w:hanging="360"/><w:tabs><w:tab w:val="left" w:pos="360"/></w:tabs>')+
+ p(run('Dear ')+`<w:fldSimple w:instr="MERGEFIELD CustomerName">${run('SAVED SAMPLE VALUE','<w:b/>')}</w:fldSimple>`+run(', please retain a copy for your records.'))+
+ p(run('Privacy and records'),'<w:pStyle w:val="Heading1"/>')+
+ p(run('Your information is used to administer the service and respond to your requests. ','<w:b/>')+run('You may ask the team to explain how a record is used, request a correction, or update your contact details. '.repeat(8)))+
+ p(run('Reference: ')+run('m')+run('2','<w:vertAlign w:val="superscript"/>')+run(' · Previous wording','<w:strike/>'),'<w:jc w:val="right"/>');
+ const document=`<w:document xmlns:w="${W}" xmlns:r="${R}"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:left="1134" w:right="1134" w:top="1134" w:bottom="1134"/></w:sectPr></w:body></w:document>`;
+ const styles=`<w:styles xmlns:w="${W}"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Georgia" w:hAnsi="Georgia"/><w:sz w:val="22"/><w:color w:val="202B29"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="160"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:styleId="Title"><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="38"/><w:b/><w:color w:val="24694E"/></w:rPr><w:pPr><w:outlineLvl w:val="0"/><w:spacing w:after="240"/><w:keepNext/></w:pPr></w:style><w:style w:type="paragraph" w:styleId="Heading1"><w:rPr><w:b/><w:sz w:val="27"/></w:rPr><w:pPr><w:outlineLvl w:val="0"/><w:spacing w:before="160" w:after="120"/><w:keepNext/></w:pPr></w:style></w:styles>`;
+ const rels=`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="styles" Type="${R}/styles" Target="styles.xml"/></Relationships>`;
+ const contentTypes=parts['[Content_Types].xml'].replace('</Types>','<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>');
+ return {docx:new File([storedZip({...parts,'[Content_Types].xml':contentTypes,'word/document.xml':document,'word/styles.xml':styles,'word/_rels/document.xml.rels':rels})],'example-rich-source.docx'),xdp:new File([XDP],'example-existing-template.xdp')};
+}
+window.FormSyncDemo={XDP,WORD,parts,storedZip,enhancedFiles,richFiles,files:()=>({docx:new File([storedZip(parts)],'example-approved-source.docx'),xdp:new File([XDP],'example-existing-template.xdp')})};
 })();
 </script>
-<script>/* FormSync 1.2 — browser-only DOCX-to-XDP authoring.
-   Produces a text-first XFA template, not a Word page-layout conversion.
+<script>/* FormSync 1.3 — browser-only DOCX-to-XDP authoring.
+   Preserves supported Word rich text and records detected fidelity losses.
+   Adobe rendering is not verified by this browser application.
    No source markup, field instructions, bindings or scripts are copied. */
 (() => {
 'use strict';
-const C=window.FormSyncCore;
+const C=window.FormSyncCore,R=window.FormSyncRich;
 const TEMPLATE='http://www.xfa.org/schema/xfa-template/3.3/';
 const DATA='http://www.xfa.org/schema/xfa-data/1.0/';
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};
@@ -1016,15 +1307,16 @@ function namePart(s,max=42){
 }
 function uniqueName(base,used){let name=base.slice(0,76),n=2;while(used.has(name))name=base.slice(0,70)+'_'+n++;used.add(name);return name;}
 function options(input={}){
-  const o={maxChars:Number(input.maxChars??800),page:input.page||'A4',margin:Number(input.margin??18),fontSize:Number(input.fontSize??10),font:input.font||'Arial',title:String(input.title||'Word form').trim(),fileName:String(input.fileName||'source.docx')};
+  const o={maxChars:Number(input.maxChars??800),page:input.page||'A4',margin:Number(input.margin??18),fontSize:Number(input.fontSize??10),font:input.font||'Arial',title:String(input.title||'Word form').trim(),fileName:String(input.fileName||'source.docx'),preserveFormatting:input.preserveFormatting!==false,useWordPage:input.useWordPage!==false,keepParagraphs:input.keepParagraphs===true,allowLossy:input.allowLossy===true,sourcePage:input.sourcePage||null,preserveWhitespace:input.preserveWhitespace===true};
   assert(Number.isInteger(o.maxChars)&&o.maxChars>=100&&o.maxChars<=4000,'Maximum fragment length must be a whole number from 100 to 4,000.');
   assert(['A4','Letter'].includes(o.page),'Choose A4 or Letter paper.');
   assert(Number.isFinite(o.margin)&&o.margin>=10&&o.margin<=35,'Page margin must be between 10 and 35 mm.');
   assert(Number.isFinite(o.fontSize)&&o.fontSize>=8&&o.fontSize<=16,'Body font size must be between 8 and 16 pt.');
   assert(['Arial','Times New Roman','Helvetica','Courier'].includes(o.font),'Choose one of the supported typeface names.');
   assert(C.validText(o.title)&&o.title.length>0&&o.title.length<=200,'Enter a valid form title of at most 200 characters.');
-  const [width,height]=o.page==='Letter'?[215.9,279.4]:[210,297];
-  return {...o,width,height,contentWidth:width-o.margin*2,contentHeight:height-o.margin*2};
+  let [width,height]=o.page==='Letter'?[215.9,279.4]:[210,297];let left=o.margin,right=o.margin,top=o.margin,bottom=o.margin;
+  if(o.useWordPage&&o.sourcePage){const p=o.sourcePage;assert(['width','height','left','right','top','bottom'].every(k=>Number.isFinite(p[k]))&&p.width>=40&&p.height>=40&&p.width<=1500&&p.height<=1500&&[p.left,p.right,p.top,p.bottom].every(n=>n>=0)&&p.width>p.left+p.right&&p.height>p.top+p.bottom,'Invalid source page geometry.');({width,height,left,right,top,bottom}=p);}
+  return {...o,width,height,left,right,top,bottom,contentWidth:width-left-right,contentHeight:height-top-bottom};
 }
 /* Return exact, contiguous UTF-16 source spans. End boundaries never bisect a
    protected field token or surrogate pair. A single very long word may be cut. */
@@ -1053,7 +1345,7 @@ function splitText(value,maxChars){
 }
 function buildPlan(word,input={}){
   assert(word&&Array.isArray(word.blocks)&&word.blocks.length,'Load a Word document with supported text first.');
-  const o=options(input),used=new Set(['Form','Page1','BodyArea']),warnings=new Set(word.warnings||[]),sections=[],fragments=[],fields=[];
+  const o=options({...input,sourcePage:word.formatting?.page||input.sourcePage}),used=new Set(['Form','Page1','BodyArea']),warnings=new Set(word.warnings||[]),sections=[],fragments=[],fields=[];
   let section=null,lastStory='';
   const sectionFor=(label,level)=>{const item={id:'section-'+sections.length,name:uniqueName('Section_'+namePart(label,57),used),label,level,fragments:[]};sections.push(item);return item;};
   for(let bi=0;bi<word.blocks.length;bi++){
@@ -1064,10 +1356,11 @@ function buildPlan(word,input={}){
     const heading=Number(b.headingLevel)||0,story=b.story||'Body';
     const readable=b.text.replace(fieldRE(),(_,n)=>'['+(b.fields?.[Number(n)-1]?.name||'Field')+']');
     if(!section||story!==lastStory||heading){section=sectionFor(heading?C.normalize(readable).slice(0,140):story==='Body'?'Document content':story,heading);lastStory=story;}
-    const spans=splitText(b.text,o.maxChars);
+    assert(!o.keepParagraphs||b.text.length<=30000,`${b.location}: this paragraph exceeds 30,000 characters. Disable Keep Word paragraphs intact to split it safely.`);
+    const spans=o.keepParagraphs?[{start:0,end:b.text.length,text:b.text}]:splitText(b.text,o.maxChars);
     spans.forEach((span,part)=>{
       if(!C.normalize(span.text)){// Keep whitespace attached to the prior fragment, never drop content.
-        const prior=fragments[fragments.length-1];if(prior&&prior.sourceId===b.id){prior.sourceEnd=span.end;prior.text+=span.text;prior.sourceText+=span.text;return;}
+        const prior=fragments[fragments.length-1];if(prior&&prior.sourceId===b.id){prior.sourceEnd=span.end;prior.text+=span.text;prior.sourceText+=span.text;if(prior.rich)prior.rich.runs.push(...R.sliceRuns(b.rich.runs,span.start,span.end));return;}
       }
       const local=[];
       const value=span.text.replace(fieldRE(),(_,n)=>{
@@ -1080,6 +1373,7 @@ function buildPlan(word,input={}){
       const label=(contentLabel.slice(0,150)+(contentLabel.length>150?'…':'')+(spans.length>1?` · part ${part+1} of ${spans.length}`:'')).slice(0,220);
       const name=uniqueName((heading?'Heading_':'Text_'+namePart(section.label,22)+'_')+namePart(C.parseListLabel(contentLabel)?.body||contentLabel,39)+(spans.length>1?'_Part'+(part+1):''),used);
       const fragment={id:'fragment-'+fragments.length,name,label,text:value,fields:local,sectionId:section.id,sourceId:b.id,sourceLocation:b.location,sourceIndex:bi,sourceStart:span.start,sourceEnd:span.end,sourceText:span.text,part:part+1,totalParts:spans.length,headingLevel:heading,list:b.list?{label:b.list.raw||b.list.label||'',level:b.list.level||0,continuation:part>0}:null};
+      if(o.preserveFormatting&&b.rich){fragment.rich={base:{...b.rich.base},paragraph:{...b.rich.paragraph},sourceParagraph:{...b.rich.paragraph},runs:R.reindexRuns(R.sliceRuns(b.rich.runs,span.start,span.end)),beforeBlank:part===0?(b.rich.beforeBlank||[]).map(v=>({base:{...v.base},paragraph:{...v.paragraph}})):[]};R.sourceRuns(fragment);}
       fragments.push(fragment);section.fragments.push(fragment.id);
       assert(fragments.length<=5000,'Generation would exceed 5,000 text objects. Increase the fragment limit or split the Word document.');
     });
@@ -1088,9 +1382,25 @@ function buildPlan(word,input={}){
   if(fields.length)warnings.add(`${fields.length} recognised field occurrence(s) become hidden, empty, unbound text fields with inline references. Each occurrence is separate. Configure real bindings, calculations, field types and shared-field behaviour in Designer.`);
   if(word.blocks.some(b=>b.location?.includes('table cell')))warnings.add('Table-cell text is generated as paragraphs in source XML order, not as an XFA table. Column widths, borders and merged-cell layout are not recreated.');
   if(word.blocks.some(b=>b.story&&b.story!=='Body'))warnings.add('Selected headers, footers and notes are appended as separate content sections, not repeated on master pages or anchored to footnote marks.');
-  warnings.add('Text-first template: original Word fonts, inline emphasis, images, page/column/section breaks and exact positioning are not reproduced. Heading styles and list labels are retained; body typography uses your settings.');
-  warnings.add('Object labels are derived from source headings and wording, not AI summaries. Split parts retain exact source spans; whitespace at object boundaries may wrap differently.');
-  return {format:'formsync-generation-plan',version:1,appVersion:'1.2',options:o,sections,fragments,fields,warnings:[...warnings],sourceCount:word.blocks.length,source:word.blocks.map(b=>({id:b.id,text:b.text,location:b.location})),created:new Date().toISOString()};
+  const issues=[...(word.formatting?.issues||[])];
+  if(!o.preserveFormatting)issues.push({code:'formatting-disabled',severity:'loss',location:'Generation settings',message:'Word rich formatting is disabled. The selected uniform typography replaces it.'});
+  if(!o.useWordPage)issues.push({code:'page-overridden',severity:'loss',location:'Generation settings',message:'Source page geometry is overridden by the fallback page settings.'});
+  if(fragments.some(f=>f.totalParts>1))issues.push({code:'split-flow',severity:'loss',location:'Generation settings',message:'Separate XDP objects introduce new line boundaries within long Word paragraphs. Turn on Keep Word paragraphs intact to avoid this.'});
+  if(!word.formatting)warnings.add('No Word formatting metadata is available for this input. The selected fallback typography is used.');
+  if(o.preserveFormatting)warnings.add('Word document defaults, inherited paragraph/character styles and direct run formatting are resolved before generating XFA rich text. Only supported properties are emitted; detected losses are listed in the fidelity report.');
+  warnings.add('Object labels come from source headings and wording. Font names are retained, not embedded. The same fonts must be available to the Adobe renderer. This browser preview is not an Adobe or Word render.');
+  warnings.add('Word and XFA use different layout engines. Wrapping, pagination, font metrics and field behaviour require a visual check in your Adobe workflow; no pixel-identical claim is made.');
+  // Word uses the larger adjacent paragraph spacing, not the sum. Apply that
+  // rule across independent XFA draws; preserve source values in the map.
+  let previous=null,lastGroup=null;
+  for(const f of fragments){if(!f.rich)continue;const group=word.blocks[f.sourceIndex].group;if(group!==lastGroup){previous=null;lastGroup=group;}if(f.part>1)continue;
+    for(const blank of f.rich.beforeBlank||[]){if(previous)blank.paragraph.before=Math.max(0,(blank.paragraph.before||0)-(previous.after||0));previous=blank.paragraph;}
+    const current=f.rich.paragraph;
+    if(previous){if(current.styleId===previous.styleId){if(previous.contextualSpacing)previous.after=0;if(current.contextualSpacing)current.before=0;}current.before=Math.max(0,(current.before||0)-(previous.after||0));}previous=current;
+  }
+  const effectiveParagraphs=new Map();for(const f of fragments)if(f.rich){if(f.part===1)effectiveParagraphs.set(f.sourceId,f.rich.paragraph);else f.rich.paragraph=effectiveParagraphs.get(f.sourceId)||f.rich.paragraph;}
+  for(const [story,blanks] of Object.entries(word.formatting?.trailing||{})){const last=[...fragments].reverse().find(f=>(word.blocks[f.sourceIndex].story||'Body')===story);if(last?.rich)last.rich.afterBlank=blanks;}
+  return {format:'formsync-generation-plan',version:2,appVersion:'1.3',options:o,sections,fragments,fields,issues,fonts:word.formatting?.fonts||[],trailing:word.formatting?.trailing||{},warnings:[...warnings],sourceCount:word.blocks.length,source:word.blocks.filter(b=>C.normalize(b.text)).map(b=>({id:b.id,text:b.text,location:b.location})),created:new Date().toISOString()};
 }
 function validatePlan(plan){
   assert(plan?.format==='formsync-generation-plan'&&Array.isArray(plan.fragments)&&plan.fragments.length,'No generated object plan is ready.');
@@ -1101,6 +1411,7 @@ function validatePlan(plan){
   }
   for(const f of plan.fragments){
     assert(C.validText(f.label)&&!!C.normalize(f.label)&&f.label.length<=220,`Enter a valid label for ${f.name} (220 characters maximum).`);
+    if(f.rich)R.sourceRuns(f);
     assert(C.validText(f.text)&&C.normalize(f.text),`${f.name} has invalid or empty text.`);
     assert(C.fieldTokens(f.text).join('|')===f.fields.map((_,i)=>`⟦FIELD:${i+1}⟧`).join('|'),`${f.name}: field markers were changed.`);
   }
@@ -1108,15 +1419,29 @@ function validatePlan(plan){
   return o;
 }
 function createXdp(plan){
-  const o=validatePlan(plan),mm=n=>Number(n.toFixed(3))+'mm',x=[],byId=new Map(plan.fragments.map(f=>[f.id,f]));
-  x.push('<?xml version="1.0" encoding="UTF-8"?>','<?xfa generator="FormSync 1.2 text-first generator"?>','<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">',` <template xmlns="${TEMPLATE}">`,'  <subform name="Form" id="Form" layout="tb" locale="en_US">',`   <desc><text name="title">${esc(o.title)}</text><text name="formsyncSplitMax">${o.maxChars}</text><text name="formsyncVersion">1.2</text><text name="generator">Text-first draft. Validate layout and field bindings in Adobe Designer.</text></desc>`,'   <pageSet relation="orderedOccurrence">','    <pageArea name="Page1" id="Page1">','     <occur min="1" max="-1"/>',`     <contentArea name="BodyArea" id="BodyArea" x="${mm(o.margin)}" y="${mm(o.margin)}" w="${mm(o.contentWidth)}" h="${mm(o.contentHeight)}"/>`,`     <medium stock="${o.page==='A4'?'a4':'letter'}" short="${mm(o.width)}" long="${mm(o.height)}" orientation="portrait"/>`,'    </pageArea>','   </pageSet>');
+  const o=validatePlan(plan);const losses=(plan.issues||[]).filter(i=>i.severity==='loss');assert(!losses.length||o.allowLossy,`${losses.length} detected formatting/layout loss(es). Review the fidelity report, then explicitly allow draft export or correct the DOCX/settings. No identical-output claim can be made.`);const mm=n=>Number(n.toFixed(3))+'mm',x=[],byId=new Map(plan.fragments.map(f=>[f.id,f]));
+  x.push('<?xml version="1.0" encoding="UTF-8"?>','<?xfa generator="FormSync 1.3 rich-text generator"?>','<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">',` <template xmlns="${TEMPLATE}">`,'  <subform name="Form" id="Form" layout="tb" locale="en_US">',`   <desc><text name="title">${esc(o.title)}</text><text name="formsyncSplitMax">${o.maxChars}</text><text name="formsyncVersion">1.3</text><text name="formsyncKeepParagraphs">${o.keepParagraphs}</text><text name="formsyncWhitespace">${o.preserveWhitespace?'preserve':'trim'}</text><text name="formsyncFormatting">${o.preserveFormatting?'word-rich':'uniform'}</text><text name="formsyncKnownLosses">${losses.length}</text><text name="generator">Rich-text conversion. Validate appearance, fonts and field bindings in Adobe Designer. Not a verified Word-equivalent render.</text></desc>`,'   <pageSet relation="orderedOccurrence">','    <pageArea name="Page1" id="Page1">','     <occur min="1" max="-1"/>',`     <contentArea name="BodyArea" id="BodyArea" x="${mm(o.left)}" y="${mm(o.top)}" w="${mm(o.contentWidth)}" h="${mm(o.contentHeight)}"/>`,`     <medium short="${mm(Math.min(o.width,o.height))}" long="${mm(Math.max(o.width,o.height))}" orientation="${o.width>o.height?'landscape':'portrait'}"/>`,'    </pageArea>','   </pageSet>');
   for(const field of plan.fields){x.push(`   <field name="${field.name}" id="${field.name}" presence="hidden" access="readOnly" w="20mm" h="5mm">`,`    <desc><text name="sourceField">${esc(field.sourceName)}</text><text name="source">${esc(field.sourceLocation)}</text><text name="bindingStatus">Unbound. Configure in Designer; no saved Word value was copied.</text></desc>`,'    <ui><textEdit multiLine="1"/></ui>','    <value><text/></value>','    <bind match="none"/>','   </field>');}
+  const blankDraw=blank=>{const q=blank.paragraph,b=blank.base;const height=Math.max(0,(q.before||0)+(q.after||0)+(q.lineRule==='exact'||q.lineRule==='atLeast'?(q.line||240)/20:(b.size||12)*(q.line||240)/240));return `    <draw w="${mm(o.contentWidth)}" h="${Number(height.toFixed(4))}pt"><desc><text name="role">Word blank paragraph</text></desc></draw>`;};
   for(const section of plan.sections){
     x.push(`   <subform name="${section.name}" id="${section.name}" layout="tb" w="${mm(o.contentWidth)}">`,`    <desc><text name="label">${esc(section.label)}</text></desc>`,'    <bind match="none"/>');
-    for(const id of section.fragments){const f=byId.get(id);assert(f,'A fragment reference is missing.');const size=f.headingLevel?Math.max(o.fontSize,Math.min(20,o.fontSize+6-(f.headingLevel-1)*1.5)):o.fontSize;
-      const indent=f.list?Math.min(24,4+(f.list.level||0)*4):0;
-      let pos=0;const rich=[];for(const match of f.text.matchAll(fieldRE())){rich.push(esc(f.text.slice(pos,match.index)).replace(/\n/g,'<br/>'));const field=f.fields[Number(match[1])-1];rich.push(`<span xfa:embedType="uri" xfa:embed="#${field.name}" xfa:embedMode="raw"/>`);pos=match.index+match[0].length;}rich.push(esc(f.text.slice(pos)).replace(/\n/g,'<br/>'));
-      x.push(`    <draw name="${f.name}" id="${f.name}" w="${mm(o.contentWidth)}" minH="${Number((size*1.2).toFixed(2))}pt">`,`     <desc><text name="label">${esc(f.label)}</text><text name="source">${esc(f.sourceLocation)}; part ${f.part}/${f.totalParts}; characters ${f.sourceStart+1}–${f.sourceEnd}</text></desc>`,'     <ui><textEdit multiLine="1"/></ui>',`     <value><exData contentType="text/html"><body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="${DATA}"><p xml:space="preserve" style="white-space:pre-wrap">${rich.join('')}</p></body></exData></value>`,`     <font typeface="${attr(o.font)}" size="${size}pt"${f.headingLevel?' weight="bold"':''}/>`,`     <para spaceAbove="${f.headingLevel?'4pt':'0pt'}" spaceBelow="${f.list?'3pt':'6pt'}"${indent?` marginLeft="${indent}mm"`:''}/>`,...(f.headingLevel?['     <keep next="contentArea"/>']:[]),'    </draw>');
+    for(const id of section.fragments){
+      const f=byId.get(id);assert(f,'A fragment reference is missing.');
+      const size=f.rich?.base?.size||(f.headingLevel?Math.max(o.fontSize,Math.min(20,o.fontSize+6-(f.headingLevel-1)*1.5)):o.fontSize);
+      const base=f.rich?.base||{...R.BASE,font:o.font,size,bold:!!f.headingLevel};
+      const paragraph=f.rich?.paragraph||{before:f.headingLevel?4:0,after:f.list?3:6,left:f.list?Math.min(24,4+(f.list.level||0)*4)*72/25.4:0};
+      const effective=f.rich?f:{...f,rich:{base,paragraph,runs:[{text:f.text,style:base}]}};
+      for(const blank of f.rich?.beforeBlank||[])x.push(blankDraw(blank));
+      const pstyle=R.paragraphCss(paragraph,base,f);
+      x.push(`    <draw name="${f.name}" id="${f.name}" w="${mm(o.contentWidth)}">`,
+        `     <desc><text name="label">${esc(f.label)}</text><text name="source">${esc(f.sourceLocation)}; part ${f.part}/${f.totalParts}; characters ${f.sourceStart+1}–${f.sourceEnd}</text></desc>`,
+        '     <ui><textEdit multiLine="1"/></ui>',
+        `     <value><exData contentType="text/html"><body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="${DATA}"><p xml:space="preserve" style="${attr(pstyle)}">${R.inlineXML(effective)}</p></body></exData></value>`,
+        `     <font typeface="${attr(base.font||o.font)}" size="${size}pt"/>`,
+        '     <margin leftInset="0pt" rightInset="0pt" topInset="0pt" bottomInset="0pt"/>',
+        '     <para spaceAbove="0pt" spaceBelow="0pt" marginLeft="0pt" marginRight="0pt" textIndent="0pt" vAlign="top"/>',
+        ...(paragraph.keepNext&&f.part===f.totalParts?['     <keep next="contentArea"/>']:[]),'    </draw>');
+      for(const blank of f.rich?.afterBlank||[])x.push(blankDraw(blank));
     }x.push('   </subform>');
   }
   x.push('  </subform>',' </template>',' <config xmlns="http://www.xfa.org/schema/xci/3.0/"><present><pdf><version>1.7</version><dynamicRender>required</dynamicRender></pdf></present></config>','</xdp:xdp>','');
@@ -1124,7 +1449,7 @@ function createXdp(plan){
   const ids=new Set();for(const n of Array.from(doc.getElementsByTagName('*'))){if(n.hasAttribute('id')){const id=n.getAttribute('id');assert(!ids.has(id),'Generated XDP has duplicate IDs.');ids.add(id);}}
   for(const n of Array.from(doc.getElementsByTagNameNS(C.NS.xhtml,'span'))){const ref=n.getAttributeNS(DATA,'embed');if(ref)assert(ids.has(ref.slice(1)),'Generated XDP has an unresolved floating-field reference.');}
   const checked=C.readXdp(bytes,{captions:false});assert(checked.blocks.length===plan.fragments.length,'Generated XDP text-object count failed verification.');
-  checked.blocks.forEach((b,i)=>{const f=plan.fragments[i];assert(b.text===f.text,`Generated wording failed verification for ${f.name}.`);assert(b.key===f.name,`Generated object name failed verification for ${f.name}.`);assert(b.fields.map(v=>v.ref).join('|')===f.fields.map(v=>'#'+v.name).join('|'),'Generated field references failed verification.');});
+  checked.blocks.forEach((b,i)=>{const f=plan.fragments[i];assert(b.text.replace(/\u00a0/g,' ')===f.text.replace(/\u00a0/g,' '),`Generated wording failed verification for ${f.name}.`);assert(b.key===f.name,`Generated object name failed verification for ${f.name}.`);assert(b.fields.map(v=>v.ref).join('|')===f.fields.map(v=>'#'+v.name).join('|'),'Generated field references failed verification.');});
   return {bytes,text:value,objects:plan.fragments.length,fields:plan.fields.length,verification:'XML, unique IDs, source coverage, extracted text and inline field references checked. Adobe XFA schema/rendering/runtime not tested.'};
 }
 // A generated file records its split limit so the same source can be compared
@@ -1134,13 +1459,13 @@ function comparisonSettings(xdp){
   const form=Array.from(template?.children||[]).find(n=>n.localName==='subform'&&n.namespaceURI===TEMPLATE);
   const desc=Array.from(form?.children||[]).find(n=>n.localName==='desc'&&n.namespaceURI===TEMPLATE);
   const values=new Map(Array.from(desc?.children||[]).filter(n=>n.localName==='text'&&n.namespaceURI===TEMPLATE).map(n=>[n.getAttribute('name'),n.textContent]));
-  const n=Number(values.get('formsyncSplitMax'));return values.get('formsyncVersion')==='1.2'&&Number.isInteger(n)&&n>=100&&n<=4000?{maxChars:n}:null;
+  const n=Number(values.get('formsyncSplitMax'));return ['1.2','1.3'].includes(values.get('formsyncVersion'))&&Number.isInteger(n)&&n>=100&&n<=4000?{maxChars:n,keepParagraphs:values.get('formsyncKeepParagraphs')==='true',preserveWhitespace:values.get('formsyncWhitespace')==='preserve',appVersion:values.get('formsyncVersion')}:null;
 }
 function prepareComparison(word,xdp){
   const settings=comparisonSettings(xdp);if(!settings)return word;
   const blocks=[];
   for(const b of word.blocks){
-    const spans=splitText(b.text,settings.maxChars);
+    const spans=settings.keepParagraphs?[{start:0,end:b.text.length,text:b.text}]:splitText(b.text,settings.maxChars);
     for(let i=0;i<spans.length;i++){
       const span=spans[i],fields=[];
       const text=span.text.replace(fieldRE(),(_,n)=>{const f=b.fields?.[Number(n)-1];assert(f,`${b.location}: unknown field marker.`);fields.push({...f,index:fields.length+1});return `⟦FIELD:${fields.length}⟧`;});
@@ -1148,14 +1473,16 @@ function prepareComparison(word,xdp){
       assert(blocks.length<=5000,'Generated-template comparison exceeds 5,000 source fragments. Split the document.');
     }
   }
-  return {...word,blocks,warnings:[...word.warnings,`This FormSync-generated XDP uses ${settings.maxChars}-character source segmentation. Word paragraphs are split the same way for comparison. Substantial edits can move boundaries; confirm mappings.`]};
+  return {...word,blocks,warnings:[...word.warnings,`This FormSync-generated XDP uses ${settings.keepParagraphs?'intact Word paragraphs':settings.maxChars+'-character source segmentation'}. Word paragraphs are split the same way for comparison. Substantial edits can move boundaries; confirm mappings.`]};
 }
-function manifest(plan){validatePlan(plan);return {format:'formsync-generation-map',version:1,appVersion:'1.2',created:plan.created,sourceFile:plan.options.fileName,options:plan.options,warnings:plan.warnings,sections:plan.sections,objects:plan.fragments.map(f=>({name:f.name,id:f.name,label:f.label,text:f.text,sourceId:f.sourceId,sourceLocation:f.sourceLocation,sourceStart:f.sourceStart,sourceEnd:f.sourceEnd,part:f.part,totalParts:f.totalParts,headingLevel:f.headingLevel,list:f.list,fieldIds:f.fields.map(v=>v.name),wordContentControlTag:'xdp:'+f.name})),fields:plan.fields.map(f=>({id:f.name,name:f.name,sourceName:f.sourceName,kind:f.kind,sourceLocation:f.sourceLocation,binding:'none',defaultValue:''}))};}
-window.FormSyncGenerator=Object.freeze({options,splitText,buildPlan,createXdp,manifest,validatePlan,safeName,comparisonSettings,prepareComparison});
+function manifest(plan){validatePlan(plan);return {format:'formsync-generation-map',version:1,appVersion:'1.3',created:plan.created,sourceFile:plan.options.fileName,options:plan.options,warnings:plan.warnings,fidelity:fidelityReport(plan),sections:plan.sections,objects:plan.fragments.map(f=>({name:f.name,id:f.name,label:f.label,text:f.text,sourceId:f.sourceId,sourceLocation:f.sourceLocation,sourceStart:f.sourceStart,sourceEnd:f.sourceEnd,part:f.part,totalParts:f.totalParts,headingLevel:f.headingLevel,list:f.list,formatting:f.rich||null,fieldIds:f.fields.map(v=>v.name),wordContentControlTag:'xdp:'+f.name})),fields:plan.fields.map(f=>({id:f.name,name:f.name,sourceName:f.sourceName,kind:f.kind,sourceLocation:f.sourceLocation,binding:'none',defaultValue:''}))};}
+function fidelityReport(plan){validatePlan(plan);return {format:'formsync-fidelity-report',version:1,sourceFile:plan.options.fileName,appVersion:'1.3',created:plan.created,pixelIdenticalVerified:false,adobeRendered:false,mode:plan.options.preserveFormatting?'word-rich':'uniform',paragraphsIntact:plan.options.keepParagraphs,sourcePage:plan.options.sourcePage,fonts:plan.fonts||[],knownLossCount:(plan.issues||[]).filter(i=>i.severity==='loss').length,issues:plan.issues||[],notes:plan.warnings};}
+window.FormSyncGenerator=Object.freeze({options,splitText,buildPlan,createXdp,manifest,validatePlan,safeName,comparisonSettings,prepareComparison,fidelityReport});
 })();
 </script>
 <script>(() => {
 'use strict';
+const R=window.FormSyncRich;
 const C=window.FormSyncCore,G=window.FormSyncGenerator,$=id=>document.getElementById(id);
 let files={docx:null,xdp:null},result=null,filter='changes',selected=null,busy=false,limit=150,wordLimit=40,version=0;
 let metadata={},mode='compare',generationPlan=null,generationSource=null,genSelected=null,genLimit=150,genDirty=false;
@@ -1167,8 +1494,8 @@ const clearError=()=>{$('error').hidden=true;$('error').textContent='';};
 const hasWork=()=>genDirty||result?.rows.some(r=>r.decision!=='pending'||r.note||r.draft!==undefined);
 function noDrafts(){const r=result?.rows.find(r=>r.draft!==undefined&&r.draft!==r.proposed);if(r){fail(new Error(`Apply or revert the edited wording for ${r.xdp.ownerName} before exporting.`));return false;}return true;}
 const opts=()=>({headers:$('includeHeaders').checked,notes:$('includeNotes').checked,captions:$('includeCaptions').checked,threshold:Number($('threshold').value),group:Number($('groupSize').value),placeholders:$('includePlaceholders').checked});
-function setBusy(value){busy=value;$('status').classList.toggle('busy',value);for(const id of ['docxBrowse','xdpBrowse','docxInput','xdpInput','demoButton','includeHeaders','includeNotes','includeCaptions','includePlaceholders','threshold','groupSize','importReview','resetButton','modeCompare','modeCreate','genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders'])$(id).disabled=value;$('compareButton').disabled=value||!files.docx||!files.xdp;$('compareButton').textContent=value?'Comparing…':'Compare wording →';$('generateButton').disabled=value||!files.docx;$('generateButton').textContent=value?'Building preview…':'Build object preview →';}
-function invalidate(message){version++;result=null;selected=null;generationPlan=null;generationSource=null;genDirty=false;$('results').hidden=true;$('generationResults').hidden=true;status(message||'Files or options changed. Build a fresh comparison or object preview.');}
+function setBusy(value){busy=value;$('status').classList.toggle('busy',value);for(const id of ['docxBrowse','xdpBrowse','docxInput','xdpInput','demoButton','includeHeaders','includeNotes','includeCaptions','includePlaceholders','threshold','groupSize','importReview','resetButton','modeCompare','modeCreate','genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders','genRich','genWordPage','genKeepParagraphs'])$(id).disabled=value;$('compareButton').disabled=value||!files.docx||!files.xdp;$('compareButton').textContent=value?'Comparing…':'Compare wording →';$('generateButton').disabled=value||!files.docx;$('generateButton').textContent=value?'Building preview…':'Build object preview →';syncGenControls();}
+function invalidate(message){version++;result=null;selected=null;generationPlan=null;generationSource=null;genDirty=false;$('genAllowLossy').checked=false;$('results').hidden=true;$('generationResults').hidden=true;status(message||'Files or options changed. Build a fresh comparison or object preview.');}
 function choose(kind,file){
  if(busy||!file)return;
  const ext=kind==='docx'?/\.docx$/i:/\.(xdp|xml)$/i;
@@ -1199,7 +1526,7 @@ async function run(){
   await C.pause();const o=opts();const [db,xb]=await Promise.all([files.docx.arrayBuffer(),files.xdp.arrayBuffer()]);
   const dbytes=new Uint8Array(db),xbytes=new Uint8Array(xb);
   status('Reading the Word package and indexing XDP text…');await C.pause();
-  const x=C.readXdp(xbytes,o);const rawWord=await C.readDocx(dbytes,{...o,generation:!!G.comparisonSettings(x)});const w=G.prepareComparison(rawWord,x);
+  const x=C.readXdp(xbytes,o);const settings=G.comparisonSettings(x);const rawWord=await C.readDocx(dbytes,{...o,generation:!!settings,preserveWhitespace:!!settings?.preserveWhitespace});const w=G.prepareComparison(rawWord,x);
   metadata={docx:{name:files.docx.name,size:files.docx.size,sha256:await digest(dbytes)},xdp:{name:files.xdp.name,size:files.xdp.size,sha256:await digest(xbytes)}};
   const comparison=await C.compare(w,x,o,(n,total)=>status(`Matching XDP wording · ${n.toLocaleString()} of ${total.toLocaleString()} blocks…`));
   if(token!==version)return;result=comparison;filter='changes';selected=null;limit=150;wordLimit=40;$('search').value='';$('results').hidden=mode!=='compare';renderAll();
@@ -1210,7 +1537,7 @@ async function run(){
 $('compareButton').addEventListener('click',run);
 $('demoButton').addEventListener('click',async()=>{
  if((result||generationPlan)&&!confirm('Replace the current session with synthetic example files?'))return;
- result=null;genDirty=false;const demo=FormSyncDemo.enhancedFiles?FormSyncDemo.enhancedFiles():FormSyncDemo.files();choose('docx',demo.docx);if(mode==='create'){await generate();return;}choose('xdp',demo.xdp);await run();
+ result=null;genDirty=false;const demo=mode==='create'?FormSyncDemo.richFiles():FormSyncDemo.enhancedFiles?FormSyncDemo.enhancedFiles():FormSyncDemo.files();choose('docx',demo.docx);if(mode==='create'){await generate();return;}choose('xdp',demo.xdp);await run();
  if(result)status('Synthetic example loaded. Review a change, approve it, then export an updated example XDP.');
 });
 function visibleRows(){
@@ -1350,12 +1677,13 @@ function applyMode(next){
  $('results').hidden=mode!=='compare'||!result;$('generationResults').hidden=mode!=='create'||!generationPlan;
  $('loadHeading').replaceChildren(text('span','01','step'),document.createTextNode(mode==='create'?' Choose your Word source':' Choose your files'));
  $('introTitle').replaceChildren(document.createTextNode(mode==='create'?'Start with the wording.':'Keep the wording.'),document.createElement('br'),text('span',mode==='create'?'Build a form you can maintain.':'Lose the manual checking.'));
- $('introText').textContent=mode==='create'?'Turn Word content into a new XDP. Split long text into smaller objects, name them by their contents, and review before exporting.':'Compare your Word source with an Adobe XDP template. Review the differences. Export only the changes you approve.';
+ $('introText').textContent=mode==='create'?'Keep Word rich text in a new XDP. Preserve source styles, inspect named objects, and review the fidelity report before exporting.':'Compare your Word source with an Adobe XDP template. Review the differences. Export only the changes you approve.';
  status(mode==='create'?(generationPlan?'Your object preview is ready. Review names and export a new XDP.':files.docx?'Word source selected. Choose settings and build the object preview.':'Choose a Word file. No existing XDP is needed in this mode.'):(result?'Your comparison review is still available.':files.docx&&files.xdp?'Both files are ready to compare.':'Choose both files to compare.'));clearError();setBusy(false);
 }
 $('modeCompare').addEventListener('click',()=>applyMode('compare'));$('modeCreate').addEventListener('click',()=>applyMode('create'));
-function genOptions(){return {title:$('genTitle').value,maxChars:Number($('genMaxChars').value),page:$('genPage').value,margin:Number($('genMargin').value),font:$('genFont').value,fontSize:Number($('genFontSize').value),fileName:files.docx?.name||'source.docx'};}
-for(const id of ['genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders']){
+function syncGenControls(){for(const id of ['genFont','genFontSize'])$(id).disabled=busy||$('genRich').checked;$('genMaxChars').disabled=busy||$('genKeepParagraphs').checked;}
+function genOptions(){return {title:$('genTitle').value,maxChars:Number($('genMaxChars').value),page:$('genPage').value,margin:Number($('genMargin').value),font:$('genFont').value,fontSize:Number($('genFontSize').value),fileName:files.docx?.name||'source.docx',preserveFormatting:$('genRich').checked,useWordPage:$('genWordPage').checked,keepParagraphs:$('genKeepParagraphs').checked,preserveWhitespace:true,allowLossy:false};}
+for(const id of ['genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders','genRich','genWordPage','genKeepParagraphs']){
  const el=$(id);el.dataset.last=el.type==='checkbox'?String(el.checked):el.value;el.addEventListener('change',()=>{if(generationPlan&&genDirty&&!confirm('Changing generation settings clears the object preview and any edited names or labels. Export first to retain them. Continue?')){if(el.type==='checkbox')el.checked=el.dataset.last==='true';else el.value=el.dataset.last;return;}el.dataset.last=el.type==='checkbox'?String(el.checked):el.value;if(!generationPlan)return;generationPlan=null;generationSource=null;genDirty=false;$('generationResults').hidden=true;status('Generation settings changed. Rebuild the object preview before exporting.');});
 }
 async function generate(){
@@ -1365,21 +1693,23 @@ async function generate(){
  clearError();invalidate('Reading the Word source locally…');setBusy(true);const token=version;
  try{
   await C.pause();const bytes=new Uint8Array(await files.docx.arrayBuffer());
-  const w=await C.readDocx(bytes,{headers:$('includeHeaders').checked,notes:$('includeNotes').checked,placeholders:$('genPlaceholders').checked,generation:true});
-  status('Splitting paragraphs and naming text objects…');await C.pause();const plan=G.buildPlan(w,settings);
+  const w=await C.readDocx(bytes,{headers:$('includeHeaders').checked,notes:$('includeNotes').checked,placeholders:$('genPlaceholders').checked,generation:true,preserveWhitespace:true});
+  status('Resolving source formatting and naming text objects…');await C.pause();const plan=G.buildPlan(w,settings);
   if(token!==version)return;
-  generationPlan=plan;generationSource=w;for(const id of ['genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders'])$(id).dataset.last=$(id).type==='checkbox'?String($(id).checked):$(id).value;genDirty=true;genSelected=null;genLimit=150;$('genSearch').value='';$('generationResults').hidden=mode!=='create';renderGeneration();
+  generationPlan=plan;generationSource=w;for(const id of ['genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders','genRich','genWordPage','genKeepParagraphs'])$(id).dataset.last=$(id).type==='checkbox'?String($(id).checked):$(id).value;genDirty=true;genSelected=null;genLimit=150;$('genSearch').value='';$('generationResults').hidden=mode!=='create';renderGeneration();
   status(`Created a preview of ${plan.fragments.length.toLocaleString()} text objects in ${plan.sections.length} sections, with ${plan.fields.length} empty field placeholder${plan.fields.length===1?'':'s'}. No file has been written.`);$('sessionInfo').textContent='Generation preview lives in memory · export before closing';
  }catch(e){fail(e);}finally{setBusy(false);}
 }
 $('generateButton').addEventListener('click',generate);
+for(const id of ['genRich','genKeepParagraphs'])$(id).addEventListener('change',syncGenControls);
+syncGenControls();
 function genRows(){const q=$('genSearch').value.trim().toLocaleLowerCase();return generationPlan.fragments.filter(f=>!q||[f.name,f.label,f.text,f.sourceLocation].some(v=>v.toLocaleLowerCase().includes(q)));}
 function renderGeneration(){
  const p=generationPlan,split=p.fragments.filter(f=>f.totalParts>1).length;
  const specs=[[p.sourceCount,'Word paragraphs'],[p.fragments.length,'Text objects'],[p.sections.length,'Content sections'],[split,'Objects from splits'],[p.fields.length,'Field placeholders']];
  $('genStats').replaceChildren(...specs.map(([value,name])=>{const n=text('div','','stat');n.append(text('strong',value.toLocaleString()),text('span',name));return n;}));
  $('genNoticeSummary').textContent=`Generation scope & notes · ${p.warnings.length} notices`;$('genNoticeContent').replaceChildren(...p.warnings.map(w=>text('p',w,'warning-item')));
- $('genExportHeading').textContent=`${p.fragments.length} named text objects ready to export`;renderGenList();renderGenDetail();
+ renderFidelity();renderGenList();renderGenDetail();
 }
 function renderGenList(){
  const rows=genRows();if(!rows.some(f=>f.id===genSelected))genSelected=rows[0]?.id||null;$('genCount').textContent=rows.length+' objects';
@@ -1402,13 +1732,31 @@ function renderGenDetail(){
  const warning=text('div','','review-alert block');warning.id='genNameWarning';warning.hidden=true;controls.append(warning);
  name.addEventListener('input',()=>{f.name=name.value;genDirty=true;warning.hidden=G.safeName(f.name)&&!generationPlan.fragments.some(v=>v!==f&&v.name===f.name)&&!generationPlan.sections.some(v=>v.name===f.name)&&!generationPlan.fields.some(v=>v.name===f.name)&&!['Form','Page1','BodyArea'].includes(f.name);warning.textContent='Use a valid, unique object name before exporting.';renderGenList();});
  labelInput.addEventListener('input',()=>{f.label=labelInput.value;genDirty=true;});
- body.append(controls,diffColumn('OBJECT CONTENT · WORDING IS NOT EDITED HERE',f.text,null,'new'));
- body.append(text('p',`Source paragraph ${f.sourceIndex+1} · characters ${f.sourceStart+1}–${f.sourceEnd} · part ${f.part} of ${f.totalParts}. Change the maximum fragment length and rebuild to split differently.`,'word-location'));
+ body.append(controls);
+ if(f.rich){body.append(text('div','SOURCE-FORMATTED CONTENT','small-label'),R.preview(f),text('p','Browser approximation, not a Word/Adobe render. Bracketed fields are blank in the exported XDP.','editor-hint'));const fonts=[...new Set(f.rich.runs.map(r=>(r.style.font||f.rich.base.font)+' '+(r.style.size||f.rich.base.size)+'pt'))];body.append(text('p','Resolved typography: '+fonts.join(' · '),'word-location'));}
+ else body.append(diffColumn('UNIFORM CONTENT · WORD FORMATTING IS DISABLED',f.text,null,'new'));
+ body.append(text('p',`Source paragraph ${f.sourceIndex+1} · characters ${f.sourceStart+1}–${f.sourceEnd} · part ${f.part} of ${f.totalParts}. Paragraphs stay intact by default. To split, turn off Keep Word paragraphs intact and rebuild; the report will flag the introduced line boundaries.`,'word-location'));
  if(f.fields.length){body.append(text('div','These are empty, unbound XFA fields. The Word sample values are not copied. Each occurrence gets a separate field; configure binding, type and reuse in Designer.','review-alert'));for(const field of f.fields)body.append(text('p',`⟦FIELD:${field.index}⟧  ${field.sourceName} → ${field.name}`,'field-map-line'));}
  if(f.list?.continuation)body.append(text('div','Continuation of a long list item. The original marker appears only on the first part; the item is not renumbered.','review-alert'));
  panel.append(body);
 }
 $('genSearch').addEventListener('input',()=>{if(!generationPlan)return;genLimit=150;renderGenList();renderGenDetail();});
+function renderFidelity(){
+ const p=generationPlan,losses=p.issues.filter(i=>i.severity==='loss'),reviews=p.issues.filter(i=>i.severity!=='loss');
+ $('fidelityPanel').classList.toggle('has-loss',!!losses.length);$('fidelityHeading').textContent=losses.length?'Known differences need your review':'Supported source formatting is mapped';
+ $('fidelityBadge').textContent=losses.length?losses.length+' detected losses':'Visual check still required';
+ $('fidelitySummary').textContent=losses.length?'The items below cannot be reproduced exactly by this converter. Correct the source/settings, or explicitly allow a draft. No differences are silently approved.':'No implemented loss check was triggered. This is not proof of an identical render: verify the exported form in Adobe against Word.';
+ $('fidelityFonts').textContent='Source fonts: '+(p.fonts.length?p.fonts.join(', '):'no source font metadata; selected fallback used')+'. Font files are not embedded.';
+ $('fidelityDetailSummary').textContent=`${losses.length} detected losses · ${reviews.length} renderer/verification notes`;
+ $('fidelityIssues').replaceChildren(...[...losses,...reviews].map(i=>{const row=text('div','','fidelity-issue '+i.severity);row.append(text('strong',(i.severity==='loss'?'LOSS · ':'CHECK · ')+i.location),text('p',i.message));return row;}));
+ $('fidelityDetails').open=!!losses.length;$('allowLossyLabel').hidden=!losses.length;
+ p.options.allowLossy=!!losses.length&&$('genAllowLossy').checked;
+ $('exportGeneratedXdp').disabled=!!losses.length&&!p.options.allowLossy;
+ $('exportGeneratedXdp').textContent=p.options.allowLossy?'Export draft XDP ↓':'Export new XDP ↓';
+ $('genExportHeading').textContent=losses.length&&!p.options.allowLossy?'Review the detected losses first':p.options.allowLossy?'Draft export allowed — known differences remain':p.fragments.length+' named rich-text objects ready';
+}
+$('genAllowLossy').addEventListener('change',()=>{if(generationPlan){genDirty=true;renderFidelity();}});
+$('exportFidelity').addEventListener('click',()=>{if(!generationPlan)return;clearError();try{download(JSON.stringify(G.fidelityReport(generationPlan),null,2),generatedBase()+'.fidelity.json','application/json');status('Fidelity report exported. Detected losses and unverified rendering are recorded explicitly.');}catch(e){fail(e);}});
 function generatedBase(){return (files.docx?.name||'word-form').replace(/\.docx$/i,'').replace(/[<>:"/\\|?*\u0000-\u001F]/g,'_');}
 $('exportGeneratedXdp').addEventListener('click',()=>{if(!generationPlan)return;clearError();try{const out=G.createXdp(generationPlan);download(out.bytes,generatedBase()+'.generated.xdp','application/vnd.adobe.xdp+xml');status(`Exported ${out.objects} text objects and ${out.fields} blank field placeholders. XML/text/reference checks passed. Open the XDP in Designer to validate layout and configure fields.`);}catch(e){fail(e);}});
 $('exportObjectMap').addEventListener('click',()=>{if(!generationPlan)return;clearError();try{download(JSON.stringify(G.manifest(generationPlan),null,2),generatedBase()+'.objects.json','application/json');status('Object/source map exported. This contains document wording; store it securely. It documents the generated template and is not a review-import file.');}catch(e){fail(e);}});
