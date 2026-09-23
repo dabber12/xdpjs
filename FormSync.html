@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'none'">
 <meta name="referrer" content="no-referrer">
-<title>FormSync — local DOCX ↔ XDP review</title>
+<title>FormSync — compare or create XDP locally</title>
 <style>:root{--ink:#142f35;--muted:#5c7076;--line:#dbe5e5;--paper:#f4f7f6;--white:#fff;--teal:#087b6f;--pale:#e9f4ef;--orange:#9c5918;--red:#a03343;--shadow:0 5px 22px #173d3910}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #40b3ab;outline-offset:3px}button{transition:background .15s,box-shadow .15s}input[type=checkbox]{accent-color:var(--teal);width:15px;height:15px;vertical-align:middle}a{color:var(--teal)}h1,h2,h3,p{margin-top:0}h2{font-size:19px;letter-spacing:-.3px;margin:0}h3{font-size:17px;letter-spacing:-.2px}small{font-size:11px}.muted{color:var(--muted);font-size:12px}code{font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;background:#f0f4f4;padding:2px 4px;border-radius:3px}.sr-only,.skip:not(:focus){position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip:focus{position:fixed;z-index:100;background:white;padding:14px}.topbar{max-width:1450px;margin:auto;display:flex;align-items:center;gap:28px;padding:23px 48px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-size:23px;font-weight:730;letter-spacing:-.8px}.brand small{display:block;font-size:8px;letter-spacing:1.75px;margin-top:-2px;color:var(--muted)}.brand-mark{height:41px;width:41px;display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;border-radius:11px;font-size:25px;position:relative}.brand-mark span{position:absolute;font-size:15px;bottom:1px;right:5px;color:#8fdec7}.local-badge{margin-left:auto;display:flex;gap:7px;align-items:center;font-size:12px;color:var(--muted)}.dot{height:7px;width:7px;background:var(--teal);border-radius:50%;display:inline-block}main{max-width:1450px;margin:auto;padding:0 48px}.intro{padding:39px 0 30px;display:flex;gap:45px;align-items:center;justify-content:space-between}.eyebrow,.small-label{font-size:10px;font-weight:750;letter-spacing:1.5px}.eyebrow{color:var(--teal);margin-bottom:15px}.intro h1{font-size:clamp(29px,3vw,43px);line-height:1.16;letter-spacing:-1.65px;margin-bottom:15px;font-weight:740}.intro h1 span{color:var(--teal)}.intro p{color:var(--muted);line-height:1.65;margin:0}.intro-note{border-left:2px solid #bcd7ce;padding:4px 0 5px 24px;max-width:320px}.intro-note p{font-size:13px;margin:8px 0 15px}.text-button{border:0;background:none;color:var(--teal);padding:0;font-weight:650;font-size:12px}.text-button:hover{text-decoration:underline}.primary,.secondary,.quiet{border:1px solid transparent;border-radius:7px;padding:10px 16px;font-size:12px;font-weight:650;white-space:nowrap}.primary{background:var(--teal);color:#fff;box-shadow:0 2px 3px #0b5b4215}.primary:hover:not(:disabled){background:#04675d}.primary span{margin-left:12px}.secondary{background:white;border-color:#cbdad8;color:var(--ink)}.secondary:hover:not(:disabled){background:#edf5f2}.quiet{background:transparent;color:var(--muted);padding:8px 10px}.quiet:hover:not(:disabled){background:#e7eeeb;color:var(--ink)}.load-panel{background:white;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:23px 24px 0}.section-head{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:18px}.section-head h2{display:flex;align-items:center;gap:10px}.step{height:24px;width:24px;border:1px solid var(--line);border-radius:50%;font-size:10px;display:inline-flex;align-items:center;justify-content:center;color:var(--teal)}.file-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.file-zone{padding:20px 16px;border:1px dashed #bdcfcd;border-radius:9px;display:flex;gap:13px;align-items:center;min-width:0;background:#fcfdfc}.file-zone.dragover{border:2px solid var(--teal);background:var(--pale)}.file-icon{width:39px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;background:#e9eff8;color:#315480;border:1px solid #cfdae9;border-radius:6px;font-weight:750;font-size:17px}.xdp-icon{font-family:monospace;font-size:13px;background:var(--pale);border-color:#c5dcd3;color:var(--teal)}.file-copy{flex:1;min-width:0}.file-copy .small-label{font-size:9px;letter-spacing:1px;color:var(--muted)}.file-name{font-size:15px;font-weight:650;overflow-wrap:anywhere;margin:4px 0}.file-copy .muted{font-size:11px}.settings-bar{display:flex;gap:15px;align-items:center;justify-content:space-between;padding:20px 0 16px}.checks{display:flex;gap:17px;flex-wrap:wrap;color:var(--muted);font-size:11px}.checks label{display:flex;align-items:center;gap:5px}.advanced{border-top:1px solid var(--line);font-size:12px;padding:11px 0;color:var(--muted)}summary{cursor:pointer;font-size:12px;font-weight:650;list-style-position:outside}summary::marker{color:var(--teal)}.advanced summary{list-style-position:inside}.advanced-grid{padding:15px 0;display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:24px;align-items:center}.advanced-grid label{font-size:11px}.advanced-grid select{display:block;margin-top:6px;width:100%}select{border:1px solid #ccdad7;border-radius:6px;background:white;padding:8px;color:var(--ink)}.advanced-grid p{margin:0;font-size:12px}.status{padding:13px 3px;font-size:12px;color:var(--muted);min-height:44px}.status.busy{color:var(--teal);font-weight:600}.error{border:1px solid #ecc4c9;background:#fff1f2;color:#8c2736;border-radius:8px;padding:15px 18px;white-space:pre-wrap;margin:10px 0 20px;font-size:13px}.results-head{margin:12px 0 18px}.inline-actions{display:flex;gap:7px;align-items:center}.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}.stat{background:white;border:1px solid var(--line);border-radius:9px;padding:15px 18px;display:flex;gap:12px;align-items:center}.stat strong{font-size:26px;letter-spacing:-1px;font-weight:700}.stat span{font-size:11px;color:var(--muted);line-height:1.35}.stat.emphasis{background:#e5f1ea;border-color:#c7ddd0}.stat.emphasis strong{color:var(--teal)}.notices{padding:12px 18px;background:#eef2ed;border:1px solid #d8e1d4;border-radius:8px;margin-bottom:21px;color:#465b4c}.notices summary{margin-left:13px}.notices p{font-size:12px;margin:10px 0 0}.notices .warning-item{padding-top:8px;border-top:1px solid #dbe4d7}.notices code{font-size:11px;background:transparent}.review-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 0 13px}.tabs{display:flex;gap:3px;background:#e6eeea;border-radius:7px;padding:4px}.tab{padding:7px 11px;border:0;background:transparent;color:var(--muted);border-radius:5px;font-size:11px;font-weight:650;white-space:nowrap}.tab.active{background:white;box-shadow:0 1px 5px #18362b15;color:var(--ink)}.search-box{display:flex;align-items:center;gap:9px;background:white;border:1px solid var(--line);border-radius:7px;padding:0 11px;min-width:220px}.search-box span{font-size:24px;color:var(--muted)}.search-box input{background:none;border:0;padding:10px 0;outline:none;width:100%;font-size:12px;color:var(--ink)}.review-grid{display:grid;grid-template-columns:minmax(250px,31%) minmax(0,1fr);gap:18px;align-items:start}.item-panel{background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden}.list-heading{display:flex;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px}.list-heading span+span{font-size:8px;letter-spacing:1px;padding-top:2px}.item-list{max-height:640px;overflow-y:auto}.item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #e6ecea;background:white;padding:16px 16px 14px;position:relative;color:var(--ink)}.item:last-child{border-bottom:0}.item:hover{background:#f5f9f7}.item.selected{background:#edf6f0}.item.selected:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal)}.item-top{display:flex;gap:8px;align-items:center;margin-bottom:6px}.item-name{font-size:12px;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.item-score{margin-left:auto;font:10px ui-monospace,monospace;color:var(--muted);white-space:nowrap}.item-preview{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:9px;line-height:1.5}.item-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}.badge{font-size:9px;font-weight:650;padding:3px 6px;border-radius:4px;line-height:1.3;background:#edf1ef;color:#5a6c62}.badge.suggested{background:#e7f3ed;color:#1b7251}.badge.ambiguous,.badge.unmatched{background:#fff1db;color:#8d5416}.badge.approved{background:#087b6f;color:white}.badge.rejected{background:#ebeff0;color:#566670}.badge.blocked{background:#fbe9eb;color:#9b384b}.badge.unchanged{background:#eff3f1;color:#607468}.badge.hidden{background:#f0eafa;color:#775791}.detail-panel{background:white;border:1px solid var(--line);border-radius:10px;min-height:450px;overflow:hidden;box-shadow:var(--shadow)}.empty-state{text-align:center;max-width:420px;margin:100px auto;padding:0 20px;color:var(--muted)}.empty-state h3{color:var(--ink);margin:14px 0 8px}.empty-state p{font-size:13px}.empty-icon{font-size:29px;color:var(--teal);width:53px;height:53px;border-radius:50%;background:var(--pale);margin:auto;padding-top:4px}.detail-head{padding:20px 22px 16px;border-bottom:1px solid var(--line)}.detail-title-row{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.detail-title-row h3{margin:0 0 5px;font-size:20px;overflow-wrap:anywhere}.detail-kind{font-size:11px;color:var(--muted)}.detail-path{display:block;color:#6e7f80;background:#f3f6f5;margin-top:12px;font-size:10px;padding:8px 10px;overflow-wrap:anywhere}.detail-body{padding:20px 22px}.match-info{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;color:var(--muted);margin-bottom:14px}.match-info strong{font-weight:650;color:var(--ink)}.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.text-column{border:1px solid var(--line);border-radius:7px;overflow:hidden}.column-label{padding:9px 12px;background:#f4f7f5;border-bottom:1px solid var(--line);font-size:9px;font-weight:700;letter-spacing:1px}.text-content{padding:14px 13px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;max-height:280px;overflow:auto;min-height:113px}.text-content del{background:#fde7e7;color:#a02b3e;text-decoration:line-through;text-decoration-thickness:1px}.text-content ins{background:#d9f1e2;color:#136641;text-decoration:none;border-bottom:1px solid #7dbb98}.word-location{font-size:11px;color:var(--muted);margin:10px 0 14px;overflow-wrap:anywhere}.review-alert{padding:10px 12px;background:#fff7e9;border:1px solid #eddcc0;border-radius:6px;font-size:11px;color:#805b29;margin:12px 0}.review-alert.block{background:#fff0f1;border-color:#ebcbd0;color:#97364a}.detail-disclosure{border-top:1px solid var(--line);padding:13px 0 0;margin-top:15px}.detail-disclosure summary{font-size:12px;list-style-position:inside}.mapping-controls{margin-top:12px}.mapping-controls>label{display:block;font-size:11px;color:var(--muted)}.mapping-controls select,.mapping-controls input{width:100%;margin:6px 0 10px;font-size:12px}.mapping-controls input{border:1px solid #ccdad7;padding:9px;border-radius:6px}.search-results{max-height:190px;overflow-y:auto;border:1px solid var(--line);border-radius:6px}.source-option{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #e4ede7;background:#f8fbf8;padding:10px 12px;color:var(--ink);font-size:12px}.source-option:hover{background:#eaf3ed}.source-option small{display:block;color:var(--muted);font-size:9px;margin-bottom:4px}.edit-label{display:block;font-size:11px;color:var(--muted);margin:15px 0 6px}textarea{width:100%;border:1px solid #c5d6cd;border-radius:6px;padding:11px;resize:vertical;min-height:110px;font-size:13px;color:var(--ink);line-height:1.6}.editor-hint{font-size:10px;color:var(--muted);margin:6px 0 10px}.edit-row{display:flex;gap:9px;align-items:center}.review-note{margin-top:15px}.review-note label{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}.review-note input{width:100%;border:1px solid var(--line);padding:8px 10px;border-radius:6px;font-size:12px}.detail-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);background:#fbfcfb;padding:15px 22px}.action-left{display:flex;gap:7px;align-items:center}.detail-nav{font-size:11px;color:var(--muted);padding:0 22px 14px;display:flex;justify-content:space-between;align-items:center;background:#fbfcfb}.detail-nav .quiet{padding:4px 7px}.unmatched-section{margin:20px 0 26px;padding:17px 20px;background:white;border:1px solid var(--line);border-radius:9px}.unmatched-section summary{margin-left:13px}.unmatched-section>p{margin:14px 0}.word-item{padding:12px 0;border-top:1px solid var(--line);font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.word-item small{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.export-panel{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 28px;border:1px solid #c5dacf;background:#e5f1e9;border-radius:11px}.export-panel .small-label{color:var(--teal);font-size:9px}.export-panel h2{margin:8px 0 5px;font-size:23px}.export-panel p{margin:0;font-size:12px;color:#4c6960}.validation-note{font-size:11px;line-height:1.65;color:var(--muted);padding:12px 3px 0}footer{border-top:1px solid var(--line);margin-top:23px;padding:19px 0 25px;display:flex;align-items:center;gap:25px;color:var(--muted);font-size:10px}footer span:nth-child(2){margin-left:auto}footer .text-button{font-size:10px}dialog{border:1px solid var(--line);border-radius:13px;max-width:740px;width:calc(100% - 32px);max-height:86vh;padding:0;box-shadow:0 25px 100px #18382944;color:var(--ink)}dialog::backdrop{background:#142f3580;backdrop-filter:blur(3px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 25px;border-bottom:1px solid var(--line)}.help-body{padding:24px 28px 30px}.help-body h3{margin:23px 0 8px;font-size:15px}.help-body h3:first-child{margin-top:0}.help-body p{font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.8}.page-more{padding:10px 16px;width:100%;text-align:center;background:#f0f6f3;border:0;color:var(--teal);font-weight:650;font-size:12px}
 @media(min-width:1500px){.intro{padding-top:48px;padding-bottom:35px}}
@@ -14,36 +14,56 @@
 @media(max-width:480px){.local-badge{display:none}.topbar .quiet{margin-left:auto}.file-icon{display:none}.section-head>.muted{display:none}.diff-grid{grid-template-columns:1fr}.stat{padding:9px}.stat span{font-size:9px}.stat strong{font-size:22px}.inline-actions{gap:2px}.inline-actions button{font-size:10px;padding:7px 9px}.match-info{align-items:flex-start;flex-direction:column;gap:4px}.detail-actions{flex-wrap:wrap}.settings-bar>.primary{font-size:11px;padding:10px}.advanced-grid{grid-template-columns:1fr}.intro h1{font-size:30px}}
 [hidden]{display:none!important}
 @media print{.topbar,.intro,.load-panel,.review-toolbar,.item-panel,.detail-actions,.export-panel,footer{display:none}.review-grid{display:block}main{padding:10px}.detail-panel{border:0;box-shadow:none}.text-content{max-height:none}}
+
+/* 1.2 authoring workspace */
+.mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 20px}.mode-option{background:#fff;border:1px solid var(--line);border-radius:9px;text-align:left;padding:16px 20px;color:var(--ink)}.mode-option.active{background:#edf6f0;border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}.mode-option strong,.mode-option span{display:block}.mode-option strong{font-size:14px}.mode-option span{font-size:11px;margin-top:5px;color:var(--muted)}.mode-option em{font:700 8px system-ui,sans-serif;letter-spacing:.5px;font-style:normal;background:var(--teal);color:#fff;padding:3px 5px;border-radius:3px;margin-left:7px;vertical-align:middle}.file-grid.single-file{grid-template-columns:1fr}.create-settings{border-top:1px solid var(--line);padding:19px 0 22px}.generator-options{display:grid;grid-template-columns:2fr 1.6fr 1fr;gap:14px 18px}.generator-options label{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--muted)}.generator-options input,.generator-options select{width:100%;min-height:38px;border:1px solid #cbd8d1;border-radius:6px;padding:8px 10px;font-size:13px;background:#fff;color:var(--ink)}.create-explainer{font-size:12px;line-height:1.7;color:var(--muted);margin:15px 0 10px;max-width:1000px}.placeholder-option{display:flex!important;align-items:center;gap:8px;font-size:11px;color:var(--muted);line-height:1.7}.advanced-grid .placeholder-option{grid-column:1/-1}.gen-section-label{padding:12px 16px;background:#f2f5f3;font-size:10px;font-weight:700;color:var(--teal);overflow-wrap:anywhere;border-bottom:1px solid var(--line)}.generation-export{margin-top:22px}.field-map-line{font:11px/1.8 ui-monospace,monospace;overflow-wrap:anywhere;padding:8px 10px;background:#f3f6f4;border-radius:5px}.badge.addition{color:#2e6578;background:#e7f1f7}.review-alert .text-button{display:block;text-align:left;font-size:11px;margin:7px 0}.review-toolbar p{font-size:12px;margin:3px 0}.review-toolbar{gap:12px}.tabs{flex-wrap:wrap}.genDetail h3{overflow-wrap:anywhere}
+@media(max-width:820px){.generator-options{grid-template-columns:1fr 1fr}.mode-option{padding:13px 14px}.mode-option strong{font-size:13px}.mode-option span{font-size:10px}.intro-note{display:block;max-width:none}.intro{flex-direction:column}.intro-note .small-label,.intro-note p{display:none}.intro-note .text-button{margin:0}.intro{gap:10px}}
+@media(max-width:480px){.mode-switch{grid-template-columns:1fr;gap:7px}.mode-option span{margin-top:3px}.generator-options{grid-template-columns:1fr 1fr}.generator-options label:first-child,.generator-options label:nth-child(2){grid-column:1/-1}.tabs .tab{flex:initial}.genDetail .detail-head h3{font-size:17px}.stats{grid-template-columns:repeat(5,minmax(0,1fr))}.stat{min-width:0}.mode-option em{font-size:7px}.file-copy{min-width:0}.file-name{overflow-wrap:anywhere}.create-settings .placeholder-option{align-items:flex-start}}
 </style>
 </head>
 <body>
 <a class="skip" href="#workspace">Skip to workspace</a>
 <header class="topbar"><div class="brand"><span class="brand-mark" aria-hidden="true">F<span>↔</span></span><span>FormSync<small>DOCUMENT RECONCILIATION</small></span></div><div class="local-badge"><span class="dot"></span>Local files. Local processing.</div><button class="quiet" id="helpButton">How it works</button></header>
 <main id="workspace">
-<section class="intro"><div><div class="eyebrow">DOCX → XDP · TEXT REVIEW</div><h1>Keep the wording.<br><span>Lose the manual checking.</span></h1><p>Compare your Word source with an Adobe XDP template.<br>Review the differences. Export only the changes you approve.</p></div><div class="intro-note"><span class="small-label">YOUR FILES STAY HERE</span><p>No uploads, no server, no account.<br>Nothing is saved between sessions unless you export a review file.</p><button class="text-button" id="demoButton">Explore a built-in example <span aria-hidden="true">↗</span></button></div></section>
+<section class="intro"><div><div class="eyebrow">DOCX → XDP · TEXT REVIEW</div><h1 id="introTitle">Keep the wording.<br><span>Lose the manual checking.</span></h1><p id="introText">Compare your Word source with an Adobe XDP template.<br>Review the differences. Export only the changes you approve.</p></div><div class="intro-note"><span class="small-label">YOUR FILES STAY HERE</span><p>No uploads, no server, no account.<br>Nothing is saved between sessions unless you export a review file.</p><button class="text-button" id="demoButton">Explore a built-in example <span aria-hidden="true">↗</span></button></div></section>
+<div class="mode-switch" role="group" aria-label="Workspace mode"><button id="modeCompare" class="mode-option active" aria-pressed="true"><strong>Compare &amp; update</strong><span>Review Word against an existing XDP</span></button><button id="modeCreate" class="mode-option" aria-pressed="false"><strong>Create XDP from Word <em>NEW</em></strong><span>Split text into named, editable form objects</span></button></div>
 <section class="load-panel" aria-labelledby="loadHeading"><div class="section-head"><h2 id="loadHeading"><span class="step">01</span> Choose your files</h2><span class="muted">Word is the source of truth</span></div>
-<div class="file-grid"><div class="file-zone" id="docxZone"><div class="file-icon" aria-hidden="true">W</div><div class="file-copy"><label class="small-label" for="docxInput">APPROVED WORD SOURCE</label><div id="docxName" class="file-name">Choose a .docx file</div><div id="docxMeta" class="muted">Drag a file here, or browse · up to 50 MiB</div></div><button id="docxBrowse" class="secondary">Browse</button><input id="docxInput" type="file" accept=".docx" class="sr-only" tabindex="-1"></div>
+<div class="file-grid" id="fileGrid"><div class="file-zone" id="docxZone"><div class="file-icon" aria-hidden="true">W</div><div class="file-copy"><label class="small-label" for="docxInput">APPROVED WORD SOURCE</label><div id="docxName" class="file-name">Choose a .docx file</div><div id="docxMeta" class="muted">Drag a file here, or browse · up to 50 MiB</div></div><button id="docxBrowse" class="secondary">Browse</button><input id="docxInput" type="file" accept=".docx" class="sr-only" tabindex="-1"></div>
 <div class="file-zone" id="xdpZone"><div class="file-icon xdp-icon" aria-hidden="true">&lt;/&gt;</div><div class="file-copy"><label class="small-label" for="xdpInput">EXISTING FORM TEMPLATE</label><div id="xdpName" class="file-name">Choose an .xdp file</div><div id="xdpMeta" class="muted">Drag a file here, or browse · up to 50 MiB</div></div><button id="xdpBrowse" class="secondary">Browse</button><input id="xdpInput" type="file" accept=".xdp,.xml" class="sr-only" tabindex="-1"></div></div>
-<div class="settings-bar"><div class="checks"><label><input id="includeHeaders" type="checkbox" checked> Word headers &amp; footers</label><label><input id="includeCaptions" type="checkbox" checked> XDP field captions</label><label><input id="includeNotes" type="checkbox"> Word footnotes &amp; endnotes</label></div><button id="compareButton" class="primary" disabled>Compare wording <span aria-hidden="true">→</span></button></div>
-<details class="advanced"><summary>Matching options</summary><div class="advanced-grid"><label>Minimum similarity <select id="threshold"><option value="0.45">45% · broader suggestions</option value="0.55" selected>55% · balanced</option value="0.7">70% · more conservative</option></select></label><label>Join adjacent Word paragraphs <select id="groupSize"><option value="1">One paragraph only</option value="3" selected>Up to 3 paragraphs</option><option value="5">Up to 5 paragraphs</option></select></label><p>Scores measure textual similarity, not correctness. Short, shared or close-scoring matches are flagged. Every update needs approval.</p></div></details>
+<div class="settings-bar"><div class="checks"><label><input id="includeHeaders" type="checkbox" checked> Word headers &amp; footers</label><label id="captionOption"><input id="includeCaptions" type="checkbox" checked> XDP field captions</label><label><input id="includeNotes" type="checkbox"> Word footnotes &amp; endnotes</label></div><button id="generateButton" class="primary" disabled hidden>Build object preview →</button><button id="compareButton" class="primary" disabled>Compare wording <span aria-hidden="true">→</span></button></div>
+<details class="advanced" id="compareOptions"><summary>Matching &amp; placeholder options</summary><div class="advanced-grid"><label>Minimum similarity <select id="threshold"><option value="0.45">45% · broader suggestions</option value="0.55" selected>55% · balanced</option value="0.7">70% · more conservative</option></select></label><label>Join adjacent Word paragraphs <select id="groupSize"><option value="1">One paragraph only</option value="3" selected>Up to 3 paragraphs</option><option value="5">Up to 5 paragraphs</option></select></label><label class="placeholder-option"><input id="includePlaceholders" type="checkbox" checked> Recognise literal field placeholders: {{name}}, &lt;&lt;name&gt;&gt;, «name», ${name}</label><p>Scores measure textual similarity, not correctness. Short, shared or close-scoring matches are flagged. Every update needs approval.</p></div></details>
+<div id="createOptions" class="create-settings" hidden>
+<div class="generator-options"><label>Form title<input id="genTitle" type="text" maxlength="200" value="Word form"></label><label>Maximum characters per object<input id="genMaxChars" type="number" min="100" max="4000" step="100" value="800"></label><label>Page size<select id="genPage"><option value="A4">A4</option><option value="Letter">US Letter</option></select></label><label>Page margin (mm)<input id="genMargin" type="number" min="10" max="35" value="18"></label><label>Body typeface<select id="genFont"><option>Arial</option><option>Times New Roman</option><option>Helvetica</option><option>Courier</option></select></label><label>Body size (pt)<input id="genFontSize" type="number" min="8" max="16" step="0.5" value="10"></label></div>
+<p class="create-explainer">Paragraphs and headings stay separate. Long paragraphs split at sentence or word boundaries; names come from the heading and wording. Recognised fields become blank, unbound placeholders for configuration in Designer. This creates a text-first template, not a replica of Word’s page layout.</p>
+<label class="placeholder-option"><input id="genPlaceholders" type="checkbox" checked> Treat {{name}}, &lt;&lt;name&gt;&gt;, «name» and ${name} as fields, not static text</label>
+</div>
 </section>
-<div id="status" class="status" role="status" aria-live="polite">Choose both files to start, or explore the example.</div>
+<div id="status" class="status" role="status" aria-live="polite">Choose both files to compare, or switch to Create XDP from Word.</div>
 <div id="error" class="error" role="alert" hidden></div>
 <section id="results" hidden>
 <div class="section-head results-head"><h2><span class="step">02</span> Review the differences</h2><div class="inline-actions"><button class="quiet" id="importReview">Load saved review</button><input type="file" accept=".json" class="sr-only" id="reviewInput" tabindex="-1"><button class="secondary" id="exportReport">Save review · JSON</button><button class="secondary" id="exportCsv">Export list · CSV</button></div></div>
 <div class="stats" id="stats"></div>
 <details class="notices" id="notices"><summary id="noticeSummary">Scope &amp; review notes</summary><div id="noticeContent"></div></details>
-<div class="review-toolbar"><div class="tabs" role="group" aria-label="Review filter"><button data-filter="changes" class="tab active" aria-pressed="true">Changes</button><button data-filter="unmatched" class="tab" aria-pressed="false">Needs mapping</button><button data-filter="unchanged" class="tab" aria-pressed="false">Unchanged</button><button data-filter="approved" class="tab" aria-pressed="false">Approved</button><button data-filter="all" class="tab" aria-pressed="false">All XDP text</button></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find wording or object name…" aria-label="Search XDP review items"></label></div>
+<div class="review-toolbar"><div class="tabs" role="group" aria-label="Review filter"><button data-filter="changes" class="tab active" aria-pressed="true">Changes</button><button data-filter="unmatched" class="tab" aria-pressed="false">Needs mapping</button><button data-filter="unchanged" class="tab" aria-pressed="false">Unchanged</button><button data-filter="approved" class="tab" aria-pressed="false">Approved</button><button data-filter="additions" class="tab" aria-pressed="false">New list items</button><button data-filter="all" class="tab" aria-pressed="false">All items</button></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find wording or object name…" aria-label="Search XDP review items"></label></div>
 <div class="review-grid"><aside class="item-panel" aria-label="XDP text items"><div class="list-heading"><span id="listCount">0 items</span><span>SELECT TO REVIEW</span></div><div id="itemList" class="item-list"></div></aside><section class="detail-panel" id="detailPanel" aria-live="polite"><div class="empty-state"><div class="empty-icon" aria-hidden="true">↔</div><h3>Select an item to compare</h3><p>Review the current XDP text and the suggested wording from Word side by side.</p></div></section></div>
-<details class="unmatched-section"><summary id="wordSummary">Word text with no proposed mapping</summary><p class="muted">These blocks are not used by any current match. They may be new content, out-of-scope wording, or a missed match. FormSync will not create XDP objects automatically. Rejected proposals still count as proposed mappings.</p><div id="wordList"></div><button id="moreWord" class="quiet" hidden>Show more Word blocks</button></details>
+<details class="unmatched-section"><summary id="wordSummary">Word text with no proposed mapping</summary><p class="muted">These blocks are not used by any current match. They may be new content, out-of-scope wording, or a missed match. Anchored list additions appear in the review list; unrelated content needs manual placement. Rejected proposals still count as proposed mappings.</p><div id="wordList"></div><button id="moreWord" class="quiet" hidden>Show more Word blocks</button></details>
 <section class="export-panel"><div><div class="small-label">03 · EXPORT A REVIEWED COPY</div><h2 id="exportHeading">No changes approved yet</h2><p id="exportHint">The original file is never overwritten. Unapproved and unmatched text stays unchanged.</p></div><button id="exportXdp" class="primary" disabled>Export updated XDP <span aria-hidden="true">↓</span></button></section>
 <p class="validation-note"><strong>Before release:</strong> open the exported XDP in your Adobe Designer workflow. Check wrapping, overflow, emphasis, page breaks and runtime behavior. XML checks are not Adobe rendering or schema validation.</p>
 </section>
-<footer><span>FormSync 1.0 · Offline HTML + JavaScript</span><span id="sessionInfo">Files are read only after you select them.</span><button id="resetButton" class="text-button">Clear session</button></footer>
+<section id="generationResults" hidden>
+<div class="section-head results-head"><h2><span class="step">02</span> Review the generated objects</h2><button class="secondary" id="exportObjectMap">Export object map · JSON</button></div>
+<div id="genStats" class="stats"></div>
+<details class="notices" id="genNotices"><summary id="genNoticeSummary">Generation scope &amp; notes</summary><div id="genNoticeContent"></div></details>
+<div class="review-toolbar"><p class="muted">Select an object to inspect its wording and edit its name or label.</p><label class="search-box"><span aria-hidden="true">⌕</span><input id="genSearch" type="search" placeholder="Find a generated object…" aria-label="Search generated text objects"></label></div>
+<div class="review-grid"><aside class="item-panel" aria-label="Generated objects"><div class="list-heading"><span id="genCount">0 objects</span><span>SELECT TO INSPECT</span></div><div id="genObjectList" class="item-list"></div></aside><section id="genDetail" class="detail-panel" aria-live="polite"></section></div>
+<section class="export-panel generation-export"><div><div class="small-label">03 · EXPORT A NEW TEMPLATE</div><h2 id="genExportHeading">Your new XDP is ready</h2><p>Includes every previewed object. Empty floating fields need real bindings in Designer; the Word file is not changed.</p></div><button id="exportGeneratedXdp" class="primary">Export new XDP ↓</button></section>
+<p class="validation-note"><strong>Designer review required:</strong> this is a new, text-first XFA 3.3 template with flowed content. Tables are flattened to cell paragraphs; images and original page layout are not recreated. XML/text checks do not verify Adobe rendering or runtime behaviour.</p>
+</section>
+<footer><span>FormSync 1.2 · Offline HTML + JavaScript</span><span id="sessionInfo">Files are read only after you select them.</span><button id="resetButton" class="text-button">Clear session</button></footer>
 </main>
-<dialog id="helpDialog"><div class="dialog-head"><h2>Text reconciliation, not a form rebuild.</h2><button class="quiet" id="closeHelp" aria-label="Close help">Close ×</button></div><div class="help-body"><h3>Start with approved Word content</h3><p>Select a .docx source and an Adobe LiveCycle / AEM Forms Designer .xdp template, then compare. This application runs from a local HTML file. It contains all its code and makes no network requests.</p><h3>Review before updating</h3><p>Each XDP text block is matched to Word paragraphs. Exact text is separated from suggested and ambiguous matches. Pick an alternative, search the Word source, or edit a replacement. Click <strong>Approve update</strong> only after checking the mapping and wording. No updates are pre-approved.</p><h3>Keep review decisions portable</h3><p>Save a JSON review to retain proposed wording, source mappings and notes. Load it after comparing the same files. Text guards reject stale mappings, and restored approvals always need approval again. The CSV is a human-readable change list, not an import format.</p><h3>Preserve the template</h3><p>Only existing text-node spans in supported static draw values and field captions are patched. Scripts, bindings, geometry, XML namespaces, comments and other packets are not rewritten. UTF-8 / UTF-16 encoding and BOM are preserved. Rich-text wrappers remain in place; changed words inherit nearby run formatting.</p><h3>Know the limits</h3><p>Unmatched wording is not proof that an object should be added or deleted. Field values, choice-list options, tooltip/validation text, images, generated text, inherited prototypes and structural/layout changes are outside the automatic update scope. Scripted or bound objects are blocked for export. Signed/encrypted XDPs are comparison-only. Word revisions use a final-text approximation, not the Word layout engine. List numbering, images and unsaved field results are not reconstructed.</p><p>Rich-text line breaks must retain their existing structure. New paragraphs or empty replacements need Designer review. Word formatting is not imported. A browser cannot validate the Adobe runtime behavior of a form.</p><h3>More reliable recurring reviews</h3><p>Optional: wrap a Word paragraph in a content control and set its <em>Tag</em> to <code>xdp:YOUR_UNIQUE_XDP_OBJECT_ID</code>. Use the object's actual <code>id</code> attribute, not its display name. For multi-paragraph rich text, use <code>xdp:</code> followed by the exact block path shown in the review. IDs must be unique. Tagged matches still require approval.</p><h3>Browser &amp; privacy</h3><p>Use a current desktop Chrome or Edge browser. The app checks for native raw-DEFLATE support. Files and proposals stay in memory; reloading clears them. Exported review reports contain your document text, so protect them like the original files. Browser extensions and your device's security policies remain outside this app's control.</p></div></dialog>
+<dialog id="helpDialog"><div class="dialog-head"><h2>Compare existing forms. Create text-first templates.</h2><button class="quiet" id="closeHelp" aria-label="Close help">Close ×</button></div><div class="help-body"><h3>Compare and update an existing form</h3><p>Select approved Word content and an XDP. Review each suggested text update and each new list item. Nothing is pre-approved. Only supported approved changes enter the exported copy.</p><h3>Lists and floating fields</h3><p>Automatic Word list labels are reconstructed for decimal, alphabetic and Roman numbering. Leading marker punctuation and spacing do not count as a wording change; the actual number, letter and clause still do. List additions are proposed only where a clear, ordered neighbouring list provides a match.</p><p>Supported new items reuse an XDP paragraph or existing plain-text list. Separate draws can be cloned only inside top-to-bottom flowed subforms. Positioned additions are shown but blocked for Designer placement. Any required renumbering must also be approved.</p><p>Recognised Word data fields and XFA embedded floating fields appear as protected ⟦FIELD:1⟧ slots. Saved field display values do not become static text. Compare surrounding wording; field counts and order must agree. Bindings are not verified by field names. Literal placeholder recognition can be disabled.</p><h3>Create XDP from Word</h3><p>Switch modes and select only a DOCX. Choose fragment length and typography, then build the preview. Word headings become named sections. Long paragraphs split at sentence or word boundaries. Each text object has an editable content label and unique, XML-safe name. The limit counts JavaScript UTF-16 text units, including protected markers.</p><p>Recognised field occurrences become separate hidden, blank, unbound text fields with inline XFA references. Configure their real bindings, types and calculations in Designer. Word fonts, inline emphasis, images, tables and page geometry are not converted. Included headers, footers and notes appear as appended sections.</p><h3>Export and validate</h3><p>Comparison exports patch guarded source positions rather than rewriting the whole template. JSON saves a review; CSV exports the change list. Generated templates have their own JSON object/source map; it is documentation, not an import format. Save any files before closing this in-memory session.</p><p>Open exported templates in your Adobe Designer workflow to check wrapping, overflow, page breaks, formatting and runtime behaviour. XML well-formedness and text checks are not Adobe schema or rendering validation. Signed/encrypted comparison targets cannot be exported.</p><h3>Stable recurring mappings</h3><p>A Word content-control tag <code>xdp:OBJECT_ID</code> can link one paragraph to one unique XDP text block. For generated objects, the map records their IDs. A paragraph split across several objects cannot use a single owner ID to map all parts automatically; re-splitting or manual mapping may be needed.</p><h3>Local processing</h3><p>The HTML embeds all JavaScript and CSS. No server, installation, network request or upload is needed. Open it in a current desktop Chrome or Edge browser that permits local HTML, file selection and downloads. Source files and reports can contain confidential text; protect the exports accordingly.</p></div></dialog>
 <noscript><p class="error">JavaScript must be enabled to compare local files.</p></noscript>
-<script>/* FormSync 1.0 — dependency-free, offline DOCX/XDP text reconciliation.
+<script>/* FormSync 1.2 — dependency-free, offline DOCX/XDP text reconciliation.
    All inputs are untrusted. Never inject source markup into the page.
    XML is parsed for meaning, but exports use guarded source-offset patches. */
 (() => {
@@ -182,12 +202,170 @@ function wordParagraphText(p) {
   };
   return visit(p).replace(/\r\n?/g,'\n').trim();
 }
-function parseWordPart(doc,part,story,blocks,warnings) {
+/* Word numbering is defined separately from paragraph runs. Resolve labels before
+   comparing, including inherited paragraph styles and ordinary restarts. */
+const FIELD_RE=/⟦FIELD:(\d+)⟧/g;
+const fieldToken=n=>`⟦FIELD:${n}⟧`;
+const fieldTokens=s=>Array.from(s.matchAll(/⟦FIELD:\d+⟧/g),m=>m[0]);
+const fieldSignature=s=>fieldTokens(s).join('|');
+const childW=(n,k)=>n&&direct(n,c=>isW(c,k));
+const valueW=(n,k,otherwise='')=>{const c=childW(n,k);return c?attrW(c,'val'):otherwise;};
+function labelNumber(n,format){
+  if(format==='none')return '';
+  if(format==='decimal')return String(n);
+  if(format==='decimalZero')return String(n).padStart(2,'0');
+  if(/^(lower|upper)Letter$/.test(format)){
+    if(n<1)return String(n);let s='';for(let v=n;v>0;v=Math.floor((v-1)/26))s=String.fromCharCode(65+(v-1)%26)+s;
+    return format==='lowerLetter'?s.toLowerCase():s;
+  }
+  if(/^(lower|upper)Roman$/.test(format)){
+    if(n<1||n>3999)return String(n);let s='',v=n;for(const [num,letter]of [[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']])while(v>=num){s+=letter;v-=num;}
+    return format==='lowerRoman'?s.toLowerCase():s;
+  }
+  return null;
+}
+function numberingModel(numbering,styles,warnings){
+  const nums=new Map(),abstracts=new Map(),styleMap=new Map();let defaultStyle='';
+  if(styles)for(const s of descendants(styles,n=>isW(n,'style'))){const id=attrW(s,'styleId');styleMap.set(id,s);if(attrW(s,'type')==='paragraph'&&onValue(attrW(s,'default'))&&attrW(s,'default'))defaultStyle=id;}
+  if(numbering){for(const n of elements(numbering.documentElement)){if(isW(n,'abstractNum'))abstracts.set(attrW(n,'abstractNumId'),n);if(isW(n,'num'))nums.set(attrW(n,'numId'),n);}}
+  const fromPr=pr=>{const numPr=childW(pr,'numPr');return numPr?{numId:valueW(numPr,'numId',null),level:valueW(numPr,'ilvl',null)}:{};};
+  function styleProps(id,seen=new Set()){
+    if(!id||seen.has(id))return {};seen.add(id);const s=styleMap.get(id);if(!s)return {};
+    const base=styleProps(valueW(s,'basedOn'),seen),own=fromPr(childW(s,'pPr'));
+    for(const [k,v]of Object.entries(own))if(v!==null)base[k]=v;return base;
+  }
+  function definition(id,seen=new Set()){
+    if(seen.has(id))return null;seen.add(id);const num=nums.get(id);if(!num)return null;
+    let abs=abstracts.get(valueW(num,'abstractNumId'));if(!abs)return null;
+    const linked=valueW(abs,'numStyleLink');
+    if(linked){const other=styleProps(linked).numId;const def=other&&definition(other,seen);if(def)abs=def.abs;else return null;}
+    return {num,abs};
+  }
+  function levelDef(def,lvl){
+    const ov=elements(def.num).find(n=>isW(n,'lvlOverride')&&Number(attrW(n,'ilvl'))===lvl);
+    const l=childW(ov,'lvl')||elements(def.abs).find(n=>isW(n,'lvl')&&Number(attrW(n,'ilvl'))===lvl);
+    if(!l)return null;
+    const format=valueW(l,'numFmt','decimal'),start=Number(valueW(ov,'startOverride',valueW(l,'start','1')));
+    return {format,start:Number.isFinite(start)?start:1,pattern:valueW(l,'lvlText',`%${lvl+1}.`),suffix:valueW(l,'suff','tab'),restart:valueW(l,'lvlRestart',null),legal:!!childW(l,'isLgl')&&onValue(valueW(l,'isLgl')),node:l};
+  }
+  const counters=new Map();
+  return {next(p,story){
+    const pr=childW(p,'pPr'),style=valueW(pr,'pStyle',defaultStyle),props=styleProps(style),own=fromPr(pr);
+    for(const [k,v]of Object.entries(own))if(v!==null)props[k]=v;
+    if(!props.numId||props.numId==='0')return null;
+    const def=definition(props.numId);let lvl=Number(props.level??0);
+    if(props.level==null&&def){const l=elements(def.abs).find(n=>isW(n,'lvl')&&valueW(n,'pStyle')===style);if(l)lvl=Number(attrW(l,'ilvl'));}
+    const d=def&&Number.isInteger(lvl)&&lvl>=0&&lvl<9?levelDef(def,lvl):null;
+    if(!d){warnings.add('Some Word numbering definitions cannot be resolved. Their paragraphs require manual list-label review.');return {unresolved:true,numId:props.numId,level:lvl};}
+    const key=story+'|'+props.numId;let state=counters.get(key);if(!state){state={values:[],last:[]};counters.set(key,state);}
+    state.values[lvl]=state.values[lvl]===undefined?d.start:state.values[lvl]+1;
+    for(let j=lvl+1;j<9;j++){
+      const sub=levelDef(def,j);if(!sub)continue;
+      const trigger=sub.restart===null?j-1:Number(sub.restart)-1;
+      if(trigger>=0&&lvl<=trigger)state.values[j]=undefined;
+    }
+    let unsupported=false;
+    const label=d.format==='bullet'?d.pattern:d.format==='none'?'':d.pattern.replace(/%([1-9])/g,(_,v)=>{
+      const l=Number(v)-1;if(l>lvl)return '';const other=levelDef(def,l);if(!other){unsupported=true;return '?';}
+      const rendered=labelNumber(state.values[l]??other.start,d.legal?'decimal':other.format);if(rendered===null){unsupported=true;return '?';}return rendered;
+    });
+    if(!['decimal','decimalZero','lowerLetter','upperLetter','lowerRoman','upperRoman','bullet','none'].includes(d.format))unsupported=true;
+    if(unsupported){warnings.add('An unsupported Word numbering format was found. Those labels are not guessed; review them in Word.');return {unresolved:true,numId:props.numId,level:lvl};}
+    return {label,level:lvl,numId:props.numId,format:d.format,pattern:d.pattern,suffix:d.suffix==='nothing'?'':d.suffix==='space'?' ':'\t',generated:true};
+  }};
+}
+function dynamicInstruction(code){
+  const m=code.trim().match(/^(MERGEFIELD|DOCPROPERTY|DOCVARIABLE|FORMTEXT|FORMDROPDOWN|FORMCHECKBOX)\b\s*(?:"([^"]+)"|([^\s\\]+))?/i);
+  return m?{kind:m[1].toUpperCase(),name:m[2]||m[3]||m[1]}:null;
+}
+/* Protect recognised template data fields, not all Word fields. SEQ, REF, PAGE,
+   DATE, and arbitrary field expressions keep their saved displayed wording. */
+function wordParagraphContent(p,options={}){
+  const fields=[],root=[],stack=[];let malformed=false;
+  const destination=()=>stack.length?stack[stack.length-1].parts:root;
+  const add=v=>{const parent=stack[stack.length-1];if(!parent||!parent.complex||parent.separated)destination().push(v);};
+  const placeholder=(meta,display)=>{fields.push({...meta,display,index:fields.length+1});return fieldToken(fields.length);};
+  function render(parts){return parts.map(v=>typeof v==='string'?v:renderField(v)).join('');}
+  function renderField(f){const display=render(f.parts),info=dynamicInstruction(f.code);return info?placeholder(info,display):display;}
+  const visit=n=>{
+    if(n.nodeType!==1||skippedWord(n))return;
+    if(n!==p&&isW(n,'p'))return;
+    if(isW(n,'fldSimple')){const field={code:attrW(n,'instr'),parts:[]};add(field);stack.push(field);for(const c of elements(n))visit(c);stack.pop();return;}
+    if(isW(n,'fldChar')){
+      const t=attrW(n,'fldCharType');
+      if(t==='begin'){const f={code:'',parts:[],complex:true,separated:false};add(f);stack.push(f);}
+      else if(t==='separate'){if(stack.length)stack[stack.length-1].separated=true;else malformed=true;}
+      else if(t==='end'){if(stack.length)stack.pop();else malformed=true;}return;
+    }
+    // instrText is handled before the normal skip rule in the child walker.
+    if(isW(n,'sdt')&&!descendants(n,c=>isW(c,'p')).length){
+      const pr=childW(n,'sdtPr'),tag=valueW(pr,'tag');
+      const isField=!!pr&&(!!childW(pr,'dataBinding')||!!childW(pr,'showingPlcHdr')||/^(?:field|xfa|floating):/i.test(tag)||elements(pr).some(c=>isW(c)&&['text','date','dropDownList','comboBox','checkBox'].includes(c.localName)));
+      if(isField&&!tag.startsWith('xdp:')){add({code:'MERGEFIELD "'+(tag||valueW(pr,'alias')||'content-control').replace(/"/g,'')+'"',parts:[wordParagraphText(n)]});return;}
+    }
+    if(isW(n,'t')){add(n.textContent);return;}
+    if(isW(n,'tab')){add('\t');return;}
+    if(isW(n)&&['br','cr'].includes(n.localName)){add('\n');return;}
+    if(isW(n,'noBreakHyphen')){add('\u2011');return;}
+    if(isW(n,'softHyphen')){add('\u00AD');return;}
+    for(const c of elements(n)){
+      if(isW(c,'instrText')){if(stack.length)stack[stack.length-1].code+=c.textContent;continue;}visit(c);
+    }
+  };
+  visit(p);if(stack.length)malformed=true;
+  let text=render(root).replace(/\r\n?/g,'\n').trim();
+  if(options.placeholders!==false){
+    text=text.replace(/\{\{\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*\}\}|<<\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*>>|«\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*»|\$\{\s*([\p{L}_][\p{L}\p{N}_ .:\/-]{0,100})\s*\}/gu,(m,...args)=>placeholder({kind:'Literal placeholder',name:args.slice(0,4).find(Boolean).trim()},m));
+  }
+  // Literal and structural fields can interleave: renumber them in reading order.
+  const ordered=[];text=text.replace(/⟦FIELD:(\d+)⟧/g,(m,n)=>{const f=fields[Number(n)-1];if(!f){malformed=true;return m;}ordered.push({...f,index:ordered.length+1});return fieldToken(ordered.length);});
+  return {text,fields:ordered,rawText:wordParagraphText(p),fieldIssue:malformed?'Malformed or cross-paragraph Word field structure; confirm in Word before updating.':''};
+}
+function parseListLabel(text){
+  // Only the leading list marker is normalised. Punctuation within the clause is
+  // never discarded. Multi-character alphabetic labels and Roman numerals work.
+  const m=text.match(/^(\s*)(\((?:\d+(?:\.\d+)*|[A-Za-z]{1,7})\)(?:\((?:\d+|[A-Za-z]{1,7})\))*|(?:\d+(?:\.\d+)*|[A-Za-z]{1,7})[.)]|[•◦▪●‣–-])([\t \u00a0]+)([\s\S]*)$/);
+  if(!m)return null;
+  const raw=m[2],bullet=/^[•◦▪●‣–-]$/.test(raw),parts=bullet?[raw]:raw.match(/\d+|[A-Za-z]+/g);
+  const canonical=bullet?'bullet':parts.map(v=>/^\d+$/.test(v)?String(Number(v)):v).join('.');
+  const family=bullet?'bullet':parts.map(v=>/^\d+$/.test(v)?'number':/^[A-Z]+$/.test(v)?'upper':'lower').join('/');
+  return {raw,label:raw,parts,canonical,family,indent:m[1],separator:m[3],body:m[4],prefix:m[1]+raw+m[3],generated:false,level:Math.max(0,parts.length-1)};
+}
+function withList(block){
+  const parsed=parseListLabel(block.text);
+  if(parsed)block.list={...parsed,...block.list,body:parsed.body,canonical:parsed.canonical,family:parsed.family,parts:parsed.parts,raw:parsed.raw,indent:parsed.indent,separator:parsed.separator};
+  return block;
+}
+function comparisonKey(text){
+  return normalize(text.split(/\r?\n/).map(line=>{const l=parseListLabel(line);return l?`⟦LIST:${l.canonical}⟧ ${l.body}`:line;}).join(' '));
+}
+function formatListLike(source,donor){
+  const s=source.list||parseListLabel(source.text),d=donor.list||parseListLabel(donor.text);
+  if(!s||!d||!s.parts)return source.text;
+  let at=0;const marker=d.family==='bullet'&&s.family==='bullet'?d.raw:d.parts.length===s.parts.length?d.raw.replace(/\d+|[A-Za-z]+/g,()=>s.parts[at++]):s.raw;
+  return (d.indent||'')+marker+(d.separator||' ')+s.body;
+}
+
+// Read outline levels through paragraph-style inheritance. This metadata is used
+// only by the generator; it does not infer headings from text length or boldness.
+function paragraphMetadataModel(styles){
+  const map=new Map();let defaultId='';
+  if(styles)for(const s of descendants(styles,n=>isW(n,'style')&&attrW(n,'type')==='paragraph')){map.set(attrW(s,'styleId'),s);if(attrW(s,'default')&&onValue(attrW(s,'default')))defaultId=attrW(s,'styleId');}
+  function props(id,seen=new Set()){
+    if(!id||seen.has(id)||!map.has(id))return {};seen.add(id);const n=map.get(id),base=props(valueW(n,'basedOn'),seen),pr=childW(n,'pPr');
+    const outline=valueW(pr,'outlineLvl',null);if(outline!==null)base.outline=Number(outline);
+    base.styleName=valueW(n,'name',id);return base;
+  }
+  return p=>{const pr=childW(p,'pPr'),styleId=valueW(pr,'pStyle',defaultId),inherited=props(styleId),own=valueW(pr,'outlineLvl',null),level=own===null?inherited.outline:Number(own);
+    const conventional=(styleId+' '+(inherited.styleName||'')).match(/(?:^|\s)heading\s*([1-9])(?:$|\s)/i);
+    let headingLevel=Number.isInteger(level)?(level>=0&&level<9?level+1:0):conventional?Number(conventional[1]):/^title$/i.test(styleId)||/^title$/i.test(inherited.styleName||'')?1:0;
+    return {headingLevel,styleId,styleName:inherited.styleName||styleId};};
+}
+function parseWordPart(doc,part,story,blocks,warnings,model,options={},meta=()=>({})) {
   const paras=descendants(doc,n=>isW(n,'p'));
   const revisions=descendants(doc,n=>isW(n)&&['ins','del','moveTo','moveFrom'].includes(n.localName));
   if(revisions.length)warnings.add('Word tracked changes: inserted/moved-to text is included; deleted/moved-from text is excluded. Review complex paragraph-mark/table revisions in Word.');
-  if(descendants(doc,n=>isW(n)&&['fldChar','fldSimple'].includes(n.localName)).length)warnings.add('Word fields use their saved display values; page numbers, dates and other fields are not recalculated.');
-  if(descendants(doc,n=>isW(n,'numPr')).length)warnings.add('Word list text is read, but automatic bullet/number labels are not expanded.');
+  if(descendants(doc,n=>isW(n)&&['fldChar','fldSimple'].includes(n.localName)).length)warnings.add('Recognised Word data fields are protected placeholders. Other fields retain saved display values and are not recalculated.');
   if(descendants(doc,n=>isW(n,'altChunk')).length)warnings.add('Embedded altChunk content is not read. Convert it to ordinary Word paragraphs first.');
   if(descendants(doc,n=>isW(n,'sym')).length)warnings.add('Font-encoded Word symbols are not decoded. Review those paragraphs in Word.');
   if(descendants(doc,n=>n.namespaceURI===NS.mc&&n.localName==='AlternateContent').length)warnings.add('Word alternate content uses the first Choice branch, not its Fallback. Check text boxes against the source document.');
@@ -197,13 +375,15 @@ function parseWordPart(doc,part,story,blocks,warnings) {
     if(ancestor(p,skippedWord))continue;
     const note=ancestor(p,n=>isW(n)&&['footnote','endnote'].includes(n.localName));
     if(note && Number(attrW(note,'id'))<=0)continue;
-    const text=wordParagraphText(p);if(!text)continue;
-    assert(text.length<=LIMIT.text,`Word paragraph ${ordinal} exceeds the 30,000-character limit.`);
+    const content=wordParagraphContent(p,options),list=model?.next(p,part);
+    let text=content.text;if(list?.label)text=list.label+list.suffix+text;if(!text)continue;
+    assert(text.length<=(options.generation?2000000:LIMIT.text),`Word paragraph ${ordinal} exceeds the ${options.generation?'2,000,000':'30,000'}-character limit.`);
     const cell=ancestor(p,n=>isW(n,'tc'));const box=ancestor(p,n=>isW(n,'txbxContent'));
     const group=cell||box||note||p.parentElement;
     const sdt=ancestor(p,n=>isW(n,'sdt'));let key='';
     if(sdt){const pr=direct(sdt,n=>isW(n,'sdtPr'));const tag=pr && direct(pr,n=>isW(n,'tag'));const value=tag?attrW(tag,'val'):'';if(value.startsWith('xdp:'))key=value.slice(4);}
-    blocks.push({id:`${part}#p${ordinal}`,text,part,story,ordinal,group,key,location:`${story} · paragraph ${ordinal}${cell?' · table cell':''}${box?' · text box':''}`});
+    blocks.push(withList({...meta(p),id:`${part}#p${ordinal}`,text,rawText:content.rawText,fields:content.fields,fieldIssue:content.fieldIssue,list,part,story,ordinal,group,key,location:`${story} · paragraph ${ordinal}${cell?' · table cell':''}${box?' · text box':''}`}));
+    if(content.fieldIssue)warnings.add(content.fieldIssue);
     assert(blocks.length<=LIMIT.blocks,'More than 5,000 Word text blocks. Split this document before comparing.');
   }
 }
@@ -214,19 +394,24 @@ async function readDocx(bytes,options={}) {
   const main=rootRels.find(r=>/\/officeDocument$/.test(r.type)&&!r.external);assert(main,'DOCX main document relationship not found.');
   const part=resolvePart('',main.target);const doc=await zip.xml(part);
   assert(isW(doc.documentElement,'document'),'The main package part is not a WordprocessingML document.');
-  const blocks=[];parseWordPart(doc,part,'Body',blocks,warnings);
   const rp=relPath(part);const rels=zip.entries.has(rp)?relations(await zip.xml(rp)):[];
+  const related=async type=>{const r=rels.find(r=>r.type.endsWith('/'+type)&&!r.external);return r?zip.xml(resolvePart(part,r.target)):null;};
+  const [numbering,styles]=await Promise.all([related('numbering'),related('styles')]);
+  const model=numberingModel(numbering,styles,warnings),meta=paragraphMetadataModel(styles);
+  const blocks=[];parseWordPart(doc,part,'Body',blocks,warnings,model,options,meta);
   const used=new Set(descendants(doc,n=>isW(n)&&['headerReference','footerReference'].includes(n.localName)).map(n=>Array.from(n.attributes).find(a=>a.localName==='id')?.value));
   const seen=new Set([part]);
   for(const r of rels){
     const type=r.type.split('/').pop();
     if(r.external || (!(['header','footer'].includes(type)&&options.headers!==false&&used.has(r.id)) && !(['footnotes','endnotes'].includes(type)&&options.notes)))continue;
     const target=resolvePart(part,r.target);if(seen.has(target))continue;seen.add(target);
-    parseWordPart(await zip.xml(target),target,type[0].toUpperCase()+type.slice(1),blocks,warnings);
+    parseWordPart(await zip.xml(target),target,type[0].toUpperCase()+type.slice(1),blocks,warnings,model,options,meta);
   }
   if(Array.from(zip.entries.keys()).some(k=>/vbaProject\.bin$/i.test(k)))warnings.add('This package contains macros. They are not executed or inspected. Use a trusted, macro-free .docx copy.');
   assert(blocks.reduce((n,b)=>n+b.text.length,0)<=2000000,'Word text exceeds the 2,000,000-character comparison limit. Split the document.');
   assert(blocks.length,'No supported text paragraphs found in DOCX.');
+  if(blocks.some(b=>b.fields?.length))warnings.add('Field placeholders are compared by position and count; saved field values are not static wording. Field-binding identity still requires review. Literal {{name}}, <<name>>, «name» and ${name} placeholders are recognised when enabled.');
+  if(options.generation&&descendants(doc,n=>isW(n)&&['drawing','pict','object'].includes(n.localName)).length)warnings.add('Images, shapes and embedded objects are not generated. Supported text-box paragraphs are read in XML order, not positioned as in Word.');
   return {blocks,warnings:[...warnings],part};
 }
 /* Lexical XML index. DOMParser validates names/entities/namespaces; this scanner
@@ -274,10 +459,12 @@ function xdpPath(node) {
   return '/'+parts.join('/');
 }
 function textSegments(node,map,rich) {
-  const segments=[];let unsafe='';
+  const segments=[];let unsafe='',fieldCount=0;
   const visit=n=>{
     if(n.nodeType===3||n.nodeType===4){const r=map.get(n);assert(r,'Unmapped XML text node.');segments.push({kind:'text',raw:r,text:n.nodeValue});return;}
     if(n.nodeType!==1)return;
+    const embed=rich&&Array.from(n.attributes).find(a=>a.localName==='embed'&&/^https?:\/\/www\.xfa\.org\/schema\/xfa-data\/[\d.]+\/$/.test(a.namespaceURI||''));
+    if(embed&&n.localName==='span'&&n.namespaceURI===NS.xhtml){const raw=map.get(n);segments.push({kind:'field',text:fieldToken(++fieldCount),raw,ref:embed.value,node:n,cached:n.textContent});return;}
     if(rich && n.localName==='br' && n.namespaceURI===NS.xhtml){segments.push({kind:'break',text:'\n'});return;}
     if(rich){
       const allowed=new Set(['body','p','li','span','b','strong','i','em','u','s','strike','sub','sup','a']);
@@ -316,8 +503,11 @@ function readXdp(bytes,options={}) {
       if(!segments.some(s=>s.kind==='text'&&s.text.length))reason='No writable text node';
       const hidden=chain.some(n=>['hidden','invisible','inactive'].includes(n.getAttribute('presence')));
       const id=owner.getAttribute('id')||'';const name=owner.getAttribute('name')||owner.localName;
-      const block={id:path,path,key:id,ownerName:name,kind:kind+(rich?' · rich text':''),text,segments,rich,hidden,blocked:reason||'',node,location:path};
-      blocks.push(block);assert(blocks.length<=LIMIT.blocks,'More than 5,000 XDP text blocks. Split this template before comparing.');
+      const fields=segments.filter(s=>s.kind==='field').map((s,i)=>({index:i+1,ref:s.ref,name:descendants(template,n=>isX(n,'field')&&n.getAttribute('id')===s.ref.replace(/^#/,''))[0]?.getAttribute('name')||s.ref.replace(/^#/,''),token:s.text}));
+      const block=withList({id:path,path,key:id,ownerName:name,kind:kind+(rich?' · rich text':''),text,segments,fields,rich,hidden,blocked:reason||'',node,owner,location:path});
+      const lines=!rich?text.split('\n'):[];
+      if(lines.length>1&&lines.every(line=>!!parseListLabel(line))){let start=0;block.lineChildren=[];for(let i=0;i<lines.length;i++){const child=withList({...block,id:path+'#list-line-'+(i+1),path:path+'#list-line-'+(i+1),text:lines[i],lineParent:block,lineIndex:i,lineStart:start,lineEnd:start+lines[i].length,location:path+' · list line '+(i+1)});delete child.list;withList(child);block.lineChildren.push(child);blocks.push(child);start+=lines[i].length+1;}}
+      else blocks.push(block);assert(blocks.length<=LIMIT.blocks,'More than 5,000 XDP text blocks. Split this template before comparing.');
     };
     if(isX(content,'text')){
       add(content,false,elements(content).length?'Nested markup in a plain XFA text value':'');
@@ -348,6 +538,7 @@ function readXdp(bytes,options={}) {
   if(blocks.some(b=>b.rich))warnings.add('Rich-text tags and style attributes are retained. New wording inherits nearby text-run formatting; review emphasis and line wrapping in Designer.');
   assert(blocks.reduce((n,b)=>n+b.text.length,0)<=2000000,'XDP text exceeds the 2,000,000-character comparison limit. Split the template.');
   assert(blocks.length||excluded.length,'No supported static draw text or field captions were found in the XFA template.');
+  if(blocks.some(b=>b.fields.length))warnings.add('XFA floating-field spans are protected, including their references and cached content. Static text can be updated around them; field counts and order must stay unchanged.');
   return {format,doc,index,blocks,excluded,warnings:[...warnings],signed,originalBytes:bytes};
 }
 // Whitespace is normalized only for matching. Punctuation, case and numbers are
@@ -365,18 +556,136 @@ function makeCandidates(word,maxGroup=3) {
   for(let i=0;i<word.length;i++){
     let text='',parts=[];
     for(let g=0;g<maxGroup && i+g<word.length;g++){
-      const b=word[i+g];if(g && (b.group!==word[i].group || b.part!==word[i].part))break;
-      text+=(g?'\n':'')+b.text;parts.push(i+g);if(text.length>LIMIT.text)break;
-      candidates.push({id:parts.join(','),indices:[...parts],text,location:g?`${word[i].location} – ${b.ordinal}`:b.location,key:g?'':b.key,features:features(text)});
+      const b=word[i+g];if(g && (b.group!==word[i].group || b.part!==word[i].part||word[i].list?.canonical||b.list?.canonical))break;
+      let offset=fieldTokens(text).length;const nextText=b.text.replace(/⟦FIELD:(\d+)⟧/g,(_,n)=>fieldToken(Number(n)+offset));text+=(g?'\n':'')+nextText;parts.push(i+g);if(text.length>LIMIT.text)break;
+      candidates.push({id:parts.join(','),indices:[...parts],text,location:g?`${word[i].location} – ${b.ordinal}`:b.location,key:g?'':b.key,list:g?null:b.list,fields:parts.flatMap(i=>word[i].fields||[]),features:features(text)});
     }
   }
   return candidates;
 }
+function proposalIssue(x,c,word){
+  if(!c)return '';
+  if((c.indices||[]).some(i=>word[i]?.list?.unresolved))return 'Word list numbering could not be resolved; verify its label before updating.';
+  const issue=(c.indices||[]).map(i=>word[i]?.fieldIssue).find(Boolean);if(issue)return issue;
+  if(fieldSignature(x.text)!==fieldSignature(c.text))return 'Floating-field count or order does not match. Map the fields in Designer; do not insert a saved field value as static text.';
+  return '';
+}
+function chooseProposal(row,c,word,method){
+  row.match=c;row.proposed=c?formatListLike(c,row.xdp):'';
+  const same=c&&comparisonKey(row.xdp.text)===comparisonKey(row.proposed);
+  if(same)row.proposed=row.xdp.text;
+  row.status=same?'unchanged':!c?'unmatched':c.score>=.72?'suggested':'ambiguous';
+  row.reason=method||c?.method||'No proposed mapping';row.updateBlocked=proposalIssue(row.xdp,c,word);row.decision='pending';
+  if(row.updateBlocked&&row.status!=='unchanged')row.status='ambiguous';
+}
+function wordListRuns(word){
+  const runs=[];let current=null;
+  word.forEach((b,i)=>{
+    if(!b.list?.canonical||b.list.unresolved){current=null;return;}
+    const key=b.list.generated?b.list.numId:'';
+    if(!current||current.group!==b.group||current.part!==b.part||current.key!==key){current={indices:[],group:b.group,part:b.part,key};runs.push(current);}
+    current.indices.push(i);
+  });return runs;
+}
+function xdpListRuns(rows){
+  const counts=new Map();for(const r of rows)counts.set(r.xdp.owner,(counts.get(r.xdp.owner)||0)+1);
+  const runs=[];let current=null;
+  for(const r of rows){
+    const b=r.xdp;if(!b.list?.canonical){current=null;continue;}
+    const singleDraw=b.rich&&isX(b.owner,'draw')&&counts.get(b.owner)===1;
+    const container=b.lineParent||(b.rich&&!singleDraw?b.node.parentElement:b.owner?.parentElement);
+    const mode=b.lineParent?'lines':b.rich&&!singleDraw?'rich':'draw';
+    if(!current||current.container!==container||current.mode!==mode){current={rows:[],container,mode};runs.push(current);}
+    current.rows.push(r);
+  }return runs;
+}
+function alignListItems(xs,ws){
+  const n=xs.length,m=ws.length;if(n*m>150000)return null;
+  const scores=Array.from({length:n},()=>new Float64Array(m));
+  const xf=xs.map(b=>features(b.list.body)),wf=ws.map(b=>features(b.list.body));
+  for(let i=0;i<n;i++)for(let j=0;j<m;j++)scores[i][j]=similarity(xf[i],wf[j]);
+  const dp=new Float64Array((n+1)*(m+1)),move=new Uint8Array(dp.length),at=(i,j)=>i*(m+1)+j;
+  for(let i=1;i<=n;i++){dp[at(i,0)]=-.5*i;move[at(i,0)]=2;}
+  for(let j=1;j<=m;j++){dp[at(0,j)]=-.5*j;move[at(0,j)]=3;}
+  for(let i=1;i<=n;i++)for(let j=1;j<=m;j++){
+    const sim=scores[i-1][j-1],sameLabel=xs[i-1].list.canonical===ws[j-1].list.canonical;
+    const pair=dp[at(i-1,j-1)]+(sim<.55?-1.2:sim*2-.6)+(sameLabel?.025:0);
+    const del=dp[at(i-1,j)]-.5,ins=dp[at(i,j-1)]-.5;
+    if(pair>=del&&pair>=ins){dp[at(i,j)]=pair;move[at(i,j)]=1;}
+    else if(del>=ins){dp[at(i,j)]=del;move[at(i,j)]=2;}else{dp[at(i,j)]=ins;move[at(i,j)]=3;}
+  }
+  const pairs=[],added=[],missing=[];let i=n,j=m;
+  while(i||j){const k=move[at(i,j)];if(k===1){pairs.push({x:--i,w:--j,score:scores[i][j]});}else if(k===2)missing.push(--i);else added.push(--j);}
+  pairs.reverse();added.reverse();missing.reverse();
+  const quality=pairs.reduce((a,p)=>a+p.score,0)/Math.max(1,n);
+  return {pairs,added,missing,quality,anchor:pairs.some(p=>p.score>=.86)};
+}
+function insertionMode(run,donor,source){
+  let mode=run.mode,blocked='';
+  if(mode==='draw'&&run.rows.length===1)mode=donor.rich?'rich':'expand-text';
+  if(mode==='draw'){
+    const parent=donor.owner?.parentElement;
+    if(!isX(parent,'subform')||parent.getAttribute('layout')!=='tb')blocked='Separate list objects use positioned or unsupported layout. The item is proposed, but placement must be completed in Designer.';
+  }
+  if(mode==='rich'&&!['p','li'].includes(donor.node.localName))blocked='No reusable rich-text paragraph is available for this insertion.';
+  if(donor.blocked)blocked=donor.blocked;
+  if(donor.fields?.length||source.fields?.length)blocked='A new list item contains or would clone floating fields. Create or map those fields in Designer first.';
+  const cloneNode=mode==='draw'?donor.owner:mode==='rich'?donor.node:null;
+  if(cloneNode&&[cloneNode,...descendants(cloneNode,()=>true)].some(n=>n.hasAttribute('use')||n.hasAttribute('usehref')||Array.from(n.attributes).some(a=>a.localName==='href'&&a.value.startsWith('#'))||isX(n,'field')||isX(n,'script')||isX(n,'event')||isX(n,'bind')))blocked='The neighbouring object has references, bindings or active content that cannot safely be cloned.';
+  return {mode,blocked};
+}
+/* List alignment is sequence-aware and body-first: inserting b) does not map the
+   old b) clause to the new item merely because its marker happens to match. */
+function reconcileLists(result){
+  const {word,rows}=result,wruns=wordListRuns(word),xruns=xdpListRuns(rows),belongs=new Map(),anchors=new Map();
+  wruns.forEach((run,ri)=>run.indices.forEach(i=>{belongs.set(i,ri);const key=normalize(word[i].list.body);if(!anchors.has(key))anchors.set(key,new Set());anchors.get(key).add(ri);}));
+  let serial=0;
+  for(const run of xruns){
+    const possible=new Set();
+    for(const r of run.rows){for(const ri of anchors.get(normalize(r.xdp.list.body))||[])possible.add(ri);for(const c of [r.match,...r.alternatives.slice(0,3)])if(c)for(const i of c.indices)if(belongs.has(i))possible.add(belongs.get(i));}
+    const found=[];
+    for(const ri of [...possible].slice(0,30)){
+      const w=wruns[ri],aligned=alignListItems(run.rows.map(r=>r.xdp),w.indices.map(i=>word[i]));
+      if(aligned?.anchor&&aligned.quality>=.65)found.push({run:w,aligned,ri});
+    }
+    found.sort((a,b)=>b.aligned.quality-a.aligned.quality);
+    const best=found[0];if(!best)continue;
+    const tied=found.length>1&&best.aligned.quality-found[1].aligned.quality<.06;
+    if(tied){for(const r of run.rows){r.listNotice='Several Word lists fit this XDP list. Choose the source manually; automatic addition proposals are withheld.';if(r.status!=='unchanged')r.status='ambiguous';}continue;}
+    const groupId='list-'+(++serial),paired=new Set();
+    for(const pair of best.aligned.pairs){
+      const r=run.rows[pair.x],wi=best.run.indices[pair.w],w=word[wi];
+      if(r.match?.method==='Word content-control ID'&&!r.match.indices.includes(wi))continue;
+      const c={...w,id:String(wi),indices:[wi],features:features(w.text),score:pair.score,method:'List sequence + item wording'};
+      chooseProposal(r,c,word,'List sequence + item wording');r.listRun=groupId;r.listMatched=true;r.alternatives=[c,...r.alternatives.filter(v=>v.id!==c.id)].slice(0,8);paired.add(pair.x);
+      if(r.xdp.list.canonical!==w.list.canonical)r.listNotice=`List label changes from ${r.xdp.list.raw} to ${w.list.raw}. The existing XDP marker style is retained.`;
+    }
+    const uniqueBodies=best.run.indices.map(i=>normalize(word[i].list.body));
+    const repeated=new Set(uniqueBodies).size!==uniqueBodies.length||new Set(run.rows.map(r=>normalize(r.xdp.list.body))).size!==run.rows.length;
+    const safe=paired.size===run.rows.length&&!best.aligned.missing.length&&best.aligned.pairs.every(p=>p.score>=.72)&&!repeated;
+    if(!safe){for(const r of run.rows)r.listNotice=(r.listNotice?r.listNotice+' ':'')+'List alignment is incomplete or repeated. Unmapped items need manual review; no structural insertion is authorised.';continue;}
+    const dependencies=run.rows.filter(r=>r.match&&r.xdp.list.canonical!==word[r.match.indices[0]]?.list?.canonical).map(r=>r.id);
+    for(const added of best.aligned.added){
+      const wi=best.run.indices[added],source=word[wi];
+      if(rows.some(r=>r.operation!=='insert'&&!run.rows.includes(r)&&r.match?.indices?.includes(wi)&&comparisonKey(r.xdp.text)===comparisonKey(source.text)))continue;
+      const next=best.aligned.pairs.find(p=>p.w>added),prev=[...best.aligned.pairs].reverse().find(p=>p.w<added);
+      const anchorRow=run.rows[(next||prev).x],side=next?'before':'after',donor=anchorRow.xdp;
+      const {mode,blocked}=insertionMode(run,donor,source),path=donor.path+'#insert-word-'+wi;
+      const c={...source,id:String(wi),indices:[wi],score:1,method:'New item inside an anchored Word list'};
+      const x={...donor,id:path,path,location:path,kind:'New list item · '+(mode==='draw'?'cloned draw':mode==='rich'?'cloned paragraph':'existing text object'),text:'',blocked,fields:[],list:null};
+      const r={id:rows.length,xdp:x,operation:'insert',status:'addition',match:c,alternatives:[],proposed:formatListLike(source,donor),decision:'pending',duplicate:false,reason:c.method,note:'',listRun:groupId,
+        insertion:{mode,donor,anchor:anchorRow.xdp,side,sourceIndex:wi,dependencies,guards:run.rows.map(r=>({id:r.id,sourceIndex:r.match.indices[0]}))}};
+      if(blocked)r.reason=blocked;
+      rows.push(r);
+    }
+  }
+}
+
 async function compare(wordData,xdpData,options={},progress=()=>{}) {
-  const word=wordData.blocks,xdp=xdpData.blocks,candidates=makeCandidates(word,Math.min(5,Math.max(1,options.group||3)));
+  const word=wordData.blocks.map(withList),xdp=xdpData.blocks,candidates=makeCandidates(word,Math.min(5,Math.max(1,options.group||3)));
   const exact=new Map(),index=new Map(),tagged=new Map();
   for(let i=0;i<candidates.length;i++){
-    const c=candidates[i],key=normalize(c.text);if(!exact.has(key))exact.set(key,[]);exact.get(key).push(i);
+    const c=candidates[i],key=comparisonKey(c.text);if(!exact.has(key))exact.set(key,[]);exact.get(key).push(i);
     if(c.key){if(!tagged.has(c.key))tagged.set(c.key,[]);tagged.get(c.key).push(i);}
     const ks=new Set([...c.features.words].map(w=>'w:'+w).concat([...c.features.grams.keys()].map(g=>'g:'+g)));
     for(const k of ks){if(!index.has(k))index.set(k,[]);index.get(k).push(i);}
@@ -389,7 +698,7 @@ async function compare(wordData,xdpData,options={},progress=()=>{}) {
     const explicit=[...new Set(taggedIds)];
     if(explicit.length===1){const c=candidates[explicit[0]];matches.push({...c,score:similarity(f,c.features),method:'Word content-control ID'});}
     else {
-      const exactIds=exact.get(normalize(x.text))||[];
+      const exactIds=exact.get(comparisonKey(x.text))||[];
       if(exactIds.length){for(const id of exactIds.slice(0,8))matches.push({...candidates[id],score:1,method:'Exact text (whitespace normalized)'});}
       else {
         const votes=new Map();const ks=new Set([...f.words].map(w=>'w:'+w).concat([...f.grams.keys()].map(g=>'g:'+g)));
@@ -402,20 +711,23 @@ async function compare(wordData,xdpData,options={},progress=()=>{}) {
         matches.sort((a,b)=>b.score-a.score||a.indices.length-b.indices.length);matches.splice(8);
       }
     }
-    const top=matches[0];const same=top && normalize(x.text)===normalize(top.text);
+    const top=matches[0];const same=top && comparisonKey(x.text)===comparisonKey(top.text);
     const gap=top?top.score-(matches[1]?.score||0):0;
     const duplicate=!!top&&matches.length>1&&Math.abs(top.score-matches[1].score)<.025;
     const status=same?'unchanged':!top?'unmatched':top.method==='Word content-control ID'?'suggested':(gap<.08||top.score<.72||normalize(x.text).length<15)?'ambiguous':'suggested';
     const row={id:i,xdp:x,status,match:top||null,alternatives:matches,proposed:top?.text||'',decision:'pending',duplicate,reason:top?top.method:'No candidate above the similarity threshold',note:''};
+    row.proposed=top?formatListLike(top,x):'';if(same)row.proposed=x.text;row.updateBlocked=proposalIssue(x,top,word);if(row.updateBlocked&&!same)row.status='ambiguous';
     if(x.blocked)row.reason=x.blocked;
     if(explicit.length>1){row.status=same?'unchanged':'ambiguous';row.reason='Duplicate Word content-control IDs; mapping requires review.';}
     rows.push(row);
     if(i%25===0){progress(i,xdp.length);await pause();}
   }
+  const result={word,xdp:xdpData,rows,candidates,options,created:new Date().toISOString(),warnings:[...wordData.warnings,...xdpData.warnings]};
+  reconcileLists(result);
   const usages=new Map();for(const r of rows)if(r.match)for(const k of r.match.indices){if(!usages.has(k))usages.set(k,[]);usages.get(k).push(r);}
   for(const rs of usages.values())if(rs.length>1)for(const r of rs){r.shared=true;if(r.status==='suggested')r.status='ambiguous';}
   progress(xdp.length,xdp.length);
-  return {word,xdp:xdpData,rows,candidates,options,created:new Date().toISOString(),warnings:[...wordData.warnings,...xdpData.warnings]};
+  return result;
 }
 /* Bounded LCS with prefix/suffix stripping. Large edits fall back to a single
    replacement hunk. This is for diff display and preserving rich-text runs. */
@@ -457,13 +769,25 @@ function blockPatches(block,proposed,original) {
   assert(!block.blocked,`Cannot update ${block.ownerName}: ${block.blocked}`);
   assert(validText(proposed),'Replacement contains invalid XML characters or exceeds 30,000 characters.');
   assert(normalize(proposed).length>0,'Blank replacements are not supported. Deleting an object requires Designer review.');
-  const groups=[[]];for(const s of block.segments){if(s.kind==='break')groups.push([]);else groups[groups.length-1].push(s);}
+  if(block.lineParent){
+    assert(!/[\r\n]/.test(proposed),'A list-line replacement must remain one line. Use a separate addition proposal.');
+    const parent=block.lineParent;
+    return blockPatches(parent,parent.text.slice(0,block.lineStart)+proposed+parent.text.slice(block.lineEnd),original);
+  }
+  const groups=[[]],anchors=[];
+  for(const s of block.segments){if(s.kind==='break'||s.kind==='field'){anchors.push(s.text);groups.push([]);}else groups[groups.length-1].push(s);}
+  const expectedFields=block.segments.filter(s=>s.kind==='field').map(s=>s.text).join('|');
+  assert(fieldSignature(proposed)===expectedFields,'Floating-field markers must keep their existing count and order. Do not remove, rename, duplicate or replace a marker with a saved value.');
   let pieces=[proposed];
-  if(groups.length>1){pieces=proposed.split('\n');assert(pieces.length===groups.length,'Rich-text line-break structure would change. Keep the existing number of line breaks or update this object in Designer.');}
-  else if(block.rich)assert(!/[\r\n]/.test(proposed),'Adding rich-text paragraphs/line breaks is structural; update this object in Designer.');
+  if(anchors.length){
+    const pattern=block.rich?/⟦FIELD:\d+⟧|\n/g:/⟦FIELD:\d+⟧/g;
+    const found=Array.from(proposed.matchAll(pattern));
+    assert(found.length===anchors.length&&found.every((m,i)=>m[0]===anchors[i]),'Rich-text line-break structure or floating-field order would change. Keep the existing line breaks and protected markers, or use Designer.');
+    pieces=[];let at=0;for(const m of found){pieces.push(proposed.slice(at,m.index));at=m.index+m[0].length;}pieces.push(proposed.slice(at));
+  }else if(block.rich)assert(!/[\r\n]/.test(proposed),'Adding rich-text paragraphs/line breaks is structural; use a list-addition proposal or Designer.');
   const patches=[];
   for(let i=0;i<groups.length;i++){
-    if(!groups[i].length){assert(!pieces[i],'A rich-text break has no writable text run.');continue;}
+    if(!groups[i].length){assert(!pieces[i],'There is no writable text run on this side of a protected field or line break. Update the structure in Designer.');continue;}
     const output=distribute(groups[i],pieces[i]);
     groups[i].forEach((s,k)=>{
       if(output[k]===s.text)return;
@@ -473,35 +797,112 @@ function blockPatches(block,proposed,original) {
   }
   return patches;
 }
-function applyPatches(original,patches) {
-  const sorted=[...patches].sort((a,b)=>a.start-b.start);let prev=0;const parts=[];
-  for(const p of sorted){assert(p.start>=prev && p.end>=p.start && p.end<=original.length,'Overlapping or invalid XML patches.');assert(original.slice(p.start,p.end)===p.before,'XDP content changed since comparison. Reload the original files.');parts.push(original.slice(prev,p.start),p.after);prev=p.end;}
-  parts.push(original.slice(prev));return parts.join('');
+function insertionGuard(result,row){
+  if(!row.insertion)return null;
+  const {mode,donor,anchor,side,sourceIndex}=row.insertion,node=mode==='draw'?donor.owner:donor.node,raw=result.xdp.index.get(node);
+  return {mode,side,sourceIndex,anchor:anchor.path,donor:donor.path,templateXML:result.xdp.format.text.slice(raw.start,raw.end)};
+}
+function validateRow(result,row){
+  assert(!result.xdp.signed,'Signed or encrypted XDP export is blocked.');
+  assert(!row.xdp.blocked,`Cannot update ${row.xdp.ownerName}: ${row.xdp.blocked}`);
+  assert(!row.updateBlocked,row.updateBlocked||'This mapping needs review.');
+  if(row.match)assert(!proposalIssue(row.operation==='insert'?{text:row.proposed}:row.xdp,row.match,result.word),proposalIssue(row.operation==='insert'?{text:row.proposed}:row.xdp,row.match,result.word));
+  if(row.operation!=='insert'){const expectedPath=xdpPath(row.xdp.node)+(row.xdp.lineParent?'#list-line-'+(row.xdp.lineIndex+1):'');assert(row.xdp.path===expectedPath,'Export lost the object: target locator was changed after comparison.');}
+  if(row.operation!=='insert')return blockPatches(row.xdp,row.proposed,result.xdp.format.text);
+  assert(validText(row.proposed)&&normalize(row.proposed),'The new list item must contain valid, non-empty XML text.');
+  assert(parseListLabel(row.proposed),'The new item must retain an explicit list marker.');
+  assert(!fieldTokens(row.proposed).length,'Creating new floating-field references requires Designer.');
+  const plan=row.insertion;assert(plan,'Missing list insertion plan.');
+  for(const guard of plan.guards){const r=result.rows.find(r=>r.id===guard.id);assert(r?.match?.indices?.length===1&&r.match.indices[0]===guard.sourceIndex,'The list mapping changed after this addition was proposed. Compare again to rebuild safe insertion positions.');}
+  if(plan.mode==='rich'||plan.mode==='draw')return cloneForInsertion(result,row);
+  assert(!/[\r\n]/.test(row.proposed),'Each addition must be a single list item.');
+  return [];
+}
+function cloneForInsertion(result,row){
+  const {donor,mode}=row.insertion,original=result.xdp.format.text,node=mode==='draw'?donor.owner:donor.node;
+  const raw=result.xdp.index.get(node);assert(raw&&!raw.empty,'The neighbouring XML object cannot be cloned.');
+  const patches=blockPatches(donor,row.proposed,original),used=new Set();
+  for(const n of [result.xdp.doc.documentElement,...descendants(result.xdp.doc.documentElement,()=>true)])for(const a of Array.from(n.attributes))if(['id','name'].includes(a.localName))used.add(a.value);
+  let serial=0;
+  for(const n of [node,...descendants(node,()=>true)]){
+    const replacements=new Map();
+    for(const a of Array.from(n.attributes))if(a.localName==='id'||n===node&&mode==='draw'&&a.localName==='name'){
+      let value=`formsync_added_${row.id+1}_${row.insertion.sourceIndex+1}_${++serial}`;while(used.has(value))value+='_new';used.add(value);replacements.set(a.name,value);
+    }
+    if(!replacements.size)continue;
+    const nr=result.xdp.index.get(n),before=original.slice(nr.start,nr.openEnd);
+    const after=before.replace(/([^\s=<>]+)(\s*=\s*)(["'])([\s\S]*?)\3/g,(all,name,space,quote)=>replacements.has(name)?name+space+quote+replacements.get(name)+quote:all);
+    patches.push({start:nr.start,end:nr.openEnd,before,after,path:row.xdp.path});
+  }
+  const local=patches.map(p=>({...p,start:p.start-raw.start,end:p.end-raw.start}));
+  return applyPatches(original.slice(raw.start,raw.end),local);
+}
+function expectedExportRows(result,approvedOnly=true){
+  const before=new Map(),after=new Map();
+  for(const r of result.rows.filter(r=>r.operation==='insert'&&(!approvedOnly||r.decision==='approved')).sort((a,b)=>a.insertion.sourceIndex-b.insertion.sourceIndex)){
+    const map=r.insertion.side==='before'?before:after,key=r.insertion.anchor.path;if(!map.has(key))map.set(key,[]);map.get(key).push(r);
+  }
+  const output=[];
+  for(const r of result.rows.filter(r=>r.operation!=='insert'))output.push(...(before.get(r.xdp.path)||[]),r,...(after.get(r.xdp.path)||[]));
+  return output;
 }
 function exportXdp(result) {
   assert(result && !result.xdp.signed,'Signed or encrypted XDP export is blocked.');
   const approved=result.rows.filter(r=>r.decision==='approved');assert(approved.length,'Approve at least one change before exporting.');
-  const original=result.xdp.format.text,patches=[];
-  for(const r of approved){assert(normalize(r.proposed)!==normalize(r.xdp.text),'An approved change no longer differs from the original.');patches.push(...blockPatches(r.xdp,r.proposed,original));}
+  const original=result.xdp.format.text,patches=[],lineParents=new Set();
+  for(const r of approved){
+    if(r.operation==='insert'){
+      for(const id of r.insertion.dependencies){const dep=result.rows.find(v=>v.id===id);assert(dep?.decision==='approved',`The addition also requires approval of the list-label update for ${dep?.xdp.ownerName||'a neighbouring item'}. Approve its renumbering or leave this addition unapproved.`);}
+      validateRow(result,r);
+      if(['lines','expand-text'].includes(r.insertion.mode))lineParents.add(r.insertion.donor.lineParent||r.insertion.donor);
+    }else{assert(normalize(r.proposed)!==normalize(r.xdp.text),'An approved change no longer differs from the original.');validateRow(result,r);if(r.xdp.lineParent)lineParents.add(r.xdp.lineParent);}
+  }
+  const expected=expectedExportRows(result);
+  for(const parent of lineParents){
+    const members=expected.filter(r=>r.operation==='insert'?['lines','expand-text'].includes(r.insertion.mode)&&(r.insertion.donor.lineParent||r.insertion.donor)===parent:r.xdp===parent||r.xdp.lineParent===parent);
+    const proposed=members.map(r=>r.decision==='approved'?r.proposed:r.xdp.text).join('\n');
+    patches.push(...blockPatches(parent,proposed,original));
+  }
+  const insertPatches=new Map();
+  for(const r of approved){
+    if(r.operation!=='insert'){
+      if(!lineParents.has(r.xdp.lineParent||r.xdp))patches.push(...blockPatches(r.xdp,r.proposed,original));continue;
+    }
+    const plan=r.insertion;if(['lines','expand-text'].includes(plan.mode))continue;
+    const node=plan.mode==='draw'?plan.anchor.owner:plan.anchor.node,raw=result.xdp.index.get(node),pos=plan.side==='before'?raw.start:raw.end;
+    const gap=original.slice(Math.max(0,raw.start-120),raw.start).match(/\r?\n[\t ]*$/)?.[0]||'\n';
+    const clone=cloneForInsertion(result,r),text=plan.side==='before'?clone+gap:gap+clone;
+    if(!insertPatches.has(pos))insertPatches.set(pos,[]);insertPatches.get(pos).push({r,text});
+  }
+  for(const [pos,items]of insertPatches){items.sort((a,b)=>a.r.insertion.sourceIndex-b.r.insertion.sourceIndex);patches.push({start:pos,end:pos,before:'',after:items.map(v=>v.text).join(''),path:items.map(v=>v.r.xdp.path).join(';')});}
   const output=applyPatches(original,patches),bytes=encodeXML(output,result.xdp.format);
-  // Reparse and re-extract to validate every approved text and unchanged block.
-  const checked=readXdp(bytes,{captions:result.options.captions});const after=new Map(checked.blocks.map(b=>[b.path,b]));
-  assert(checked.blocks.length===result.xdp.blocks.length,'Export changed the set of XDP text objects.');
-  for(const r of result.rows){const b=after.get(r.xdp.path);assert(b,`Export lost the object ${r.xdp.path}.`);const expected=r.decision==='approved'?r.proposed:r.xdp.text;assert(b.text===expected,`Export verification failed for ${r.xdp.ownerName}.`);}
-  return {bytes,text:output,patches,approved:approved.length,verification:'XML well-formedness, text postconditions and source-span isolation passed; Adobe rendering/schema validation not performed.'};
+  const checked=readXdp(bytes,{captions:result.options.captions});
+  assert(checked.blocks.length===expected.length,'Export changed the expected set of text objects. A list marker or paragraph structure may have been removed.');
+  for(let i=0;i<expected.length;i++){
+    const r=expected[i],b=checked.blocks[i],text=r.decision==='approved'?r.proposed:r.xdp.text;
+    assert(b.text===text,`Export verification failed for ${r.xdp.ownerName}.`);
+    if(r.operation!=='insert')assert(JSON.stringify(b.fields.map(f=>f.ref))===JSON.stringify((r.xdp.fields||[]).map(f=>f.ref)),`Export changed floating-field references for ${r.xdp.ownerName}.`);
+  }
+  return {bytes,text:output,patches,approved:approved.length,inserted:approved.filter(r=>r.operation==='insert').length,verification:'XML well-formedness, expected text sequence, floating-field references and guarded source-span patches passed; Adobe rendering/schema validation not performed.'};
+}
+
+function applyPatches(original,patches) {
+  const sorted=[...patches].sort((a,b)=>a.start-b.start);let prev=0;const parts=[];
+  for(const p of sorted){assert(p.start>=prev && p.end>=p.start && p.end<=original.length,'Overlapping or invalid XML patches.');assert(original.slice(p.start,p.end)===p.before,'XDP content changed since comparison. Reload the original files.');parts.push(original.slice(prev,p.start),p.after);prev=p.end;}
+  parts.push(original.slice(prev));return parts.join('');
 }
 function unmappedWord(result) {
   const used=new Set();for(const r of result.rows)if(r.match)for(const i of r.match.indices)used.add(i);
   return result.word.map((b,i)=>({...b,index:i})).filter(b=>!used.has(b.index));
 }
 function report(result,files={}) {
-  return {format:'formsync-review',version:1,created:new Date().toISOString(),files,options:result.options,warnings:result.warnings,excludedXdp:result.xdp.excluded,
-    rows:result.rows.map(r=>({path:r.xdp.path,object:r.xdp.ownerName,kind:r.xdp.kind,status:r.status,decision:r.decision,blocked:r.xdp.blocked,hidden:r.xdp.hidden,original:r.xdp.text,proposed:r.proposed,sourceIds:r.match?r.match.indices.map(i=>result.word[i].id):[],sourceLocation:r.match?.location||'',similarity:r.match?Number(r.match.score.toFixed(4)):null,method:r.reason,note:r.note})),
+  return {format:'formsync-review',version:2,appVersion:'1.2',created:new Date().toISOString(),files,options:result.options,warnings:result.warnings,excludedXdp:result.xdp.excluded,
+    rows:result.rows.map(r=>({operation:r.operation||'update',insertionGuard:insertionGuard(result,r),sourceText:r.match?r.match.indices.map(i=>result.word[i].text).join('\n'):null,protectedFields:r.xdp.fields,updateBlocked:r.updateBlocked||'',path:r.xdp.path,object:r.xdp.ownerName,kind:r.xdp.kind,status:r.status,decision:r.decision,blocked:r.xdp.blocked,hidden:r.xdp.hidden,original:r.xdp.text,proposed:r.proposed,sourceIds:r.match?r.match.indices.map(i=>result.word[i].id):[],sourceLocation:r.match?.location||'',similarity:r.match?Number(r.match.score.toFixed(4)):null,method:r.reason,note:r.note})),
     unmatchedWord:unmappedWord(result).map(b=>({id:b.id,location:b.location,text:b.text})),
-    safety:'Only approved text changes are exported. Unmatched text is not an instruction to add/delete an XDP object. Validate the output in Designer.'};
+    safety:'Only approved changes and supported, anchored list additions are exported. Field markers remain protected. Positioned additions and new field definitions require Designer. Validate layout and runtime behavior in Designer.'};
 }
 function restoreReview(result,data) {
-  assert(data?.format==='formsync-review' && data.version===1 && Array.isArray(data.rows),'Not a FormSync review file.');
+  assert(data?.format==='formsync-review' && [1,2].includes(data.version) && Array.isArray(data.rows),'Not a FormSync review file.');
   let restored=0,skipped=0;const rows=new Map(result.rows.map(r=>[r.xdp.path,r]));
   for(const item of data.rows){
     if(!item || typeof item!=='object'){skipped++;continue;}
@@ -510,17 +911,19 @@ function restoreReview(result,data) {
     const indices=item.sourceIds.map(id=>result.word.findIndex(b=>b.id===id));
     if(indices.some(i=>i<0)){skipped++;continue;}
     const source=indices.map(i=>result.word[i].text).join('\n');
+    if(item.operation==='insert'&&JSON.stringify(item.insertionGuard)!==JSON.stringify(insertionGuard(result,r))){skipped++;continue;}
+    if((item.operation==='insert')!==(r.operation==='insert')){skipped++;continue;}
     // A saved approval must never silently apply to changed Word source text.
-    if(indices.length && normalize(source)!==normalize(item.proposed)){skipped++;continue;}
+    if(indices.length && normalize(source)!==normalize(data.version===2?item.sourceText:item.proposed)){skipped++;continue;}
     if(item.decision==='approved' && (r.xdp.blocked||!normalize(item.proposed)||normalize(item.proposed)===normalize(r.xdp.text))){skipped++;continue;}
-    try{if(item.decision==='approved')blockPatches(r.xdp,item.proposed,result.xdp.format.text);}catch{skipped++;continue;}
+    try{if(item.decision==='approved')validateRow(result,{...r,proposed:item.proposed});}catch{skipped++;continue;}
     r.proposed=item.proposed;r.match=indices.length?{indices,text:source,location:item.sourceLocation||'Restored mapping',score:similarity(features(r.xdp.text),features(source)),method:'Restored review'}:null;
     // Re-open saved approvals for explicit review in this session.
-    r.decision=item.decision==='rejected'?'rejected':'pending';r.status=normalize(r.proposed)===normalize(r.xdp.text)?'unchanged':normalize(r.proposed)?'suggested':'unmatched';r.reason='Restored review — approve again';r.note=typeof item.note==='string'?item.note.slice(0,4000):'';restored++;
+    r.decision=item.decision==='rejected'?'rejected':'pending';r.status=r.operation==='insert'?'addition':comparisonKey(r.proposed)===comparisonKey(r.xdp.text)?'unchanged':normalize(r.proposed)?'suggested':'unmatched';r.reason='Restored review — approve again';r.note=typeof item.note==='string'?item.note.slice(0,4000):'';restored++;
   }
   return {restored,skipped};
 }
-window.FormSyncCore=Object.freeze({NS,LIMIT,parseXML,decodeXML,encodeXML,crc32,ZipReader,readDocx,readXdp,compare,normalize,folded,features,similarity,makeCandidates,diffArrays,wordDiff,blockPatches,applyPatches,exportXdp,report,restoreReview,unmappedWord,validText,escapeXML,pause});
+window.FormSyncCore=Object.freeze({NS,LIMIT,parseXML,decodeXML,encodeXML,crc32,ZipReader,readDocx,readXdp,compare,normalize,folded,features,similarity,makeCandidates,diffArrays,wordDiff,blockPatches,validateRow,applyPatches,exportXdp,report,comparisonKey,parseListLabel,formatListLike,fieldTokens,chooseProposal,restoreReview,unmappedWord,validText,escapeXML,pause});
 })();
 </script>
 <script>/* Synthetic fixture, generated in the browser. No external files are needed. */
@@ -578,33 +981,203 @@ function storedZip(parts) {
  const cdSize=central.reduce((n,c)=>n+c.length,0),end=new Uint8Array(22),ev=new DataView(end.buffer);u32(ev,0,0x06054b50);u16(ev,8,central.length);u16(ev,10,central.length);u32(ev,12,cdSize);u32(ev,16,offset);
  const out=new Uint8Array(offset+cdSize+22);let p=0;for(const b of [...local,...central,end]){out.set(b,p);p+=b.length;}return out;
 }
-window.FormSyncDemo={XDP,WORD,parts,storedZip,files:()=>({docx:new File([storedZip(parts)],'example-approved-source.docx'),xdp:new File([XDP],'example-existing-template.xdp')})};
+function enhancedFiles(){
+ const extras=['Supporting documents','a. Supply a passport.','b. Supply a photograph.','c. Include a signed declaration.','Dear {{CustomerName}}, welcome to the service.','Privacy and your records',Array(12).fill('Your information is used to administer the service and respond to your requests. You may ask the team to explain how a record is used, request a correction, or update your contact details.').join(' ')];
+ const extraXml=extras.map((t,i)=>`<w:p>${[0,5].includes(i)?'<w:pPr><w:outlineLvl w:val="0"/></w:pPr>':''}<w:r><w:t>${esc(t)}</w:t></w:r></w:p>`).join('');
+ const word=WORD.replace('<w:p><w:r>', '<w:p><w:pPr><w:outlineLvl w:val="0"/></w:pPr><w:r>').replace('<w:sectPr>',extraXml+'<w:sectPr>');
+ const x=XDP.replace('  </subform>\n </template>',`   <draw name="EvidenceList" id="evidence" w="170mm"><value><exData contentType="text/html"><body xmlns="http://www.w3.org/1999/xhtml"><p style="font-family:Arial;font-size:10pt">a) Supply a passport.</p><p style="font-family:Arial;font-size:10pt">b) Supply a photograph.</p></body></exData></value></draw>
+   <field name="CustomerName" id="customerName" presence="hidden"><ui><textEdit/></ui><value><text/></value><bind match="none"/></field>
+   <draw name="PersonalGreeting" id="greeting" w="170mm"><value><exData contentType="text/html"><body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p>Dear <span xfa:embedType="uri" xfa:embed="#customerName" xfa:embedMode="raw"/>, welcome to the service.</p></body></exData></value></draw>
+  </subform>\n </template>`);
+ return {docx:new File([storedZip({...parts,'word/document.xml':word})],'example-approved-source.docx'),xdp:new File([x],'example-existing-template.xdp')};
+}
+window.FormSyncDemo={XDP,WORD,parts,storedZip,enhancedFiles,files:()=>({docx:new File([storedZip(parts)],'example-approved-source.docx'),xdp:new File([XDP],'example-existing-template.xdp')})};
+})();
+</script>
+<script>/* FormSync 1.2 — browser-only DOCX-to-XDP authoring.
+   Produces a text-first XFA template, not a Word page-layout conversion.
+   No source markup, field instructions, bindings or scripts are copied. */
+(() => {
+'use strict';
+const C=window.FormSyncCore;
+const TEMPLATE='http://www.xfa.org/schema/xfa-template/3.3/';
+const DATA='http://www.xfa.org/schema/xfa-data/1.0/';
+const assert=(ok,message)=>{if(!ok)throw new Error(message);};
+const esc=s=>C.escapeXML(String(s));
+const attr=s=>esc(s).replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+const validSource=s=>typeof s==='string'&&s.length<=2000000&&!/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]/u.test(s)&&!/[\uD800-\uDFFF]/u.test(s);
+const fieldRE=()=>/⟦FIELD:(\d+)⟧/g;
+const safeName=s=>typeof s==='string'&&/^[A-Za-z_][A-Za-z0-9_]{0,79}$/.test(s);
+const hash=s=>{let h=2166136261;for(const ch of s){h^=ch.codePointAt(0);h=Math.imul(h,16777619);}return (h>>>0).toString(36);};
+function namePart(s,max=42){
+  const words=s.replace(fieldRE(),'Field').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').match(/[A-Za-z0-9]+/g)||[];
+  const value=words.slice(0,7).map(w=>w[0].toUpperCase()+w.slice(1)).join('');
+  return (value||'Content_'+hash(s)).slice(0,max);
+}
+function uniqueName(base,used){let name=base.slice(0,76),n=2;while(used.has(name))name=base.slice(0,70)+'_'+n++;used.add(name);return name;}
+function options(input={}){
+  const o={maxChars:Number(input.maxChars??800),page:input.page||'A4',margin:Number(input.margin??18),fontSize:Number(input.fontSize??10),font:input.font||'Arial',title:String(input.title||'Word form').trim(),fileName:String(input.fileName||'source.docx')};
+  assert(Number.isInteger(o.maxChars)&&o.maxChars>=100&&o.maxChars<=4000,'Maximum fragment length must be a whole number from 100 to 4,000.');
+  assert(['A4','Letter'].includes(o.page),'Choose A4 or Letter paper.');
+  assert(Number.isFinite(o.margin)&&o.margin>=10&&o.margin<=35,'Page margin must be between 10 and 35 mm.');
+  assert(Number.isFinite(o.fontSize)&&o.fontSize>=8&&o.fontSize<=16,'Body font size must be between 8 and 16 pt.');
+  assert(['Arial','Times New Roman','Helvetica','Courier'].includes(o.font),'Choose one of the supported typeface names.');
+  assert(C.validText(o.title)&&o.title.length>0&&o.title.length<=200,'Enter a valid form title of at most 200 characters.');
+  const [width,height]=o.page==='Letter'?[215.9,279.4]:[210,297];
+  return {...o,width,height,contentWidth:width-o.margin*2,contentHeight:height-o.margin*2};
+}
+/* Return exact, contiguous UTF-16 source spans. End boundaries never bisect a
+   protected field token or surrogate pair. A single very long word may be cut. */
+function splitText(value,maxChars){
+  assert(validSource(value),'The source contains invalid XML text.');
+  assert(Number.isInteger(maxChars)&&maxChars>=100&&maxChars<=4000,'Invalid fragment limit.');
+  const tokens=Array.from(value.matchAll(fieldRE()),m=>({start:m.index,end:m.index+m[0].length}));
+  const out=[];let start=0,ti=0;
+  while(start<value.length){
+    let end=Math.min(value.length,start+maxChars);
+    if(end<value.length){
+      const sample=value.slice(start,end),floor=Math.floor(maxChars*.4);
+      // Prefer the last sentence boundary in this window; then a line or word.
+      const sentence=Array.from(sample.matchAll(/[.!?。！？][”’"')\]]*(?:\s+|$)/gu)).map(m=>m.index+m[0].length).filter(n=>n>=floor);
+      if(sentence.length)end=start+sentence[sentence.length-1];
+      else {const ws=Array.from(sample.matchAll(/\s+/g)).map(m=>m.index+m[0].length).filter(n=>n>=floor);if(ws.length)end=start+ws[ws.length-1];}
+      while(ti<tokens.length&&tokens[ti].end<=start)ti++;
+      for(let j=ti;j<tokens.length&&tokens[j].start<end;j++)if(tokens[j].end>end){end=tokens[j].start>start?tokens[j].start:tokens[j].end;break;}
+      const code=value.charCodeAt(end-1);if(code>=0xD800&&code<=0xDBFF)end--;
+    }
+    assert(end>start,'Unable to split this paragraph safely.');
+    out.push({start,end,text:value.slice(start,end)});start=end;
+  }
+  assert(out.map(x=>x.text).join('')===value,'Fragmentation lost source text.');
+  return out;
+}
+function buildPlan(word,input={}){
+  assert(word&&Array.isArray(word.blocks)&&word.blocks.length,'Load a Word document with supported text first.');
+  const o=options(input),used=new Set(['Form','Page1','BodyArea']),warnings=new Set(word.warnings||[]),sections=[],fragments=[],fields=[];
+  let section=null,lastStory='';
+  const sectionFor=(label,level)=>{const item={id:'section-'+sections.length,name:uniqueName('Section_'+namePart(label,57),used),label,level,fragments:[]};sections.push(item);return item;};
+  for(let bi=0;bi<word.blocks.length;bi++){
+    const b=word.blocks[bi];assert(validSource(b.text),'Source contains invalid text.');
+    assert(!b.fieldIssue,`${b.location}: ${b.fieldIssue}`);
+    assert(!b.list?.unresolved,`${b.location}: Word numbering is unresolved. Correct its numbering definition in Word before generating an XDP.`);
+    if(!C.normalize(b.text))continue;
+    const heading=Number(b.headingLevel)||0,story=b.story||'Body';
+    const readable=b.text.replace(fieldRE(),(_,n)=>'['+(b.fields?.[Number(n)-1]?.name||'Field')+']');
+    if(!section||story!==lastStory||heading){section=sectionFor(heading?C.normalize(readable).slice(0,140):story==='Body'?'Document content':story,heading);lastStory=story;}
+    const spans=splitText(b.text,o.maxChars);
+    spans.forEach((span,part)=>{
+      if(!C.normalize(span.text)){// Keep whitespace attached to the prior fragment, never drop content.
+        const prior=fragments[fragments.length-1];if(prior&&prior.sourceId===b.id){prior.sourceEnd=span.end;prior.text+=span.text;prior.sourceText+=span.text;return;}
+      }
+      const local=[];
+      const value=span.text.replace(fieldRE(),(_,n)=>{
+        const source=b.fields?.[Number(n)-1];assert(source,`${b.location}: an unknown field marker was found. Rename literal marker-like text in Word.`);
+        const name=uniqueName('Field_'+namePart(source.name||'Value',48),used);
+        const f={name,id:name,sourceName:String(source.name||'Value'),kind:String(source.kind||'Word field'),sourceId:b.id,sourceIndex:Number(n),sourceLocation:b.location,index:local.length+1};
+        assert(fields.length<10000,'More than 10,000 field occurrences. Split this Word document before generating.');fields.push(f);local.push(f);return `⟦FIELD:${local.length}⟧`;
+      });
+      const contentLabel=C.normalize(value.replace(fieldRE(),(_,n)=>'['+local[Number(n)-1].sourceName+']'));
+      const label=(contentLabel.slice(0,150)+(contentLabel.length>150?'…':'')+(spans.length>1?` · part ${part+1} of ${spans.length}`:'')).slice(0,220);
+      const name=uniqueName((heading?'Heading_':'Text_'+namePart(section.label,22)+'_')+namePart(C.parseListLabel(contentLabel)?.body||contentLabel,39)+(spans.length>1?'_Part'+(part+1):''),used);
+      const fragment={id:'fragment-'+fragments.length,name,label,text:value,fields:local,sectionId:section.id,sourceId:b.id,sourceLocation:b.location,sourceIndex:bi,sourceStart:span.start,sourceEnd:span.end,sourceText:span.text,part:part+1,totalParts:spans.length,headingLevel:heading,list:b.list?{label:b.list.raw||b.list.label||'',level:b.list.level||0,continuation:part>0}:null};
+      fragments.push(fragment);section.fragments.push(fragment.id);
+      assert(fragments.length<=5000,'Generation would exceed 5,000 text objects. Increase the fragment limit or split the Word document.');
+    });
+  }
+  assert(fragments.length,'No supported Word text was found.');
+  if(fields.length)warnings.add(`${fields.length} recognised field occurrence(s) become hidden, empty, unbound text fields with inline references. Each occurrence is separate. Configure real bindings, calculations, field types and shared-field behaviour in Designer.`);
+  if(word.blocks.some(b=>b.location?.includes('table cell')))warnings.add('Table-cell text is generated as paragraphs in source XML order, not as an XFA table. Column widths, borders and merged-cell layout are not recreated.');
+  if(word.blocks.some(b=>b.story&&b.story!=='Body'))warnings.add('Selected headers, footers and notes are appended as separate content sections, not repeated on master pages or anchored to footnote marks.');
+  warnings.add('Text-first template: original Word fonts, inline emphasis, images, page/column/section breaks and exact positioning are not reproduced. Heading styles and list labels are retained; body typography uses your settings.');
+  warnings.add('Object labels are derived from source headings and wording, not AI summaries. Split parts retain exact source spans; whitespace at object boundaries may wrap differently.');
+  return {format:'formsync-generation-plan',version:1,appVersion:'1.2',options:o,sections,fragments,fields,warnings:[...warnings],sourceCount:word.blocks.length,source:word.blocks.map(b=>({id:b.id,text:b.text,location:b.location})),created:new Date().toISOString()};
+}
+function validatePlan(plan){
+  assert(plan?.format==='formsync-generation-plan'&&Array.isArray(plan.fragments)&&plan.fragments.length,'No generated object plan is ready.');
+  const o=options(plan.options),names=new Set(['Form','Page1','BodyArea']);
+  for(const item of [...plan.sections,...plan.fragments,...plan.fields]){
+    assert(safeName(item.name),`Invalid XDP object name “${String(item.name).slice(0,100)}”. Use a letter or underscore followed by letters, digits or underscores (80 characters maximum).`);
+    assert(!names.has(item.name),`Duplicate XDP object name: ${item.name}. Choose a unique name.`);names.add(item.name);
+  }
+  for(const f of plan.fragments){
+    assert(C.validText(f.label)&&!!C.normalize(f.label)&&f.label.length<=220,`Enter a valid label for ${f.name} (220 characters maximum).`);
+    assert(C.validText(f.text)&&C.normalize(f.text),`${f.name} has invalid or empty text.`);
+    assert(C.fieldTokens(f.text).join('|')===f.fields.map((_,i)=>`⟦FIELD:${i+1}⟧`).join('|'),`${f.name}: field markers were changed.`);
+  }
+  for(const source of plan.source){const fs=plan.fragments.filter(f=>f.sourceId===source.id);let start=0,actual='';for(const f of fs){assert(f.sourceStart===start,'Source fragment order changed. Rebuild the preview.');start=f.sourceEnd;actual+=f.sourceText;}assert(actual===source.text&&start===source.text.length,'Generation source coverage failed. Rebuild the preview.');}
+  return o;
+}
+function createXdp(plan){
+  const o=validatePlan(plan),mm=n=>Number(n.toFixed(3))+'mm',x=[],byId=new Map(plan.fragments.map(f=>[f.id,f]));
+  x.push('<?xml version="1.0" encoding="UTF-8"?>','<?xfa generator="FormSync 1.2 text-first generator"?>','<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/">',` <template xmlns="${TEMPLATE}">`,'  <subform name="Form" id="Form" layout="tb" locale="en_US">',`   <desc><text name="title">${esc(o.title)}</text><text name="formsyncSplitMax">${o.maxChars}</text><text name="formsyncVersion">1.2</text><text name="generator">Text-first draft. Validate layout and field bindings in Adobe Designer.</text></desc>`,'   <pageSet relation="orderedOccurrence">','    <pageArea name="Page1" id="Page1">','     <occur min="1" max="-1"/>',`     <contentArea name="BodyArea" id="BodyArea" x="${mm(o.margin)}" y="${mm(o.margin)}" w="${mm(o.contentWidth)}" h="${mm(o.contentHeight)}"/>`,`     <medium stock="${o.page==='A4'?'a4':'letter'}" short="${mm(o.width)}" long="${mm(o.height)}" orientation="portrait"/>`,'    </pageArea>','   </pageSet>');
+  for(const field of plan.fields){x.push(`   <field name="${field.name}" id="${field.name}" presence="hidden" access="readOnly" w="20mm" h="5mm">`,`    <desc><text name="sourceField">${esc(field.sourceName)}</text><text name="source">${esc(field.sourceLocation)}</text><text name="bindingStatus">Unbound. Configure in Designer; no saved Word value was copied.</text></desc>`,'    <ui><textEdit multiLine="1"/></ui>','    <value><text/></value>','    <bind match="none"/>','   </field>');}
+  for(const section of plan.sections){
+    x.push(`   <subform name="${section.name}" id="${section.name}" layout="tb" w="${mm(o.contentWidth)}">`,`    <desc><text name="label">${esc(section.label)}</text></desc>`,'    <bind match="none"/>');
+    for(const id of section.fragments){const f=byId.get(id);assert(f,'A fragment reference is missing.');const size=f.headingLevel?Math.max(o.fontSize,Math.min(20,o.fontSize+6-(f.headingLevel-1)*1.5)):o.fontSize;
+      const indent=f.list?Math.min(24,4+(f.list.level||0)*4):0;
+      let pos=0;const rich=[];for(const match of f.text.matchAll(fieldRE())){rich.push(esc(f.text.slice(pos,match.index)).replace(/\n/g,'<br/>'));const field=f.fields[Number(match[1])-1];rich.push(`<span xfa:embedType="uri" xfa:embed="#${field.name}" xfa:embedMode="raw"/>`);pos=match.index+match[0].length;}rich.push(esc(f.text.slice(pos)).replace(/\n/g,'<br/>'));
+      x.push(`    <draw name="${f.name}" id="${f.name}" w="${mm(o.contentWidth)}" minH="${Number((size*1.2).toFixed(2))}pt">`,`     <desc><text name="label">${esc(f.label)}</text><text name="source">${esc(f.sourceLocation)}; part ${f.part}/${f.totalParts}; characters ${f.sourceStart+1}–${f.sourceEnd}</text></desc>`,'     <ui><textEdit multiLine="1"/></ui>',`     <value><exData contentType="text/html"><body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="${DATA}"><p xml:space="preserve" style="white-space:pre-wrap">${rich.join('')}</p></body></exData></value>`,`     <font typeface="${attr(o.font)}" size="${size}pt"${f.headingLevel?' weight="bold"':''}/>`,`     <para spaceAbove="${f.headingLevel?'4pt':'0pt'}" spaceBelow="${f.list?'3pt':'6pt'}"${indent?` marginLeft="${indent}mm"`:''}/>`,...(f.headingLevel?['     <keep next="contentArea"/>']:[]),'    </draw>');
+    }x.push('   </subform>');
+  }
+  x.push('  </subform>',' </template>',' <config xmlns="http://www.xfa.org/schema/xci/3.0/"><present><pdf><version>1.7</version><dynamicRender>required</dynamicRender></pdf></present></config>','</xdp:xdp>','');
+  const value=x.join('\n'),bytes=new TextEncoder().encode(value),doc=C.parseXML(value,'Generated XDP');
+  const ids=new Set();for(const n of Array.from(doc.getElementsByTagName('*'))){if(n.hasAttribute('id')){const id=n.getAttribute('id');assert(!ids.has(id),'Generated XDP has duplicate IDs.');ids.add(id);}}
+  for(const n of Array.from(doc.getElementsByTagNameNS(C.NS.xhtml,'span'))){const ref=n.getAttributeNS(DATA,'embed');if(ref)assert(ids.has(ref.slice(1)),'Generated XDP has an unresolved floating-field reference.');}
+  const checked=C.readXdp(bytes,{captions:false});assert(checked.blocks.length===plan.fragments.length,'Generated XDP text-object count failed verification.');
+  checked.blocks.forEach((b,i)=>{const f=plan.fragments[i];assert(b.text===f.text,`Generated wording failed verification for ${f.name}.`);assert(b.key===f.name,`Generated object name failed verification for ${f.name}.`);assert(b.fields.map(v=>v.ref).join('|')===f.fields.map(v=>'#'+v.name).join('|'),'Generated field references failed verification.');});
+  return {bytes,text:value,objects:plan.fragments.length,fields:plan.fields.length,verification:'XML, unique IDs, source coverage, extracted text and inline field references checked. Adobe XFA schema/rendering/runtime not tested.'};
+}
+// A generated file records its split limit so the same source can be compared
+// using the same text units. This is segmentation only, never an approval rule.
+function comparisonSettings(xdp){
+  const template=Array.from(xdp.doc?.documentElement?.children||[]).find(n=>n.namespaceURI===TEMPLATE&&n.localName==='template')||(xdp.doc?.documentElement?.namespaceURI===TEMPLATE?xdp.doc.documentElement:null);
+  const form=Array.from(template?.children||[]).find(n=>n.localName==='subform'&&n.namespaceURI===TEMPLATE);
+  const desc=Array.from(form?.children||[]).find(n=>n.localName==='desc'&&n.namespaceURI===TEMPLATE);
+  const values=new Map(Array.from(desc?.children||[]).filter(n=>n.localName==='text'&&n.namespaceURI===TEMPLATE).map(n=>[n.getAttribute('name'),n.textContent]));
+  const n=Number(values.get('formsyncSplitMax'));return values.get('formsyncVersion')==='1.2'&&Number.isInteger(n)&&n>=100&&n<=4000?{maxChars:n}:null;
+}
+function prepareComparison(word,xdp){
+  const settings=comparisonSettings(xdp);if(!settings)return word;
+  const blocks=[];
+  for(const b of word.blocks){
+    const spans=splitText(b.text,settings.maxChars);
+    for(let i=0;i<spans.length;i++){
+      const span=spans[i],fields=[];
+      const text=span.text.replace(fieldRE(),(_,n)=>{const f=b.fields?.[Number(n)-1];assert(f,`${b.location}: unknown field marker.`);fields.push({...f,index:fields.length+1});return `⟦FIELD:${fields.length}⟧`;});
+      blocks.push({...b,text,fields,list:i?null:b.list,id:b.id+(spans.length>1?'#part'+(i+1):''),key:spans.length>1?'':b.key,location:b.location+(spans.length>1?` · generated part ${i+1}/${spans.length}`:''),sourceStart:span.start,sourceEnd:span.end});
+      assert(blocks.length<=5000,'Generated-template comparison exceeds 5,000 source fragments. Split the document.');
+    }
+  }
+  return {...word,blocks,warnings:[...word.warnings,`This FormSync-generated XDP uses ${settings.maxChars}-character source segmentation. Word paragraphs are split the same way for comparison. Substantial edits can move boundaries; confirm mappings.`]};
+}
+function manifest(plan){validatePlan(plan);return {format:'formsync-generation-map',version:1,appVersion:'1.2',created:plan.created,sourceFile:plan.options.fileName,options:plan.options,warnings:plan.warnings,sections:plan.sections,objects:plan.fragments.map(f=>({name:f.name,id:f.name,label:f.label,text:f.text,sourceId:f.sourceId,sourceLocation:f.sourceLocation,sourceStart:f.sourceStart,sourceEnd:f.sourceEnd,part:f.part,totalParts:f.totalParts,headingLevel:f.headingLevel,list:f.list,fieldIds:f.fields.map(v=>v.name),wordContentControlTag:'xdp:'+f.name})),fields:plan.fields.map(f=>({id:f.name,name:f.name,sourceName:f.sourceName,kind:f.kind,sourceLocation:f.sourceLocation,binding:'none',defaultValue:''}))};}
+window.FormSyncGenerator=Object.freeze({options,splitText,buildPlan,createXdp,manifest,validatePlan,safeName,comparisonSettings,prepareComparison});
 })();
 </script>
 <script>(() => {
 'use strict';
-const C=window.FormSyncCore,$=id=>document.getElementById(id);
+const C=window.FormSyncCore,G=window.FormSyncGenerator,$=id=>document.getElementById(id);
 let files={docx:null,xdp:null},result=null,filter='changes',selected=null,busy=false,limit=150,wordLimit=40,version=0;
-let metadata={};
+let metadata={},mode='compare',generationPlan=null,generationSource=null,genSelected=null,genLimit=150,genDirty=false;
 const text=(tag,value,cls)=>{const n=document.createElement(tag);n.textContent=value;if(cls)n.className=cls;return n;};
 const button=(label,cls,fn)=>{const b=text('button',label,cls);b.type='button';b.addEventListener('click',fn);return b;};
 const status=s=>{$('status').textContent=s;};
 const fail=e=>{$('error').textContent=e.message||String(e);$('error').hidden=false;status('No file was changed. Resolve the issue and try again.');};
 const clearError=()=>{$('error').hidden=true;$('error').textContent='';};
-const hasWork=()=>result?.rows.some(r=>r.decision!=='pending'||r.note||r.draft!==undefined);
+const hasWork=()=>genDirty||result?.rows.some(r=>r.decision!=='pending'||r.note||r.draft!==undefined);
 function noDrafts(){const r=result?.rows.find(r=>r.draft!==undefined&&r.draft!==r.proposed);if(r){fail(new Error(`Apply or revert the edited wording for ${r.xdp.ownerName} before exporting.`));return false;}return true;}
-const opts=()=>({headers:$('includeHeaders').checked,notes:$('includeNotes').checked,captions:$('includeCaptions').checked,threshold:Number($('threshold').value),group:Number($('groupSize').value)});
-function setBusy(value){busy=value;$('status').classList.toggle('busy',value);for(const id of ['docxBrowse','xdpBrowse','docxInput','xdpInput','demoButton','includeHeaders','includeNotes','includeCaptions','threshold','groupSize','importReview','resetButton'])$(id).disabled=value;$('compareButton').disabled=value||!files.docx||!files.xdp;$('compareButton').textContent=value?'Comparing…':'Compare wording →';}
-function invalidate(message){version++;result=null;selected=null;$('results').hidden=true;status(message||'Files or options changed. Compare again to start a new review.');}
+const opts=()=>({headers:$('includeHeaders').checked,notes:$('includeNotes').checked,captions:$('includeCaptions').checked,threshold:Number($('threshold').value),group:Number($('groupSize').value),placeholders:$('includePlaceholders').checked});
+function setBusy(value){busy=value;$('status').classList.toggle('busy',value);for(const id of ['docxBrowse','xdpBrowse','docxInput','xdpInput','demoButton','includeHeaders','includeNotes','includeCaptions','includePlaceholders','threshold','groupSize','importReview','resetButton','modeCompare','modeCreate','genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders'])$(id).disabled=value;$('compareButton').disabled=value||!files.docx||!files.xdp;$('compareButton').textContent=value?'Comparing…':'Compare wording →';$('generateButton').disabled=value||!files.docx;$('generateButton').textContent=value?'Building preview…':'Build object preview →';}
+function invalidate(message){version++;result=null;selected=null;generationPlan=null;generationSource=null;genDirty=false;$('results').hidden=true;$('generationResults').hidden=true;status(message||'Files or options changed. Build a fresh comparison or object preview.');}
 function choose(kind,file){
  if(busy||!file)return;
  const ext=kind==='docx'?/\.docx$/i:/\.(xdp|xml)$/i;
  if(!ext.test(file.name)){fail(new Error(`Choose a ${kind==='docx'?'.docx':'.xdp'} file.`));return;}
  if(file.size>C.LIMIT.file){fail(new Error('This file exceeds the 50 MiB limit.'));return;}
  if(!file.size){fail(new Error('This file is empty.'));return;}
- if(hasWork()&&!confirm('Changing files clears the current review. Save JSON first to keep your decisions and notes. Continue?'))return;
+ if(hasWork()&&!confirm('Changing files clears the current review or generated preview. Export first to retain your work. Continue?'))return;
  clearError();files[kind]=file;$(kind+'Name').textContent=file.name;$(kind+'Meta').textContent=`${(file.size/1024).toLocaleString(undefined,{maximumFractionDigits:1})} KiB · selected locally`;
- invalidate(files.docx&&files.xdp?'Both files are ready. Compare to build your review list.':'Choose the other file to start.');setBusy(false);
+ invalidate(mode==='create'?'Word source is ready. Build the object preview.':files.docx&&files.xdp?'Both files are ready. Compare to build your review list.':'Choose the other file to start.');if(kind==='docx')$('genTitle').value=file.name.replace(/\.docx$/i,'').replace(/[_-]+/g,' ').slice(0,200);setBusy(false);
 }
 for(const kind of ['docx','xdp']){
  $(kind+'Browse').addEventListener('click',()=>$(kind+'Input').click());
@@ -613,9 +1186,10 @@ for(const kind of ['docx','xdp']){
  zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('dragover');if(e.dataTransfer.files.length!==1){fail(new Error('Drop one file in each file box.'));return;}choose(kind,e.dataTransfer.files[0]);});
 }
 window.addEventListener('dragover',e=>e.preventDefault());window.addEventListener('drop',e=>e.preventDefault());
-for(const id of ['includeHeaders','includeNotes','includeCaptions','threshold','groupSize'])$(id).addEventListener('change',()=>{
- if(hasWork()&&!confirm('Changing matching options clears the current review. Save JSON first to keep it. Continue?')){const o=result.options;$('includeHeaders').checked=o.headers;$('includeNotes').checked=o.notes;$('includeCaptions').checked=o.captions;$('threshold').value=String(o.threshold);$('groupSize').value=String(o.group);return;}invalidate();
-});
+for(const id of ['includeHeaders','includeNotes','includeCaptions','includePlaceholders','threshold','groupSize']){
+ const el=$(id);el.dataset.last=el.type==='checkbox'?String(el.checked):el.value;
+ el.addEventListener('change',()=>{if(hasWork()&&!confirm('Changing options clears the current review or generated preview. Export first to keep it. Continue?')){if(el.type==='checkbox')el.checked=el.dataset.last==='true';else el.value=el.dataset.last;return;}el.dataset.last=el.type==='checkbox'?String(el.checked):el.value;invalidate();});
+}
 async function digest(bytes){try{if(crypto?.subtle)return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');}catch{}return null;}
 async function run(){
  if(busy||!files.docx||!files.xdp)return;
@@ -625,44 +1199,44 @@ async function run(){
   await C.pause();const o=opts();const [db,xb]=await Promise.all([files.docx.arrayBuffer(),files.xdp.arrayBuffer()]);
   const dbytes=new Uint8Array(db),xbytes=new Uint8Array(xb);
   status('Reading the Word package and indexing XDP text…');await C.pause();
-  const w=await C.readDocx(dbytes,o);const x=C.readXdp(xbytes,o);
+  const x=C.readXdp(xbytes,o);const rawWord=await C.readDocx(dbytes,{...o,generation:!!G.comparisonSettings(x)});const w=G.prepareComparison(rawWord,x);
   metadata={docx:{name:files.docx.name,size:files.docx.size,sha256:await digest(dbytes)},xdp:{name:files.xdp.name,size:files.xdp.size,sha256:await digest(xbytes)}};
   const comparison=await C.compare(w,x,o,(n,total)=>status(`Matching XDP wording · ${n.toLocaleString()} of ${total.toLocaleString()} blocks…`));
-  if(token!==version)return;result=comparison;filter='changes';selected=null;limit=150;wordLimit=40;$('search').value='';$('results').hidden=false;renderAll();
+  if(token!==version)return;result=comparison;filter='changes';selected=null;limit=150;wordLimit=40;$('search').value='';$('results').hidden=mode!=='compare';renderAll();
   status(`Compared ${w.blocks.length.toLocaleString()} Word blocks with ${x.blocks.length.toLocaleString()} XDP text blocks. No updates have been approved.`);
   $('sessionInfo').textContent='Review lives in memory · save JSON before closing';
  }catch(e){fail(e);}finally{setBusy(false);}
 }
 $('compareButton').addEventListener('click',run);
 $('demoButton').addEventListener('click',async()=>{
- if(result&&!confirm('Replace the current session with synthetic example files?'))return;
- result=null;const demo=FormSyncDemo.files();choose('docx',demo.docx);choose('xdp',demo.xdp);await run();
+ if((result||generationPlan)&&!confirm('Replace the current session with synthetic example files?'))return;
+ result=null;genDirty=false;const demo=FormSyncDemo.enhancedFiles?FormSyncDemo.enhancedFiles():FormSyncDemo.files();choose('docx',demo.docx);if(mode==='create'){await generate();return;}choose('xdp',demo.xdp);await run();
  if(result)status('Synthetic example loaded. Review a change, approve it, then export an updated example XDP.');
 });
 function visibleRows(){
  if(!result)return [];
  const q=$('search').value.trim().toLocaleLowerCase();
  return result.rows.filter(r=>{
-  const match=filter==='all'||filter==='changes'&&r.status!=='unchanged'&&r.status!=='unmatched'||filter==='unmatched'&&(r.status==='unmatched'||r.status==='ambiguous'||!!r.xdp.blocked)||filter==='unchanged'&&r.status==='unchanged'||filter==='approved'&&r.decision==='approved';
+  const match=filter==='all'||filter==='additions'&&r.operation==='insert'||filter==='changes'&&r.status!=='unchanged'&&r.status!=='unmatched'||filter==='unmatched'&&(r.status==='unmatched'||r.status==='ambiguous'||!!r.xdp.blocked||!!r.updateBlocked)||filter==='unchanged'&&r.status==='unchanged'||filter==='approved'&&r.decision==='approved';
   return match&&(!q||[r.xdp.text,r.proposed,r.xdp.ownerName,r.xdp.path].some(s=>s.toLocaleLowerCase().includes(q)));
  });
 }
-const label=r=>r.decision==='approved'?'Approved':r.decision==='rejected'?'Kept original':r.status==='unchanged'?'Unchanged':r.status==='unmatched'?'Needs mapping':r.status==='ambiguous'?'Check mapping':'Suggested update';
+const label=r=>r.decision==='approved'?'Approved':r.decision==='rejected'?(r.operation==='insert'?'Not added':'Kept original'):r.operation==='insert'?'New list item':r.status==='unchanged'?'Unchanged':r.status==='unmatched'?'Needs mapping':r.status==='ambiguous'?'Check mapping':'Suggested update';
 function badge(r){return text('span',label(r),'badge '+(r.decision==='pending'?r.status:r.decision));}
 function renderStats(){
  const rs=result.rows,approved=rs.filter(r=>r.decision==='approved').length;
- const specs=[[rs.length,'XDP text blocks'],[rs.filter(r=>r.status==='unchanged').length,'Unchanged'],[rs.filter(r=>r.status!=='unchanged'&&r.decision==='pending').length,'Awaiting review'],[C.unmappedWord(result).length,'Word blocks unmapped'],[approved,'Approved updates']];
+ const specs=[[result.xdp.blocks.length,'XDP text blocks'],[rs.filter(r=>r.status==='unchanged').length,'Unchanged'],[rs.filter(r=>r.status!=='unchanged'&&r.decision==='pending').length,'Awaiting review'],[rs.filter(r=>r.operation==='insert').length,'New list proposals'],[approved,'Approved updates']];
  $('stats').replaceChildren(...specs.map(([value,name],i)=>{const d=text('div','','stat'+(i===4?' emphasis':''));d.append(text('strong',value.toLocaleString()),text('span',name));return d;}));
  $('exportHeading').textContent=approved?`${approved} approved update${approved===1?'':'s'} ready to export`:'No changes approved yet';
  $('exportXdp').disabled=!approved||result.xdp.signed;
  $('exportHint').textContent=result.xdp.signed?'This XDP is signed or encrypted. Export is blocked; use an unsigned, decrypted design copy.':'The original file is never overwritten. Unapproved and unmatched text stays unchanged.';
 }
 function renderNotices(){
- const notes=[...result.warnings];const blocked=result.rows.filter(r=>r.xdp.blocked).length;
+ const notes=[...result.warnings];const blocked=result.rows.filter(r=>r.xdp.blocked||r.updateBlocked).length;
  if(blocked)notes.unshift(`${blocked} text block(s) are comparison-only because they are scripted, bound, inherited or use unsupported markup.`);
  if(result.xdp.excluded.length)notes.push(...result.xdp.excluded);
  $('noticeSummary').textContent=`Scope & review notes${notes.length?' · '+notes.length+' notices':''}`;
- $('noticeContent').replaceChildren(text('p','Scope: existing static XFA draw text and enabled field captions. The app does not create/delete form objects, update field data, execute scripts or import Word formatting.'));
+ $('noticeContent').replaceChildren(text('p','Scope: static XFA text, enabled captions and supported anchored list additions. Leading list-marker punctuation/spacing is ignored, but labels and wording are compared. Field placeholders are protected. Other structure, field data and scripts stay outside scope.'));
  for(const note of notes)$('noticeContent').append(text('p',note,'warning-item'));
 }
 function renderList(){
@@ -674,8 +1248,8 @@ function renderList(){
  for(const r of rows.slice(0,limit)){
   const item=button('','item'+(r.id===selected?' selected':''),()=>{selected=r.id;renderList();renderDetail();});item.setAttribute('aria-pressed',String(r.id===selected));
   const top=text('div','','item-top');top.append(text('span',r.xdp.ownerName,'item-name'));if(r.match)top.append(text('span',`${Math.round(r.match.score*100)}% similar`,'item-score'));
-  const meta=text('div','','item-meta');meta.append(badge(r));if(r.xdp.blocked)meta.append(text('span','Export blocked','badge blocked'));if(r.xdp.hidden)meta.append(text('span','Hidden','badge hidden'));
-  item.append(top,text('div',C.normalize(r.xdp.text),'item-preview'),meta);list.append(item);
+  const meta=text('div','','item-meta');meta.append(badge(r));if(r.xdp.blocked||r.updateBlocked)meta.append(text('span','Export blocked','badge blocked'));if(r.xdp.hidden)meta.append(text('span','Hidden','badge hidden'));
+  item.append(top,text('div',C.normalize(r.operation==='insert'?r.proposed:r.xdp.text),'item-preview'),meta);list.append(item);
  }
  if(rows.length>limit)list.append(button(`Show next ${Math.min(150,rows.length-limit)} items`,'page-more',()=>{limit+=150;renderList();}));
  list.scrollTop=scroll;
@@ -687,7 +1261,7 @@ function diffColumn(title,value,ops,side){
  else for(const op of ops){if(side==='old'&&op.type==='insert'||side==='new'&&op.type==='delete')continue;content.append(text(op.type==='delete'?'del':op.type==='insert'?'ins':'span',op.values.join('')));}
  div.append(content);return div;
 }
-function updateMatch(r,match){delete r.draft;r.match=match;r.proposed=match.text;r.decision='pending';r.reason=match.method||'Manual Word mapping';r.status=C.normalize(r.proposed)===C.normalize(r.xdp.text)?'unchanged':'suggested';clearError();renderAll(false);}
+function updateMatch(r,match){if(r.operation==='insert'){fail(new Error('Addition source mappings are fixed to the aligned list. Recompare to rebuild the insertion plan.'));return;}delete r.draft;C.chooseProposal(r,match,result.word,match.method||'Manual Word mapping');clearError();renderAll(false);}
 function sourceSearch(r,query,target){
  const q=C.folded(query);if(q.length<2){target.replaceChildren(text('p','Enter at least two characters.','muted'));return;}
  const terms=q.split(' ').filter(Boolean);const found=result.word.map((b,i)=>({b,i})).filter(({b})=>terms.every(t=>C.folded(b.text).includes(t))).slice(0,50);
@@ -700,30 +1274,34 @@ function renderDetail(){
  if(!r){const empty=text('div','','empty-state');empty.append(text('div','✓','empty-icon'),text('h3','Nothing to review in this view'),text('p','Use another filter to inspect unchanged or unmatched text.'));panel.append(empty);return;}
  const head=text('div','','detail-head'),titleRow=text('div','','detail-title-row'),titleBox=text('div','');titleBox.append(text('h3',r.xdp.ownerName),text('div',r.xdp.kind+(r.xdp.hidden?' · hidden object':''),'detail-kind'));titleRow.append(titleBox,badge(r));head.append(titleRow,text('code',r.xdp.path,'detail-path'));panel.append(head);
  const body=text('div','','detail-body'),info=text('div','','match-info');info.append(text('strong',r.reason),text('span',r.match?`${Math.round(r.match.score*100)}% text similarity · not a correctness score`:'No source mapping selected'));body.append(info);
- const ops=r.proposed?C.wordDiff(r.xdp.text,r.proposed):null;const diff=text('div','','diff-grid');diff.append(diffColumn('CURRENT XDP WORDING',r.xdp.text,ops,'old'),diffColumn('PROPOSED REPLACEMENT',r.proposed||'No proposed replacement. Choose a Word block or enter wording below.',ops,'new'));body.append(diff);
+ const ops=r.proposed?C.wordDiff(r.xdp.text,r.proposed):null;const diff=text('div','','diff-grid');diff.append(diffColumn(r.operation==='insert'?'NEW ITEM · NO EXISTING TEXT':'CURRENT XDP WORDING',r.xdp.text,ops,'old'),diffColumn(r.operation==='insert'?'PROPOSED ADDITION':'PROPOSED REPLACEMENT',r.proposed||'No proposed replacement. Choose a Word block or enter wording below.',ops,'new'));body.append(diff);
  body.append(text('div',r.match?`Word source: ${r.match.location}`:r.proposed?'Manually entered wording · no Word source mapping':'No Word source mapped','word-location'));
+ if(r.updateBlocked)body.append(text('div',r.updateBlocked,'review-alert block'));
+ if(r.listNotice)body.append(text('div',r.listNotice,'review-alert'));
+ if(r.xdp.fields?.length)body.append(text('div','Protected floating fields (matched by position, not binding identity): '+r.xdp.fields.map((f,i)=>`⟦FIELD:${i+1}⟧ · Word: ${r.match?.fields?.[i]?.name||'not mapped'} → XDP: ${f.name||f.ref}`).join('; '),'review-alert'));
+ if(r.operation==='insert'){body.append(text('div',`Reuse format from ${r.insertion.donor.ownerName}; insert ${r.insertion.side} its anchor. Mode: ${r.insertion.mode}. Check wrapping and pagination in Designer.`,'review-alert'));if(r.insertion.dependencies.length){const dep=text('div','','review-alert');dep.append(text('p','Export also requires approval of these renumbered neighbours:'));for(const id of r.insertion.dependencies){const row=result.rows.find(v=>v.id===id);dep.append(button(`${row.xdp.ownerName}: ${row.xdp.list.raw} → ${row.match.list?.raw||row.match.list?.label||''} (${row.decision})`,'text-button',()=>{filter='all';selected=id;renderList();renderDetail();}));}body.append(dep);}}
  if(r.xdp.blocked)body.append(text('div',`Export blocked: ${r.xdp.blocked}. Review this object in Designer.`,'review-alert block'));
  else if(r.status==='ambiguous')body.append(text('div','Check the mapping carefully. Similar alternatives, a short label, or a source block shared by other XDP objects make this suggestion uncertain.','review-alert'));
  if(r.shared)body.append(text('div','The suggested Word block is also proposed for another XDP object. Confirm each occurrence separately.','review-alert'));
  if(r.duplicate&&r.status==='unchanged')body.append(text('div','This text appears more than once in Word. The wording is unchanged, but the exact occurrence is not uniquely identified.','review-alert'));
- if(r.proposed.length>r.xdp.text.length*1.2+15)body.append(text('div','The replacement is longer. Check the existing text box for overflow and wrapping in Designer.','review-alert'));
+ if(r.operation!=='insert'&&r.proposed.length>r.xdp.text.length*1.2+15)body.append(text('div','The replacement is longer. Check the existing text box for overflow and wrapping in Designer.','review-alert'));
  if(r.xdp.rich)body.append(text('div','Rich-text styles are retained, not copied from Word. Check emphasis and line wrapping after export. Existing line-break structure must stay the same.','review-alert'));
- const mapping=text('details','','detail-disclosure');if(r.status==='unmatched')mapping.open=true;mapping.append(text('summary','Choose another Word match or edit the wording'));const controls=text('div','','mapping-controls');
+ const mapping=text('details','','detail-disclosure');if(r.status==='unmatched')mapping.open=true;mapping.append(text('summary',r.operation==='insert'?'Edit the proposed addition':'Choose another Word match or edit the wording'));const controls=text('div','','mapping-controls');
  if(r.alternatives.length){const lab=text('label','Suggested Word matches');const select=document.createElement('select');select.setAttribute('aria-label','Choose a suggested Word match');select.append(new Option('Select a match…',''));r.alternatives.forEach((a,i)=>select.append(new Option(`${Math.round(a.score*100)}% · ${a.text.replace(/\s+/g,' ').slice(0,100)}`,String(i))));select.addEventListener('change',()=>{if(select.value!=='')updateMatch(r,{...r.alternatives[Number(select.value)],method:'Manually chosen candidate'});});lab.append(select);controls.append(lab);}
- const searchLabel=text('label','Search all Word paragraphs (including unchanged matches)');const search=document.createElement('input');search.type='search';search.placeholder='Enter distinctive words from the source…';search.setAttribute('aria-label','Search Word source paragraphs');searchLabel.append(search);controls.append(searchLabel);
+ const searchLabel=text('label','Search all Word paragraphs (including unchanged matches)');const search=document.createElement('input');search.type='search';search.disabled=r.operation==='insert';search.placeholder='Enter distinctive words from the source…';search.setAttribute('aria-label','Search Word source paragraphs');searchLabel.append(search);controls.append(searchLabel);
  const searchResults=text('div','','search-results');searchResults.hidden=true;search.addEventListener('input',()=>{searchResults.hidden=!search.value;sourceSearch(r,search.value,searchResults);});controls.append(searchResults);
  const editorLabel=text('label','Replacement wording','edit-label');editorLabel.htmlFor='replacementEditor';const editor=document.createElement('textarea');editor.id='replacementEditor';editor.value=r.draft??r.proposed;editor.maxLength=C.LIMIT.text;editor.spellcheck=false;editor.addEventListener('input',()=>{r.draft=editor.value;if(r.decision==='approved')r.decision='pending';$('approveButton').disabled=true;$('approveButton').textContent='Apply edited wording first';renderStats();renderList();status('Choose “Use edited wording” to apply this draft. Drafts stay with this item until applied.');});controls.append(editorLabel,editor,text('p','Applying edited wording resets approval and records it as a manual replacement. Empty text is not allowed.','editor-hint'));
  const editRow=text('div','','edit-row');editRow.append(button('Use edited wording','secondary',()=>{
   const value=editor.value.replace(/\r\n?/g,'\n');if(!C.validText(value)||!C.normalize(value)){fail(new Error('Enter non-empty wording containing valid XML text.'));return;}
-  delete r.draft;r.proposed=value;r.match=null;r.reason='Manual replacement';r.status=C.normalize(value)===C.normalize(r.xdp.text)?'unchanged':'suggested';r.decision='pending';clearError();renderAll(false);
+  try{C.validateRow(result,{...r,proposed:value});}catch(e){fail(e);return;}delete r.draft;r.proposed=value;if(r.operation!=='insert')r.match=null;r.reason=r.operation==='insert'?'Edited list addition':'Manual replacement';r.status=r.operation==='insert'?'addition':C.comparisonKey(value)===C.comparisonKey(r.xdp.text)?'unchanged':'suggested';r.decision='pending';clearError();renderAll(false);
  }));controls.append(editRow);mapping.append(controls);body.append(mapping);
  const noteBox=text('div','','review-note'),noteLabel=text('label','Review note (included in exports)');noteLabel.htmlFor='reviewNote';const note=document.createElement('input');note.id='reviewNote';note.maxLength=4000;note.value=r.note;note.placeholder='Optional rationale or follow-up for the form owner';note.addEventListener('input',()=>r.note=note.value);noteBox.append(noteLabel,note);body.append(noteBox);panel.append(body);
  const actions=text('div','','detail-actions'),left=text('div','','action-left');
- left.append(button(r.decision==='rejected'?'Reopen review':'Keep original','secondary',()=>{r.decision=r.decision==='rejected'?'pending':'rejected';clearError();renderAll(false);}));
+ left.append(button(r.decision==='rejected'?'Reopen review':r.operation==='insert'?'Do not add':'Keep original','secondary',()=>{r.decision=r.decision==='rejected'?'pending':'rejected';clearError();renderAll(false);}));
  if(r.decision==='approved')left.append(button('Undo approval','quiet',()=>{r.decision='pending';renderAll(false);}));
- const approve=button(r.decision==='approved'?'Approved ✓':'Approve update','primary',()=>{
-  try{C.blockPatches(r.xdp,r.proposed,result.xdp.format.text);r.decision='approved';clearError();renderAll(false);status(`Approved ${r.xdp.ownerName}. The original file is unchanged until you export a copy.`);}catch(e){fail(e);}
- });approve.id='approveButton';approve.disabled=!!r.xdp.blocked||!C.normalize(r.proposed)||C.normalize(r.proposed)===C.normalize(r.xdp.text)||r.decision==='approved'||result.xdp.signed||(r.draft!==undefined&&r.draft!==r.proposed);actions.append(left,approve);panel.append(actions);
+ const approve=button(r.decision==='approved'?'Approved ✓':r.operation==='insert'?'Approve addition':'Approve update','primary',()=>{
+  try{C.validateRow(result,r);r.decision='approved';clearError();renderAll(false);status(`Approved ${r.xdp.ownerName}. The original file is unchanged until you export a copy.`);}catch(e){fail(e);}
+ });approve.id='approveButton';approve.disabled=!!r.xdp.blocked||!!r.updateBlocked||!C.normalize(r.proposed)||C.normalize(r.proposed)===C.normalize(r.xdp.text)||r.decision==='approved'||result.xdp.signed||(r.draft!==undefined&&r.draft!==r.proposed);actions.append(left,approve);panel.append(actions);
  const nav=text('div','','detail-nav');const rows=visibleRows(),idx=rows.findIndex(x=>x.id===r.id);const prev=button('← Previous','quiet',()=>navigate(-1)),next=button('Next →','quiet',()=>navigate(1));prev.disabled=idx<=0;next.disabled=idx>=rows.length-1;nav.append(prev,text('span',`${idx+1} of ${rows.length} in this view`),next);panel.append(nav);
 }
 function renderWord(){
@@ -741,15 +1319,15 @@ function baseName(){return (files.xdp?.name||'template').replace(/\.(xdp|xml)$/i
 $('exportReport').addEventListener('click',()=>{if(result&&noDrafts()){download(JSON.stringify(C.report(result,metadata),null,2),baseName()+'.review.json','application/json');status('Review JSON exported. It contains source document text; handle it like the original files.');}});
 $('exportCsv').addEventListener('click',()=>{
  if(!result||!noDrafts())return;
- const data=C.report(result,metadata),fields=['recordType','object','kind','status','decision','similarity','sourceLocation','path','original','proposed','blocked','note'];
+ const data=C.report(result,metadata),fields=['recordType','operation','object','kind','status','decision','similarity','sourceLocation','path','original','proposed','blocked','updateBlocked','note'];
  // Prefix spreadsheet formulas even after leading whitespace; double quotes do
  // not prevent formula execution in spreadsheet applications.
  const cell=v=>{let s=String(v??'');if(/^[\s\uFEFF]*[=+@-]/u.test(s)||/^[\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};
- const rows=data.rows.map(r=>({...r,recordType:'XDP text'})).concat(data.unmatchedWord.map(b=>({recordType:'Unmapped Word text',status:'unmapped',sourceLocation:b.location,proposed:b.text})),data.excludedXdp.map(t=>({recordType:'Excluded XDP',blocked:t})));
+ const rows=data.rows.map(r=>({...r,recordType:r.operation==='insert'?'New list item':'XDP text'})).concat(data.unmatchedWord.map(b=>({recordType:'Unmapped Word text',status:'unmapped',sourceLocation:b.location,proposed:b.text})),data.excludedXdp.map(t=>({recordType:'Excluded XDP',blocked:t})));
  const csv=[fields,...rows.map(r=>fields.map(f=>r[f]??''))].map(row=>row.map(cell).join(',')).join('\r\n');download('\uFEFF'+csv,baseName()+'.changes.csv','text/csv;charset=utf-8');status('The review list was exported as CSV. It includes unmapped Word text and excluded XDP items.');
 });
 $('exportXdp').addEventListener('click',()=>{
- if(!result||!noDrafts())return;clearError();try{const output=C.exportXdp(result);download(output.bytes,baseName()+'.updated.xdp','application/vnd.adobe.xdp+xml');status(`Exported ${output.approved} approved update${output.approved===1?'':'s'}. XML/text checks passed; validate appearance and behavior in Designer before release.`);}catch(e){fail(e);}
+ if(!result||!noDrafts())return;clearError();try{const output=C.exportXdp(result);download(output.bytes,baseName()+'.updated.xdp','application/vnd.adobe.xdp+xml');status(`Exported ${output.approved} approved change${output.approved===1?'':'s'} (${output.inserted||0} list additions). XML/text checks passed; validate appearance and behavior in Designer before release.`);}catch(e){fail(e);}
 });
 $('importReview').addEventListener('click',()=>$('reviewInput').click());
 $('reviewInput').addEventListener('change',async e=>{
@@ -761,10 +1339,81 @@ $('reviewInput').addEventListener('change',async e=>{
 });
 $('helpButton').addEventListener('click',()=>$('helpDialog').showModal());$('closeHelp').addEventListener('click',()=>$('helpDialog').close());
 $('helpDialog').addEventListener('click',e=>{if(e.target===$('helpDialog')){const r=$('helpDialog').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('helpDialog').close();}});
-$('resetButton').addEventListener('click',()=>{if((files.docx||files.xdp)&&!confirm('Clear this session? Export a JSON review first to keep your notes and proposed changes.'))return;location.reload();});
+$('resetButton').addEventListener('click',()=>{if((files.docx||files.xdp)&&!confirm('Clear this session? Export your review or generated template and object map first to retain your work.'))return;location.reload();});
 window.addEventListener('beforeunload',e=>{if(hasWork()){e.preventDefault();e.returnValue='';}});
 // The test harness can inspect state without bypassing the normal UI workflow.
-window.FormSyncApp={getResult:()=>result,getFiles:()=>metadata};
+function applyMode(next){
+ if(busy)return;mode=next;
+ $('modeCompare').classList.toggle('active',mode==='compare');$('modeCreate').classList.toggle('active',mode==='create');$('modeCompare').setAttribute('aria-pressed',String(mode==='compare'));$('modeCreate').setAttribute('aria-pressed',String(mode==='create'));
+ for(const id of ['xdpZone','compareButton','compareOptions','captionOption'])$(id).hidden=mode==='create';
+ $('fileGrid').classList.toggle('single-file',mode==='create');$('generateButton').hidden=mode!=='create';$('createOptions').hidden=mode!=='create';
+ $('results').hidden=mode!=='compare'||!result;$('generationResults').hidden=mode!=='create'||!generationPlan;
+ $('loadHeading').replaceChildren(text('span','01','step'),document.createTextNode(mode==='create'?' Choose your Word source':' Choose your files'));
+ $('introTitle').replaceChildren(document.createTextNode(mode==='create'?'Start with the wording.':'Keep the wording.'),document.createElement('br'),text('span',mode==='create'?'Build a form you can maintain.':'Lose the manual checking.'));
+ $('introText').textContent=mode==='create'?'Turn Word content into a new XDP. Split long text into smaller objects, name them by their contents, and review before exporting.':'Compare your Word source with an Adobe XDP template. Review the differences. Export only the changes you approve.';
+ status(mode==='create'?(generationPlan?'Your object preview is ready. Review names and export a new XDP.':files.docx?'Word source selected. Choose settings and build the object preview.':'Choose a Word file. No existing XDP is needed in this mode.'):(result?'Your comparison review is still available.':files.docx&&files.xdp?'Both files are ready to compare.':'Choose both files to compare.'));clearError();setBusy(false);
+}
+$('modeCompare').addEventListener('click',()=>applyMode('compare'));$('modeCreate').addEventListener('click',()=>applyMode('create'));
+function genOptions(){return {title:$('genTitle').value,maxChars:Number($('genMaxChars').value),page:$('genPage').value,margin:Number($('genMargin').value),font:$('genFont').value,fontSize:Number($('genFontSize').value),fileName:files.docx?.name||'source.docx'};}
+for(const id of ['genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders']){
+ const el=$(id);el.dataset.last=el.type==='checkbox'?String(el.checked):el.value;el.addEventListener('change',()=>{if(generationPlan&&genDirty&&!confirm('Changing generation settings clears the object preview and any edited names or labels. Export first to retain them. Continue?')){if(el.type==='checkbox')el.checked=el.dataset.last==='true';else el.value=el.dataset.last;return;}el.dataset.last=el.type==='checkbox'?String(el.checked):el.value;if(!generationPlan)return;generationPlan=null;generationSource=null;genDirty=false;$('generationResults').hidden=true;status('Generation settings changed. Rebuild the object preview before exporting.');});
+}
+async function generate(){
+ if(busy||!files.docx)return;
+ if(hasWork()&&!confirm('Building a new preview clears any comparison decisions and generated object edits. Export first to retain them. Continue?'))return;
+ let settings;try{settings=G.options(genOptions());}catch(e){fail(e);return;}
+ clearError();invalidate('Reading the Word source locally…');setBusy(true);const token=version;
+ try{
+  await C.pause();const bytes=new Uint8Array(await files.docx.arrayBuffer());
+  const w=await C.readDocx(bytes,{headers:$('includeHeaders').checked,notes:$('includeNotes').checked,placeholders:$('genPlaceholders').checked,generation:true});
+  status('Splitting paragraphs and naming text objects…');await C.pause();const plan=G.buildPlan(w,settings);
+  if(token!==version)return;
+  generationPlan=plan;generationSource=w;for(const id of ['genTitle','genMaxChars','genPage','genMargin','genFont','genFontSize','genPlaceholders'])$(id).dataset.last=$(id).type==='checkbox'?String($(id).checked):$(id).value;genDirty=true;genSelected=null;genLimit=150;$('genSearch').value='';$('generationResults').hidden=mode!=='create';renderGeneration();
+  status(`Created a preview of ${plan.fragments.length.toLocaleString()} text objects in ${plan.sections.length} sections, with ${plan.fields.length} empty field placeholder${plan.fields.length===1?'':'s'}. No file has been written.`);$('sessionInfo').textContent='Generation preview lives in memory · export before closing';
+ }catch(e){fail(e);}finally{setBusy(false);}
+}
+$('generateButton').addEventListener('click',generate);
+function genRows(){const q=$('genSearch').value.trim().toLocaleLowerCase();return generationPlan.fragments.filter(f=>!q||[f.name,f.label,f.text,f.sourceLocation].some(v=>v.toLocaleLowerCase().includes(q)));}
+function renderGeneration(){
+ const p=generationPlan,split=p.fragments.filter(f=>f.totalParts>1).length;
+ const specs=[[p.sourceCount,'Word paragraphs'],[p.fragments.length,'Text objects'],[p.sections.length,'Content sections'],[split,'Objects from splits'],[p.fields.length,'Field placeholders']];
+ $('genStats').replaceChildren(...specs.map(([value,name])=>{const n=text('div','','stat');n.append(text('strong',value.toLocaleString()),text('span',name));return n;}));
+ $('genNoticeSummary').textContent=`Generation scope & notes · ${p.warnings.length} notices`;$('genNoticeContent').replaceChildren(...p.warnings.map(w=>text('p',w,'warning-item')));
+ $('genExportHeading').textContent=`${p.fragments.length} named text objects ready to export`;renderGenList();renderGenDetail();
+}
+function renderGenList(){
+ const rows=genRows();if(!rows.some(f=>f.id===genSelected))genSelected=rows[0]?.id||null;$('genCount').textContent=rows.length+' objects';
+ const list=$('genObjectList'),scroll=list.scrollTop;list.replaceChildren();let previous='';
+ for(const f of rows.slice(0,genLimit)){
+  if(f.sectionId!==previous){const section=generationPlan.sections.find(s=>s.id===f.sectionId);list.append(text('div',section.label,'gen-section-label'));previous=f.sectionId;}
+  const n=button('','item'+(f.id===genSelected?' selected':''),()=>{genSelected=f.id;renderGenList();renderGenDetail();});n.setAttribute('aria-pressed',String(f.id===genSelected));
+  n.append(text('div',f.name,'item-name'),text('div',f.label,'item-preview'));const badges=text('div','','item-meta');badges.append(text('span',f.headingLevel?'Heading '+f.headingLevel:f.list?(f.list.continuation?'List continuation':'List item'):'Text','badge'));
+  if(f.totalParts>1)badges.append(text('span',`Part ${f.part}/${f.totalParts}`,'badge addition'));if(f.fields.length)badges.append(text('span',f.fields.length+' field slot'+(f.fields.length===1?'':'s'),'badge hidden'));n.append(badges);list.append(n);
+ }
+ if(!rows.length)list.append(text('p','No objects match that search.','empty-state'));
+ if(rows.length>genLimit)list.append(button('Show more objects','page-more',()=>{genLimit+=150;renderGenList();}));list.scrollTop=scroll;
+}
+function renderGenDetail(){
+ const panel=$('genDetail');panel.replaceChildren();const f=generationPlan.fragments.find(v=>v.id===genSelected);if(!f){panel.append(text('p','Select a generated object to inspect.','empty-state'));return;}
+ const section=generationPlan.sections.find(s=>s.id===f.sectionId),head=text('div','','detail-head');head.append(text('h3',f.label),text('div',section.label+' · '+f.sourceLocation,'detail-kind'));panel.append(head);
+ const body=text('div','','detail-body'),controls=text('div','','mapping-controls');
+ const nameLabel=text('label','XDP object name / ID'),name=document.createElement('input');name.id='genObjectName';name.value=f.name;name.maxLength=80;name.spellcheck=false;nameLabel.htmlFor=name.id;controls.append(nameLabel,name,text('p','Use a unique name: letters, digits and underscores; start with a letter or underscore. This name appears in Designer’s hierarchy.','editor-hint'));
+ const labelLabel=text('label','Content label'),labelInput=document.createElement('input');labelInput.id='genObjectLabel';labelInput.value=f.label;labelInput.maxLength=220;labelLabel.htmlFor=labelInput.id;controls.append(labelLabel,labelInput);
+ const warning=text('div','','review-alert block');warning.id='genNameWarning';warning.hidden=true;controls.append(warning);
+ name.addEventListener('input',()=>{f.name=name.value;genDirty=true;warning.hidden=G.safeName(f.name)&&!generationPlan.fragments.some(v=>v!==f&&v.name===f.name)&&!generationPlan.sections.some(v=>v.name===f.name)&&!generationPlan.fields.some(v=>v.name===f.name)&&!['Form','Page1','BodyArea'].includes(f.name);warning.textContent='Use a valid, unique object name before exporting.';renderGenList();});
+ labelInput.addEventListener('input',()=>{f.label=labelInput.value;genDirty=true;});
+ body.append(controls,diffColumn('OBJECT CONTENT · WORDING IS NOT EDITED HERE',f.text,null,'new'));
+ body.append(text('p',`Source paragraph ${f.sourceIndex+1} · characters ${f.sourceStart+1}–${f.sourceEnd} · part ${f.part} of ${f.totalParts}. Change the maximum fragment length and rebuild to split differently.`,'word-location'));
+ if(f.fields.length){body.append(text('div','These are empty, unbound XFA fields. The Word sample values are not copied. Each occurrence gets a separate field; configure binding, type and reuse in Designer.','review-alert'));for(const field of f.fields)body.append(text('p',`⟦FIELD:${field.index}⟧  ${field.sourceName} → ${field.name}`,'field-map-line'));}
+ if(f.list?.continuation)body.append(text('div','Continuation of a long list item. The original marker appears only on the first part; the item is not renumbered.','review-alert'));
+ panel.append(body);
+}
+$('genSearch').addEventListener('input',()=>{if(!generationPlan)return;genLimit=150;renderGenList();renderGenDetail();});
+function generatedBase(){return (files.docx?.name||'word-form').replace(/\.docx$/i,'').replace(/[<>:"/\\|?*\u0000-\u001F]/g,'_');}
+$('exportGeneratedXdp').addEventListener('click',()=>{if(!generationPlan)return;clearError();try{const out=G.createXdp(generationPlan);download(out.bytes,generatedBase()+'.generated.xdp','application/vnd.adobe.xdp+xml');status(`Exported ${out.objects} text objects and ${out.fields} blank field placeholders. XML/text/reference checks passed. Open the XDP in Designer to validate layout and configure fields.`);}catch(e){fail(e);}});
+$('exportObjectMap').addEventListener('click',()=>{if(!generationPlan)return;clearError();try{download(JSON.stringify(G.manifest(generationPlan),null,2),generatedBase()+'.objects.json','application/json');status('Object/source map exported. This contains document wording; store it securely. It documents the generated template and is not a review-import file.');}catch(e){fail(e);}});
+
+window.FormSyncApp={getResult:()=>result,getFiles:()=>metadata,getGeneration:()=>generationPlan,getMode:()=>mode};
 try{new DecompressionStream('deflate-raw');}catch{$('error').hidden=false;$('error').textContent='This browser lacks native raw-DEFLATE support. Open this HTML file in a current desktop Chrome or Edge browser.';}
 })();
 </script>
